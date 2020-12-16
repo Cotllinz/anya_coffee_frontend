@@ -1,18 +1,21 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div class="Home">
+    <Navbar :roles="role" />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
+import Navbar from '../components/_base/Navbar'
 export default {
-  name: "Home",
+  name: 'Home',
   components: {
-    HelloWorld
+    Navbar
+  },
+  data() {
+    return {
+      role: 1
+    }
   }
-};
+}
 </script>

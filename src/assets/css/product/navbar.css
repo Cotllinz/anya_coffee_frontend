@@ -1,0 +1,55 @@
+body {
+  background: #f0efef;
+}
+span.navbar__title {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  top: 5px;
+  color: black;
+}
+a.nav-link {
+  font-family: 'Rubik', sans-serif;
+  padding-left: 7px !important;
+  font-size: 16px;
+  color: #4f5665 !important;
+}
+a.nav-link:hover {
+  font-family: 'Rubik', sans-serif;
+  font-size: 16px;
+  color: #1b1e24 !important;
+}
+img.searching_logo {
+  width: 1.8em;
+  object-fit: contain;
+}
+button.button__logoSearching {
+  outline: none !important;
+  border: none;
+  background: none;
+}
+.chat__Logo {
+  width: 1.7em;
+  object-fit: contain;
+  position: relative;
+  z-index: -1;
+  top: 3px;
+}
+span.supply__Product {
+  background-color: #6a4029;
+  color: white;
+  width: 25px;
+  border-radius: 25px;
+  object-fit: contain;
+  border: 1px solid;
+  position: absolute;
+  bottom: 19.5px;
+  font-size: 10px;
+  right: 19px;
+  text-align: center;
+  padding: 3px 4px 3.1px 4px;
+}
+
+.costumer__Logo {
+  width: 2em;
+  object-fit: contain;
+}
