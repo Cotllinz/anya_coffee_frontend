@@ -48,7 +48,7 @@
               tag="a"
               class="position-relative mr-lg-4"
               to="/chat"
-              ><span class="supply__Product">{{ mssg }}</span
+              ><span class="supply__Product">{{ msg }}</span
               ><img src="../../assets/image/icons/chatIcons.svg" alt="chatLogo"
             /></router-link>
             <router-link
