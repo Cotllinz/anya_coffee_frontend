@@ -1,0 +1,126 @@
+<template>
+  <b-container>
+    <main class="mt-3">
+      <b-row>
+        <b-col lg="4" class="promo__display">
+          <h2 class="title__promo mt-4 mt-lg-4">Promo for you</h2>
+          <p class="desc__promo mt-lg-3">
+            Coupons will be updated every weeks. Check them out!
+          </p>
+          <div class="cardpromo__background position-relative">
+            <div
+              v-for="(items, index) in promo"
+              :key="index"
+              class="card-promo"
+            >
+              <div class="">
+                <img
+                  src="../../../assets/image/mainImage/CouponImage.svg"
+                  class="card__promoStyled"
+                  alt="Coupon"
+                />
+              </div>
+              <div class="title__card">
+                <h2 class="title__promoone">{{ items.name_product }}</h2>
+                <h2 class="title__promotwo">
+                  {{ items.discount_coupon }}% OFF
+                </h2>
+                <p class="promo__details">
+                  Buy {{ items.min_purchase }} {{ items.name_product }} and get
+                  {{ items.discount_coupon }}% Discount off for You :)
+                </p>
+                <hr class="type__border mt-lg-3" />
+                <h5 class="title__coupon mt-lg-4">COUPON CODE</h5>
+                <h2 class="coupon__code mt-lg-3">{{ items.code_coupon }}</h2>
+                <p class="expired__codeCoupon">
+                  Valid untill October 10th 2020
+                </p>
+              </div>
+            </div>
+            <div class="d-none d-lg-block card__promoBGone"></div>
+            <div class="d-none d-lg-block card__promoBGtwo"></div>
+          </div>
+          <div class="mt-2 ml-lg-3">
+            <b-pagination
+              v-model="currentPage"
+              :total-rows="rows"
+              pills
+              :per-page="limit"
+              @change="handlePageChange"
+              size="sm"
+            ></b-pagination>
+          </div>
+          <button class="mt-lg-1 p-lg-4 p-3 mt-2 btn__apply__coupon">
+            Apply Coupon
+          </button>
+          <div class="terms__conditions mt-3 ml-2 ml-lg-1 mt-lg-5 mb-lg-5">
+            <ol>
+              <ul>
+                Terms and Condition
+              </ul>
+              <li>
+                You can only apply 1 coupon per day
+              </li>
+              <li>It only for dine in</li>
+              <li>Buy 1 get 1 only for new user</li>
+              <li>Should make member card to apply coupon</li>
+            </ol>
+          </div>
+        </b-col>
+        <Productlist />
+      </b-row>
+    </main>
+  </b-container>
+</template>
+
+<script>
+import Productlist from './Productlist'
+import axios from 'axios'
+export default {
+  computed: {
+    rows() {
+      return this.totalRows
+    }
+  },
+  components: {
+    Productlist
+  },
+  name: 'CouponProduct',
+  data() {
+    return {
+      cardPromo: 'Beef Spaghetti',
+      promo: [],
+      currentPage: 1,
+      totalRows: null,
+      limit: 1,
+      page: 1
+    }
+  },
+  created() {
+    this.getPromo()
+  },
+  methods: {
+    getPromo() {
+      axios
+        .get(
+          `http://localhost:3000/promo/limit?page=${this.page}&limit=${this.limit}`
+        )
+        .then(res => {
+          this.promo = res.data.data
+          this.totalRows = res.data.pagination.totalProduct
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    handlePageChange(numberPage) {
+      this.page = numberPage
+      this.getPromo()
+    }
+  }
+}
+</script>
+
+<style scoped>
+@import '../../../assets/css/product/couponCode.css';
+</style>
