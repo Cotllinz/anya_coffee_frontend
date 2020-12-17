@@ -17,9 +17,7 @@
                 alt="Logo Facebook"
             /></a>
             <a :href="InstagramLink"
-              ><img
-                src="../../assets/image/icons/instagram_icons.svg"
-                alt="Logo Instagram"
+              ><img :src="image.ig" alt="Logo Instagram"
             /></a>
             <a :href="TwitterLink"
               ><img
@@ -65,7 +63,11 @@ export default {
         'Coffee Shop is a store that sells some good meals, and especially coffee. We provide high quality beans',
       FacebookLink: 'https://id-id.facebook.com/',
       InstagramLink: 'https://www.instagram.com/anyageraldine/?hl=id',
-      TwitterLink: 'https://twitter.com/Anyaselalubenar'
+      TwitterLink: 'https://twitter.com/Anyaselalubenar',
+      image: {
+        ig: require('../../assets/image/icons/instagram_icons.svg')
+      }
+      /* require('../../assets/image/icons/instagram_icons.svg') */
     }
   }
 }
