@@ -1,6 +1,6 @@
 <template>
   <div class="Home">
-    <Navbar :roles="role" />
+    <Navbar :roles="role" :msg="MassageValue" />
 
     <Footer />
   </div>
@@ -18,7 +18,8 @@ export default {
   },
   data() {
     return {
-      role: 1
+      role: 1,
+      MassageValue: 30
     }
   }
 }
