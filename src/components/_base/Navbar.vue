@@ -5,7 +5,7 @@
         <b-navbar-brand>
           <router-link tag="span" class="d-flex align-items-center" to="/"
             ><img src="../../assets/image/logo/logoNav.svg" alt="logo" />
-            <span class="navbar__title pl-2 pl-lg-2">Coffee Shop</span>
+            <span class="navbar__title pl-2 pl-lg-2">Anya Coffee</span>
           </router-link></b-navbar-brand
         >
         <b-navbar-toggle style="outline: none" target="navbar-toggle-collapse">
@@ -48,7 +48,7 @@
               tag="a"
               class="position-relative mr-lg-4"
               to="/chat"
-              ><span class="supply__Product">99+</span
+              ><span class="supply__Product">{{ mssg }}</span
               ><img src="../../assets/image/icons/chatIcons.svg" alt="chatLogo"
             /></router-link>
             <router-link
@@ -76,7 +76,12 @@
 </template>
 <script>
 export default {
-  props: ['roles']
+  props: ['roles', 'msg'],
+  data() {
+    return {
+      mssg: 30
+    }
+  }
 }
 </script>
 <style scoped>

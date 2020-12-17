@@ -1,6 +1,6 @@
 <template>
   <div class="product">
-    <Navbar :roles="role" />
+    <Navbar :roles="role" :msg="MassageValue" />
     <Footer />
   </div>
 </template>
@@ -17,7 +17,8 @@ export default {
   },
   data() {
     return {
-      role: 1
+      role: 1,
+      MassageValue: 30
     }
   }
 }

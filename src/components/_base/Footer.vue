@@ -60,7 +60,7 @@ export default {
   data() {
     return {
       logoImage: 'logoNav.svg',
-      nameLogo: 'Coffee Shop',
+      nameLogo: 'Anya Coffee',
       massageFooter:
         'Coffee Shop is a store that sells some good meals, and especially coffee. We provide high quality beans',
       FacebookLink: 'https://id-id.facebook.com/',
