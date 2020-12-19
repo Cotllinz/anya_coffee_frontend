@@ -52,7 +52,7 @@
         <div class="product__item">
           <b-row cols-lg="3" cols-xl="4" cols="2" class="mt-5 mt-lg-5 ml-xl-2">
             <b-col
-              v-for="(item, index) in productList"
+              v-for="(item, index) in product.productList"
               :key="index"
               class="product__list mb-4"
             >
@@ -83,10 +83,10 @@
           </b-row>
           <div class="mt-3 ml-lg-5">
             <b-pagination
-              v-model="currentPage"
+              v-model="product.currentPage"
               pills
               :total-rows="rows"
-              :per-page="limit"
+              :per-page="product.limit"
               align="fill"
               @change="handlePageChange"
             ></b-pagination>
@@ -99,65 +99,46 @@
 <script>
 import axios from 'axios'
 export default {
+  props: ['product'],
   name: 'Productlist',
   computed: {
     rows() {
-      return this.totalRows
+      return this.product.totalRows
     }
   },
   data() {
     return {
-      productList: [],
-      currentPage: 1,
-      totalRows: null,
-      limit: 8,
-      page: 1,
       category: ''
     }
   },
   created() {
-    this.getProduct(), this.getProductby()
+    this.getProductby()
   },
   methods: {
     getProduct() {
-      axios
-        .get(
-          `http://localhost:3000/product/limit?page=${this.page}&limit=${this.limit}`
-        )
-        .then(res => {
-          this.productList = res.data.data
-          this.totalRows = res.data.pagination.totalProduct
-        })
-        .catch(err => {
-          console.log(err)
-        })
+      this.product.productList
     },
     getProductby() {
       axios
         .get(`http://localhost:3000/category/${this.category}`)
         .then(res => {
-          this.productList = res.data.data
+          this.product.productList = res.data.data
         })
         .catch(err => {
           console.log(err)
         })
     },
     handlePageChange(numberPage) {
-      this.page = numberPage
-      this.getProduct()
+      const newPage = numberPage
+      this.$emit('page', newPage)
     },
     formatPrice(value) {
-      const val = value
-        .toFixed(0)
-        .toString()
-        .replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+      const val = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
       return val
     },
     selectCatagory(value) {
       this.category = value
       this.getProductby()
-      /* this.active = 'active' */
-      console.log(this.category)
     }
   }
 }
