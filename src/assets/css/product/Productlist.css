@@ -12,7 +12,7 @@ a .menu__links {
   font-weight: 700;
   color: #6a4029;
 }
-.menu__links.active {
+.menu_items.active {
   border-bottom: 4px solid #6a4029;
   box-shadow: 0 10px 6px -6px #6a4029;
   font-weight: 700;
