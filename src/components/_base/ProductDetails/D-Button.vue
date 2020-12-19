@@ -8,7 +8,7 @@
       Add to Cart
     </button>
     <button type="button" class="btn__toCartnStaf">
-      Ask to Staff {{ this.localStorage }}
+      Ask to Staff
     </button>
   </b-col>
 </template>
@@ -22,6 +22,7 @@ export default {
       if (data2.Size) {
         const SetCart = {
           id_product: data1.id_product,
+          name_product: data1.name_product,
           id_historydetails: 1,
           qty: data2.qty,
           total: data2.qty * data1.price_product + data2.SizePrice * data2.qty,
