@@ -1,0 +1,106 @@
+/* right Paymen Main Content */
+
+div.address__section {
+  margin-top: 137px;
+}
+div.address__section > div.address_card,
+div.paymentOption__card {
+  border-radius: 20px;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.35);
+}
+h2.nameTag__details {
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
+  font-size: 25px;
+  font-weight: 700;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.8);
+}
+a.edit__btn {
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+div.address_card > div.card-body h5:nth-child(1) {
+  font-weight: 500;
+}
+
+button.btn_confirm {
+  height: 70px;
+  border-radius: 20px;
+  background: #6a4029;
+  box-shadow: 0px 10px 20px rgba(137, 85, 55, 0.4);
+  border: none;
+  color: #ffffff;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  outline: none !important;
+}
+div.card__atm input[type='radio'] {
+  cursor: pointer;
+  position: relative;
+}
+div.card__atm input[type='radio']:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: 0px;
+  left: -1px;
+  position: absolute;
+  background-color: #d1d3d1;
+  content: '';
+  display: inline-block;
+  border: 3px solid #fffb00;
+}
+
+div.card__atm input[type='radio']:checked:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: 0px;
+  left: -1px;
+  position: absolute;
+  background-color: #895537;
+  content: '';
+}
+div.card__atm a {
+  color: #000;
+  text-decoration: none;
+}
+
+/* Hover Right Main Content */
+
+a.edit__btn:hover {
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+}
+button.btn_confirm:hover {
+  background: #fa8034;
+  color: #fff;
+}
+/* Media Query Right Main Content */
+@media (max-width: 1024px) {
+  div.address__section {
+    margin-top: 150px;
+  }
+}
+
+@media (max-width: 576px) {
+  div.address__section {
+    margin-top: 20px;
+  }
+  div.address__section > div.address_card h5 {
+    font-size: 17px;
+  }
+  div.card__atm input[type='radio']:after {
+    left: -1px;
+  }
+  div.card__atm input[type='radio']:checked:after {
+    left: -1px;
+  }
+}
