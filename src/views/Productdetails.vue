@@ -2,7 +2,15 @@
   <div class="Home">
     <Navbar :roles="role" :msg="MassageValue" />
     <hr class="mt-lg-3 d-none d-lg-block" />
-    <DProduct />
+    <DProduct
+      v-bind="{ Details: DetailsData, qty: details }"
+      v-on="{
+        Changeqty: changeqty,
+        DeliveryType: DeliveryType,
+        DeliveryNow: DeliveryNow,
+        SizeProduct: SizeProduct
+      }"
+    />
     <Footer />
   </div>
 </template>
@@ -12,6 +20,7 @@
 import Navbar from '../components/_base/Navbar'
 import Footer from '../components/_base/Footer'
 import DProduct from '../components/_base/ProductDetails/D-Product'
+import axios from 'axios'
 export default {
   name: 'ProductDetails',
   components: {
@@ -23,11 +32,45 @@ export default {
     return {
       role: 1,
       MassageValue: 30,
-      id: 0
+      id: 0,
+      details: {
+        qty: 1,
+        DeliverySet: '',
+        Deliverynow: '',
+        Size: '',
+        SizePrice: 0
+      },
+      DetailsData: []
     }
   },
   created() {
     this.id = this.$route.params.id
+    this.GetDetailsProduct()
+  },
+  methods: {
+    GetDetailsProduct() {
+      axios
+        .get(`http://localhost:3000/product/${this.id}`)
+        .then(res => {
+          this.DetailsData = res.data.data[0]
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    changeqty(e) {
+      this.details.qty = e
+    },
+    DeliveryType(e) {
+      this.details.DeliverySet = e
+    },
+    DeliveryNow(e) {
+      this.details.Deliverynow = e
+    },
+    SizeProduct(size, price) {
+      this.details.Size = size
+      this.details.SizePrice = price
+    }
   }
 }
 </script>
