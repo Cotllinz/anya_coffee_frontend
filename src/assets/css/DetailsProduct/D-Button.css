@@ -1,0 +1,19 @@
+button.btn__toCartnStaf {
+  height: 70px;
+  width: 100%;
+  margin-left: 5%;
+  outline: none !important;
+  border-radius: 20px;
+  font-size: 22px;
+  border: none;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+}
+button.btn__toCartnStaf:nth-child(1) {
+  background-color: #6a4029;
+  color: white;
+}
+button.btn__toCartnStaf:nth-child(2) {
+  background: #ffba33;
+  color: #6a4029;
+}
