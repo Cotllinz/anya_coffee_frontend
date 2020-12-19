@@ -40,14 +40,15 @@
             <div class="d-none d-lg-block card__promoBGone"></div>
             <div class="d-none d-lg-block card__promoBGtwo"></div>
           </div>
-          <div class="mt-2 ml-lg-3">
+          <div class="mt-2">
             <b-pagination
               v-model="currentPage"
               :total-rows="rows"
               pills
               :per-page="limit"
               @change="handlePageChange"
-              size="sm"
+              class="justify-content-center justify-content-lg-start"
+              size="md"
             ></b-pagination>
           </div>
           <button class="mt-lg-1 p-lg-4 p-3 mt-2 btn__apply__coupon">
@@ -67,7 +68,7 @@
             </ol>
           </div>
         </b-col>
-        <Productlist />
+        <Productlist :product="prod" @page="NewPage" />
       </b-row>
     </main>
   </b-container>
@@ -77,6 +78,7 @@
 import Productlist from './Productlist'
 import axios from 'axios'
 export default {
+  props: ['prod'],
   computed: {
     rows() {
       return this.totalRows
@@ -116,6 +118,10 @@ export default {
     handlePageChange(numberPage) {
       this.page = numberPage
       this.getPromo()
+    },
+    NewPage(e) {
+      const newPage = e
+      this.$emit('Newpage', newPage)
     }
   }
 }
