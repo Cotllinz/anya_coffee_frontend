@@ -1,0 +1,71 @@
+div.detail_checkoutProduct {
+  z-index: 1;
+  background: #ffffff;
+  box-shadow: 0px 70px 50px rgba(57, 57, 57, 0.1);
+  border-radius: 20px;
+}
+
+img.detail_imageProd {
+  width: 120px;
+  object-fit: contain;
+}
+
+h2.title_drinkCheck {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 23px;
+}
+div.list__details {
+  position: relative;
+  top: 15px;
+}
+ul.list-unstyled li {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+}
+
+h2.checkOut__name {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+}
+
+img.arrow__icons {
+  width: 60px;
+  object-fit: contain;
+}
+
+/* Media Query Detail Component */
+@media (max-width: 1024px) {
+  img.detail_imageProd {
+    width: 85px;
+  }
+  h2.checkOut__name {
+    font-size: 20px;
+  }
+  h2.title_drinkCheck {
+    font-size: 19px;
+  }
+  ul.list-unstyled li {
+    font-size: 14px;
+  }
+  div.list__details {
+    top: 5px;
+  }
+  img.arrow__icons {
+    width: 50px;
+  }
+}
+@media (max-width: 576px) {
+  h2.checkOut__name {
+    font-size: 35px;
+    margin-top: 10px;
+  }
+  img.arrow__icons {
+    width: 80px;
+  }
+  img.detail_imageProd {
+    width: 150px;
+  }
+}
+
