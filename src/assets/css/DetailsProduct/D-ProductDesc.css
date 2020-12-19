@@ -1,0 +1,99 @@
+h1.titleProduct__details {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  font-size: 65px;
+  text-align: center;
+}
+p.descProduct__details {
+  font-family: 'Poppins', sans-serif;
+  font-size: 23px;
+}
+p.descDelivery__product {
+  font-family: 'Poppins', sans-serif;
+  font-size: 23px;
+  padding-right: 190px;
+}
+p.descDelivery__product strong {
+  color: #6a4029;
+}
+.inputProduct__range {
+  border: 1px solid rgb(189, 187, 187);
+  height: 50px;
+  border-radius: 5px;
+}
+button.minbtn {
+  background: none;
+  outline: none !important;
+  width: 45px;
+  border: none;
+}
+input.inputbtn {
+  width: 50px;
+  font-family: 'Poppins', sans-serif;
+  outline: none !important;
+  color: #6a4029;
+  font-size: 23px;
+  padding-top: 4px;
+  height: 50px;
+  font-weight: 700;
+  border: 1px solid rgb(189, 187, 187);
+
+  text-align: center;
+}
+button.plusbtn {
+  background: none;
+  border: none;
+  outline: none !important;
+  width: 45px;
+}
+h2.priceTag__Product {
+  font-size: 33px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Media Query Detail Component */
+@media (max-width: 1024px) {
+  p.descDelivery__product {
+    padding-right: 50px;
+  }
+}
+@media (max-width: 576px) {
+  h1.titleProduct__details {
+    font-size: 45px;
+  }
+  p.descProduct__details {
+    font-size: 23px;
+    text-align: justify;
+  }
+  p.descDelivery__product {
+    padding-right: 0;
+  }
+  h2.priceTag__Product {
+    font-size: 43px;
+  }
+  button.minbtn {
+    width: 70px;
+  }
+  input.inputbtn {
+    width: 70px;
+  }
+  button.plusbtn {
+    width: 70px;
+  }
+  button.btn__toCartnStaf {
+    margin-left: 0;
+  }
+}
+@media (max-width: 375px) {
+  div.choose_sizeDrink a {
+    padding-right: 10px;
+    margin-left: 21px;
+  }
+}
+
+@media (max-width: 360px) {
+  p.descProduct__details {
+    font-size: 25px;
+  }
+}
