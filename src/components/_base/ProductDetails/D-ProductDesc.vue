@@ -9,7 +9,7 @@
       </p>
       <p class="descDelivery__product pl-lg-2 ml-lg-4">
         Delivery only on <strong>Monday to friday</strong> at
-        <strong>1 - 7 pm</strong>
+        <strong>{{ L_Details.time_start }} - {{ L_Details.time_end }}</strong>
       </p>
       <div
         class="d-flex align-items-center flex-column flex-lg-row pl-lg-2 ml-lg-4 mt-lg-4"
