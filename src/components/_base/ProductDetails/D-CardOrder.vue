@@ -5,6 +5,7 @@
     </h2>
     <div class="delivey__category mb-lg-4 ml-lg-2">
       <button
+        v-if="CardOrder.homeDeliv === 'ON'"
         class="option__delivCatagory"
         :class="deliveryType === 'Dine in' ? 'active' : ''"
         @click="DeliveryType('Dine in')"
@@ -12,6 +13,7 @@
         Dine in
       </button>
       <button
+        v-if="CardOrder.dineIn === 'ON'"
         class="option__delivCatagory"
         :class="deliveryType === 'Door Delivery' ? 'active' : ''"
         @click="DeliveryType('Door Delivery')"
@@ -19,6 +21,7 @@
         Door Delivery
       </button>
       <button
+        v-if="CardOrder.takeaway === 'ON'"
         class="option__delivCatagory"
         :class="deliveryType === 'Pick up' ? 'active' : ''"
         @click="DeliveryType('Pick up')"
@@ -70,6 +73,7 @@
 
 <script>
 export default {
+  props: ['CardOrder'],
   name: 'CardOrder',
   data() {
     return {
