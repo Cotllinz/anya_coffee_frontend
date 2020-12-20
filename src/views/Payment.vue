@@ -5,8 +5,11 @@
       <hr class="mt-lg-3 d-none d-lg-block" />
       <b-container>
         <b-row>
-          <ListPayment :PaymentList="cart" @Total="Total" />
-          <Checkout v-bind="{ PaymentList: cart, Totals: Totals }" />
+          <ListPayment :PaymentList="cart" :Totals="Totals" @Remove="Remove" />
+          <Checkout
+            v-bind="{ PaymentList: cart, Totals: Totals }"
+            @RemoveALL="RemoveALL"
+          />
         </b-row>
       </b-container>
     </main>
@@ -33,11 +36,15 @@ export default {
       role: 1,
       MassageValue: 30,
       Totals: {
-        TotalOrder: 0
+        TotalOrder: 0,
+        subTotal: 0,
+        tax: 0,
+        Shipping: 10000
       },
       cart: []
     }
   },
+
   created() {
     let getCart = localStorage.getItem('cart')
     getCart = JSON.parse(getCart)
@@ -46,10 +53,31 @@ export default {
     } else {
       this.cart = []
     }
+    this.GetSubTotal()
   },
   methods: {
-    Total(e) {
-      this.Totals.TotalOrder = e
+    Remove(e) {
+      this.cart.splice(e, 1)
+      localStorage.setItem('cart', JSON.stringify(this.cart))
+      this.GetSubTotal()
+    },
+    RemoveALL(e) {
+      this.cart = localStorage.removeItem(e)
+      this.GetSubTotal()
+    },
+    GetSubTotal() {
+      this.Totals = {
+        TotalOrder: 0,
+        subTotal: 0,
+        tax: 0,
+        Shipping: 10000
+      }
+      for (let i = 0; i < this.cart.length; i++) {
+        this.Totals.subTotal += this.cart[i].total
+        this.Totals.tax += this.cart[i].total * 0.15
+      }
+      this.Totals.TotalOrder =
+        this.Totals.subTotal + this.Totals.tax + this.Totals.Shipping
     }
   }
 }
