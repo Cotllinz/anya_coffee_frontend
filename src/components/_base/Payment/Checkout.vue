@@ -74,7 +74,7 @@
         </b-card-text>
       </b-card>
       <button
-        @click="PostHistory(PaymentList)"
+        @click="PostHistory()"
         class="mt-xl-5 mt-4 mb-5 mb-xl-0 w-100 btn_confirm"
       >
         Confirm and Pay
@@ -104,73 +104,54 @@ export default {
         invoicePayment: '',
         subTotal: this.Totals.TotalOrder
       },
-      formDetails: {
-        idHistory: '' // cuma ini yg data yg masuk
-        /*   
-        Ini Juga Gagal ;(
-       idProduct: this.PaymentList.id_product,
-        qty: this.PaymentList.qty,
-        total: this.PaymentList.total,
-        statusDelivery: this.PaymentList.status_delivery,
-        sizeDetail: this.PaymentList.sizeDetail,
-        table: this.PaymentList.table */
-      },
-      data: {}
+      data: []
     }
   },
   created() {
     this.getRandomInvoice()
-    /*
-   cara di looping gagal
-   this.data = this.PaymentList
-    for (let i = 0; i < this.data.length; i++) {
-      this.idProduct = this.data[i].id_product
-      this.qty = this.data[i].qty
-      this.total = this.data[i].total
-      this.statusDelivery = this.data[i].status_delivery
-      this.sizeDetail = this.data[i].size_detail
-      this.table = this.data[i].status_table
-    } */
+    this.Drum()
+    console.log(this.PaymentList.length)
   },
   methods: {
+    Drum() {
+      console.log(this.PaymentList.length)
+      for (let i = 0; i < this.PaymentList.length; i++) {
+        const setData = {
+          idProduct: this.PaymentList[i].id_product,
+          qty: this.PaymentList[i].qty,
+          total: this.PaymentList[i].total,
+          statusDelivery: this.PaymentList[i].status_delivery,
+          sizeDetail: this.PaymentList[i].size_detail,
+          table: this.PaymentList[i].status_table
+        }
+        /*  this.data.push(setData) */
+        this.data = [...this.data, setData]
+      }
+    },
     getRandomInvoice() {
       this.form.invoicePayment = random.generate()
     },
-    async PostHistory(data1) {
-      console.log(data1)
-      const response = await axios
+    async PostHistory() {
+      await axios
         .post('http://localhost:3000/history', this.form)
         .then(response => {
           console.log(response)
-          this.formDetails.idHistory = response.data.data.id_history
-          /* 
-          cara dibuat seperti ini juga gagal :(
-              
-          this.formDetails.idProduct = data1.product_id
-          this.formDetails.qty = data1.qty
-          this.formDetails.total = data1.total
-          this.formDetails.statusDelivery = data1.status_delivery
-          this.formDetails.sizeDetail = data1.size_detail
-          this.formDetails.table = data1.status_table */
-          console.log(this.formDetails)
+          for (let i = 0; i < this.data.length; i++) {
+            this.data[i].idHistory = response.data.data.id_history
+          }
         })
         .catch(error => {
           console.log(error.response)
         })
-
-      const coba = await axios
-        .post('http://localhost:3000/history/details', this.formDetails)
+      await axios
+        .post('http://localhost:3000/history/details', this.data)
         .then(response => {
           console.log(response)
         })
         .catch(error => {
           console.log(error.response)
         })
-      const result = {
-        coba,
-        response
-      }
-      return result
+      this.$emit('RemoveALL', 'cart')
     }
   }
 }
