@@ -36,21 +36,27 @@
           <hr class="mt-xl-4 mt-4" />
           <div class="d-flex mt-xl-4 mt-4 sub_price">
             <h5>SUBTOTAL</h5>
-            <p class="ml-auto ml-xl-auto">IDR {{ formatPrice(subTotal) }}</p>
+            <p class="ml-auto ml-xl-auto">
+              IDR {{ formatPrice(Totals.subTotal) }}
+            </p>
           </div>
           <div class="d-flex sub_price">
             <h5>TAX & FEES</h5>
-            <p class="ml-auto ml-xl-auto">IDR {{ formatPrice(tax) }}</p>
+            <p class="ml-auto ml-xl-auto">IDR {{ formatPrice(Totals.tax) }}</p>
           </div>
           <div class="d-flex sub_price mb-xl-5">
             <h5>SHIPPING</h5>
-            <p class="ml-auto ml-xl-auto">IDR {{ formatPrice(Shipping) }}</p>
+            <p class="ml-auto ml-xl-auto">
+              IDR {{ formatPrice(Totals.Shipping) }}
+            </p>
           </div>
           <div
             class="d-flex mt-xl-4 mt-lg-4 mt-3 pb-3 pb-lg-5 pb-xl-5 total_productPrice"
           >
             <h2>Total</h2>
-            <h2 class="ml-auto ml-xl-auto">IDR {{ formatPrice(Total) }}</h2>
+            <h2 class="ml-auto ml-xl-auto">
+              IDR {{ formatPrice(Totals.TotalOrder) }}
+            </h2>
           </div>
         </b-card-text>
       </b-card>
@@ -61,45 +67,22 @@
 export default {
   props: {
     PaymentList: {
+      type: Array
+    },
+    Totals: {
       type: Object
     }
   },
   /* ['PaymentList'] */ data() {
-    return {
-      subTotal: 0,
-      tax: 0,
-      Shipping: 10000,
-      Total: 0,
-      data: []
-    }
-  },
-  created() {
-    this.GetSubTotal()
-    this.Total = this.subTotal + this.tax + this.Shipping
-    this.total()
+    return {}
   },
   methods: {
     removeCart(x) {
-      this.data.splice(x, 1)
-      this.saveCart()
+      this.$emit('Remove', x)
     },
     formatPrice(value) {
       const val = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
       return val
-    },
-    GetSubTotal() {
-      this.data = this.PaymentList
-      for (let i = 0; i < this.data.length; i++) {
-        this.subTotal += this.data[i].total
-        this.tax += this.data[i].total * 0.15
-      }
-    },
-    total() {
-      this.$emit('Total', this.Total)
-    },
-    saveCart() {
-      const parsed = JSON.stringify(this.data)
-      localStorage.setItem('cart', parsed)
     }
   }
 }
