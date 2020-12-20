@@ -5,6 +5,7 @@ import Product from '../views/Product.vue'
 import Productdetails from '../views/Productdetails.vue'
 import Payment from '../views/Payment.vue'
 import Addproduct from '../views/addProduct.vue'
+import addPromo from '../views/addPromo.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -32,6 +33,11 @@ const routes = [
     path: '/addProduct',
     name: 'AddProduct',
     component: Addproduct
+  },
+  {
+    path: '/Addpromo',
+    name: 'Addpromo',
+    component: addPromo
   }
 ]
 

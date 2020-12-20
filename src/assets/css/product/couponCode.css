@@ -33,12 +33,12 @@ img.card__promoStyled {
 .title__promoone,
 .title__promotwo {
   text-align: center;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 22px;
 }
 .promo__details {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-align: center;
   padding: 0 10px;
 }
@@ -46,19 +46,19 @@ img.card__promoStyled {
   border: 1px dashed;
 }
 .title__coupon {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 18px;
   text-align: center;
 }
 .coupon__code {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 18px;
   text-align: center;
   font-weight: 700;
   font-size: 33px;
 }
 .expired__codeCoupon {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-align: center;
   font-size: 15px;
   padding-bottom: 20px;
@@ -85,7 +85,7 @@ img.card__promoStyled {
 }
 .btn__apply__coupon {
   color: white;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 17px;
   width: 85%;
@@ -94,7 +94,7 @@ img.card__promoStyled {
   background: #6a4029;
 }
 .terms__conditions {
-  font-family: "Rubik", sans-serif;
+  font-family: 'Rubik', sans-serif;
   font-weight: 400;
   font-size: 12px;
 }
@@ -127,4 +127,3 @@ img.card__promoStyled {
     width: 100%;
   }
 }
-
