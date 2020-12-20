@@ -19,6 +19,7 @@
     </div>
     <section class="d-none d-lg-block delivery__content p-lg-4 mt-lg-4">
       <DCardOrder
+        :CardOrder="R_Details"
         v-on="{ DeliveryType: DeliveryType, DeliveryNow: DeliveryNow }"
       />
     </section>
