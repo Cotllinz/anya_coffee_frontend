@@ -22,9 +22,9 @@
         <h2 class="mt-lg-2 mt-xl-2 checkOut__name ml-lg-auto">
           Checkout
         </h2>
-        <a
+        <router-link tag="a" to="/payment"
           ><img src="../../../assets/image/icons/arrows_checkout.svg" alt=""
-        /></a>
+        /></router-link>
       </div>
     </div>
   </b-col>
