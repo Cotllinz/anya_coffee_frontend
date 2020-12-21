@@ -20,8 +20,8 @@ npm run build
 npm run lint
 ```
 ### Deploy Link Netlify
-...
+```
 https://anya-coffeeshop.netlify.app/
-...
+```
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
