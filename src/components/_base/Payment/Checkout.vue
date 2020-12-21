@@ -104,7 +104,8 @@ export default {
         invoicePayment: '',
         subTotal: this.Totals.TotalOrder
       },
-      data: []
+      data: [],
+      VUE_APP_SERVICE_URL: process.env.VUE_APP_SERVICE_URL
     }
   },
   created() {
@@ -133,7 +134,7 @@ export default {
     },
     async PostHistory() {
       await axios
-        .post('http://localhost:3000/history', this.form)
+        .post(`${this.VUE_APP_SERVICE_URL}history`, this.form)
         .then(response => {
           console.log(response)
           for (let i = 0; i < this.data.length; i++) {
@@ -144,7 +145,7 @@ export default {
           console.log(error.response)
         })
       await axios
-        .post('http://localhost:3000/history/details', this.data)
+        .post(`${this.VUE_APP_SERVICE_URL}history/details`, this.data)
         .then(response => {
           console.log(response)
         })

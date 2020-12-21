@@ -31,7 +31,8 @@ export default {
         totalRows: null,
         limit: 12,
         page: 1
-      }
+      },
+      VUE_APP_SERVICE_URL: process.env.VUE_APP_SERVICE_URL
     }
   },
   created() {
@@ -46,7 +47,7 @@ export default {
     getProduct() {
       axios
         .get(
-          `http://localhost:3000/product/limit?page=${this.product.page}&limit=${this.product.limit}`
+          `${this.VUE_APP_SERVICE_URL}product/limit?page=${this.product.page}&limit=${this.product.limit}`
         )
         .then(res => {
           this.product.productList = res.data.data

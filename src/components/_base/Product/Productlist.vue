@@ -108,7 +108,8 @@ export default {
   },
   data() {
     return {
-      category: ''
+      category: '',
+      VUE_APP_SERVICE_URL: process.env.VUE_APP_SERVICE_URL
     }
   },
   created() {
@@ -120,7 +121,7 @@ export default {
     },
     getProductby() {
       axios
-        .get(`http://localhost:3000/category/${this.category}`)
+        .get(`${this.VUE_APP_SERVICE_URL}category/${this.category}`)
         .then(res => {
           this.product.productList = res.data.data
         })

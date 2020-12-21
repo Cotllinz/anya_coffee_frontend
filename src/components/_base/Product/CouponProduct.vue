@@ -95,7 +95,8 @@ export default {
       currentPage: 1,
       totalRows: null,
       limit: 1,
-      page: 1
+      page: 1,
+      VUE_APP_SERVICE_URL: process.env.VUE_APP_SERVICE_URL
     }
   },
   created() {
@@ -105,7 +106,7 @@ export default {
     getPromo() {
       axios
         .get(
-          `http://localhost:3000/promo/limit?page=${this.page}&limit=${this.limit}`
+          `${this.VUE_APP_SERVICE_URL}promo/limit?page=${this.page}&limit=${this.limit}`
         )
         .then(res => {
           this.promo = res.data.data

@@ -40,7 +40,8 @@ export default {
         Size: '',
         SizePrice: 0
       },
-      DetailsData: []
+      DetailsData: [],
+      VUE_APP_SERVICE_URL: process.env.VUE_APP_SERVICE_URL
     }
   },
   created() {
@@ -50,7 +51,7 @@ export default {
   methods: {
     GetDetailsProduct() {
       axios
-        .get(`http://localhost:3000/product/${this.id}`)
+        .get(`${this.VUE_APP_SERVICE_URL}product/${this.id}`)
         .then(res => {
           this.DetailsData = res.data.data[0]
         })

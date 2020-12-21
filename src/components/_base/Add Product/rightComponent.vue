@@ -164,13 +164,14 @@ export default {
       store400: '',
       storeHomedev: '',
       storeDine: '',
-      storeTake: ''
+      storeTake: '',
+      VUE_APP_SERVICE_URL: process.env.VUE_APP_SERVICE_URL
     }
   },
   methods: {
     sendData() {
       axios
-        .post('http://localhost:3000/product', this.Data)
+        .post(`${this.VUE_APP_SERVICE_URL}product`, this.Data)
         .then(response => {
           console.log(response)
         })

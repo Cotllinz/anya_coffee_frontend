@@ -139,13 +139,14 @@ export default {
         { text: 'Eight Order', value: 8 },
         { text: 'Nine Order', value: 9 },
         { text: 'Ten Order', value: 10 }
-      ]
+      ],
+      VUE_APP_SERVICE_URL: process.env.VUE_APP_SERVICE_URL
     }
   },
   methods: {
     sendData() {
       axios
-        .post('http://localhost:3000/promo', this.Data)
+        .post(`${this.VUE_APP_SERVICE_URL}promo`, this.Data)
         .then(response => {
           console.log(response)
         })

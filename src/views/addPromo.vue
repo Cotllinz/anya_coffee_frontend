@@ -48,7 +48,8 @@ export default {
         dineIn: '',
         takeaway: ''
       },
-      data: []
+      data: [],
+      VUE_APP_SERVICE_URL: process.env.VUE_APP_SERVICE_URL
     }
   },
   created() {
@@ -57,7 +58,7 @@ export default {
   methods: {
     getProduct() {
       axios
-        .get('http://localhost:3000/product')
+        .get(`${this.VUE_APP_SERVICE_URL}product`)
         .then(res => {
           for (let i = 0; i < res.data.data.length; i++) {
             const dat = {
