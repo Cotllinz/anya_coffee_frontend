@@ -1,8 +1,10 @@
 .DS_Store
 node_modules
 package-lock.json
+.env
 .prettierrc.js
 /dist
+
 
 
 # local env files
