@@ -111,11 +111,11 @@ export default {
   created() {
     this.getRandomInvoice()
     this.Drum()
-    console.log(this.PaymentList.length)
+    /*    console.log(this.PaymentList.length) */
   },
   methods: {
     Drum() {
-      console.log(this.PaymentList.length)
+      /*  console.log(this.PaymentList.length) */
       for (let i = 0; i < this.PaymentList.length; i++) {
         const setData = {
           idProduct: this.PaymentList[i].id_product,
