@@ -93,6 +93,17 @@ img.card__promoStyled {
   border-radius: 20px;
   background: #6a4029;
 }
+button.btn__AddPromo {
+  color: rgb(0, 0, 0);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  width: 85%;
+  border: none;
+  outline: none !important;
+  border-radius: 20px;
+  background: #e1ec3b;
+}
 .terms__conditions {
   font-family: 'Rubik', sans-serif;
   font-weight: 400;

@@ -12,6 +12,18 @@ a .menu__links {
   font-weight: 700;
   color: #6a4029;
 }
+button.btn__AddProduct {
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  margin-left: 90px;
+  width: 100%;
+  border: none;
+  outline: none !important;
+  border-radius: 20px;
+  background: #ee9612;
+}
 .menu_items.active {
   border-bottom: 4px solid #6a4029;
   box-shadow: 0 10px 6px -6px #6a4029;

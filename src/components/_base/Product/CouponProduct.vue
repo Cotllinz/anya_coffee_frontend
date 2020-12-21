@@ -54,6 +54,13 @@
           <button class="mt-lg-1 p-lg-4 p-3 mt-2 btn__apply__coupon">
             Apply Coupon
           </button>
+          <router-link
+            tag="button"
+            class="btn__AddPromo  p-lg-4 p-3 mt-lg-3"
+            v-if="roles === 1 || roles === 2"
+            to="/Addpromo"
+            >Add new Promo</router-link
+          >
           <div class="terms__conditions mt-3 ml-2 ml-lg-1 mt-lg-5 mb-lg-5">
             <ol>
               <ul>
@@ -68,7 +75,7 @@
             </ol>
           </div>
         </b-col>
-        <Productlist :product="prod" @page="NewPage" />
+        <Productlist :product="prod" :roles="roles" @page="NewPage" />
       </b-row>
     </main>
   </b-container>
@@ -78,7 +85,7 @@
 import Productlist from './Productlist'
 import axios from 'axios'
 export default {
-  props: ['prod'],
+  props: ['prod', 'roles'],
   computed: {
     rows() {
       return this.totalRows

@@ -2,7 +2,7 @@
   <div class="product">
     <Navbar :roles="role" msg="40" />
     <hr class="mt-lg-3 d-none d-lg-block" />
-    <CouponProduct v-bind="{ prod: product }" @Newpage="Page" />
+    <CouponProduct v-bind="{ prod: product, roles: role }" @Newpage="Page" />
     <Footer />
   </div>
 </template>

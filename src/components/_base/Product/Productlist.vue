@@ -91,6 +91,13 @@
               @change="handlePageChange"
             ></b-pagination>
           </div>
+          <router-link
+            tag="button"
+            v-if="roles === 1 || roles === 2"
+            class="btn__AddProduct  p-lg-4 p-3 mt-lg-3"
+            to="/addProduct"
+            >Add new Product</router-link
+          >
         </div>
       </b-container>
     </div>
@@ -99,7 +106,7 @@
 <script>
 import axios from 'axios'
 export default {
-  props: ['product'],
+  props: ['product', 'roles'],
   name: 'Productlist',
   computed: {
     rows() {
