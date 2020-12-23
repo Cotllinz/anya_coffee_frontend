@@ -30,7 +30,7 @@
             <b-form-select
               id="timestart"
               v-model="form.discountPromo"
-              :options="discount"
+              :options="Optionset"
               required
             ></b-form-select>
           </b-form-group>
@@ -68,54 +68,23 @@
         required
         trim
       ></b-form-input>
+      <h1>{{ priceing }}</h1>
     </div>
   </b-col>
 </template>
 <script>
 export default {
   name: 'PromoLeft',
-  props: ['form', 'product'],
+  props: ['form', 'product', 'Optionset'],
   data() {
     return {
-      discount: [
-        { text: 'Input discount', value: null },
-        { text: '10 %', value: 10 },
-        { text: '20 %', value: 20 },
-        { text: '30 %', value: 30 },
-        { text: '40 %', value: 40 },
-        { text: '50 %', value: 50 },
-        { text: '60 %', value: 60 },
-        { text: '70 %', value: 70 },
-        { text: '80 %', value: 80 },
-        { text: '85 %', value: 85 }
-      ],
       data: []
     }
   },
   created() {
-    this.disc()
-    console.log(this.form.productId)
-    console.log(this.form.productId === this.product.value)
+    /* this.disc() */
   },
-  methods: {
-    disc() {
-      for (let i = 0; i < this.discount.length; i++) {
-        if (this.form.productId === this.product.value) {
-          let hitung = this.product.price * (this.discount[i].value / 100)
-          let hasil = this.product.price - hitung
-          this.discount[i].text = this.discount[i].text + ' => ' + hasil
-          if (this.discount[0]) {
-            this.discount[0].text = 'Input Discount'
-          }
-          const hasilz = {
-            text: this.discount[i].text,
-            value: this.discount[i].value
-          }
-          this.data = [...this.data, hasilz]
-        }
-      }
-    }
-  }
+  methods: {}
 }
 </script>
 <style scoped>

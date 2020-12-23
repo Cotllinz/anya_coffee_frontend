@@ -110,7 +110,7 @@ export default {
   },
   created() {
     this.getRandomInvoice()
-    this.Drum()
+    /*    console.log(this.data) */
     /*    console.log(this.PaymentList.length) */
   },
   methods: {
@@ -133,6 +133,7 @@ export default {
       this.form.invoicePayment = random.generate()
     },
     async PostHistory() {
+      await this.Drum()
       await axios
         .post(`${this.VUE_APP_SERVICE_URL}history`, this.form)
         .then(response => {

@@ -7,7 +7,7 @@
           id="nameProduct"
           v-model="Data.productId"
           :options="product"
-          @click="data(product.value)"
+          @change="handleValue"
           required
         ></b-form-select>
       </b-form-group>
@@ -154,8 +154,8 @@ export default {
           console.log(error.response)
         })
     },
-    data(value) {
-      console.log(value)
+    handleValue(value) {
+      this.$emit('sendvalue', value)
     },
     SizeR(value) {
       if (!this.storeR) {

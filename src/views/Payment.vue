@@ -3,12 +3,14 @@
     <Navbar :roles="role" :msg="MassageValue" />
     <main class="bg__payment">
       <hr class="mt-lg-3 d-none d-lg-block" />
+      <h1>{{ this.uyy }}</h1>
       <b-container>
         <b-row>
           <ListPayment :PaymentList="cart" :Totals="Totals" @Remove="Remove" />
           <Checkout
             v-bind="{ PaymentList: cart, Totals: Totals }"
             @RemoveALL="RemoveALL"
+            @GETDATA="Getdata"
           />
         </b-row>
       </b-container>
@@ -46,20 +48,24 @@ export default {
   },
 
   created() {
-    let getCart = localStorage.getItem('cart')
-    getCart = JSON.parse(getCart)
-    if (getCart) {
-      this.cart = getCart
-    } else {
-      this.cart = []
-    }
+    this.getcart()
     this.GetSubTotal()
   },
   methods: {
+    getcart() {
+      let getCart = localStorage.getItem('cart')
+      getCart = JSON.parse(getCart)
+      if (getCart) {
+        this.cart = getCart
+      } else {
+        this.cart = []
+      }
+    },
     Remove(e) {
       this.cart.splice(e, 1)
       localStorage.setItem('cart', JSON.stringify(this.cart))
       this.GetSubTotal()
+      this.sendData()
     },
     RemoveALL(e) {
       this.cart = localStorage.removeItem(e)
@@ -79,6 +85,10 @@ export default {
       this.Totals.TotalOrder =
         this.Totals.subTotal + this.Totals.tax + this.Totals.Shipping
     }
+    /*  Getdata(e) {
+      this.getcart()
+      console.log((this.uyy = e))
+    }, */
   }
 }
 </script>
