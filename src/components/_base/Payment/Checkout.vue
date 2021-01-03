@@ -115,7 +115,6 @@ export default {
   },
   methods: {
     Drum() {
-      /*  console.log(this.PaymentList.length) */
       for (let i = 0; i < this.PaymentList.length; i++) {
         const setData = {
           idProduct: this.PaymentList[i].id_product,

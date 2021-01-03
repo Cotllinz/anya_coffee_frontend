@@ -1,3 +1,6 @@
+footer{
+  background: #F8F8F8
+}
 span.title_logoFooter {
   font-size: 20px;
   font-weight: 700;
@@ -36,6 +39,11 @@ p.bywhat {
 }
 
 /* Media Query Footer */
+@media (max-width: 375px) {
+  p.desc__footer {
+    width: 300px;
+  }
+}
 @media (max-width: 360px) {
   p.desc__footer {
     width: 300px;

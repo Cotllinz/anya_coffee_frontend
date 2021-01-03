@@ -26,11 +26,33 @@
             <router-link tag="a" class="pr-lg-4 nav-link" to="/product"
               >Product</router-link
             >
-            <router-link tag="a" class="pr-lg-4 nav-link" to="/payment"
+            <router-link
+              tag="a"
+              v-if="roles === 0"
+              class="pr-lg-4 nav-link"
+              to="/payment"
               >Your Cart</router-link
             >
-            <router-link tag="a" class="nav-link" to="/history"
+            <router-link
+              v-if="roles === 0"
+              tag="a"
+              class="nav-link"
+              to="/history"
               >History</router-link
+            >
+            <router-link
+              v-if="roles === 1"
+              tag="a"
+              class="pr-lg-4 nav-link"
+              to="/payment"
+              >Orders</router-link
+            >
+            <router-link
+              v-if="roles === 1"
+              tag="a"
+              class="nav-link"
+              to="/dashboard"
+              >Dashboard</router-link
             >
           </b-navbar-nav>
           <div
@@ -44,7 +66,7 @@
               />
             </button>
             <router-link
-              v-if="roles === 1 || roles === 2"
+              v-if="roles === 0 || roles === 1"
               tag="a"
               class="position-relative mr-lg-4"
               to="/chat"
@@ -52,7 +74,7 @@
               ><img src="../../assets/image/icons/chatIcons.svg" alt="chatLogo"
             /></router-link>
             <router-link
-              v-if="roles === 1 || roles === 2"
+              v-if="roles === 0 || roles === 1"
               tag="a"
               class="position-relative"
               to="/account"
@@ -63,7 +85,11 @@
                 alt="costumerLogo"
             /></router-link>
             <div v-else>
-              <b-button variant="primary" class="mr-lg-2" size="md"
+              <b-button
+                variant="primary"
+                @click="loginClick()"
+                class="mr-lg-2"
+                size="md"
                 >Login</b-button
               >
               <b-button variant="danger" size="md">Sign Up</b-button>
@@ -80,6 +106,11 @@ export default {
   data() {
     return {
       mssg: 30
+    }
+  },
+  methods: {
+    loginClick() {
+      this.$router.push('/Login')
     }
   }
 }

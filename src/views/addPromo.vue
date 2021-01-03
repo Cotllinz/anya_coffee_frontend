@@ -54,7 +54,6 @@ export default {
       priceing: 0,
       value: 0,
       discount: [
-        /*   { text: 'Input discount', value: null }, */
         { text: '10 %', value: 10 },
         { text: '20 %', value: 20 },
         { text: '30 %', value: 30 },
@@ -111,7 +110,6 @@ export default {
       ]
       for (let i = 0; i < this.discount.length; i++) {
         let hitung = this.priceing * (this.discount[i].value / 100)
-
         let hasil = this.priceing - Math.round(hitung)
         const result = {
           text: this.discount[i].text + ' => ' + hasil,

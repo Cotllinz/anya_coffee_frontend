@@ -22,7 +22,7 @@ export default {
   },
   data() {
     return {
-      role: 2,
+      role: 1,
       MassageValue: 30,
       width: 0,
       product: {

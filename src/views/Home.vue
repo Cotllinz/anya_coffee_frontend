@@ -18,7 +18,7 @@ export default {
   },
   data() {
     return {
-      role: 1,
+      role: 0,
       MassageValue: 30
     }
   }

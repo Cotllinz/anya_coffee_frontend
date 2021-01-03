@@ -97,7 +97,6 @@ export default {
   name: 'CouponProduct',
   data() {
     return {
-      cardPromo: 'Beef Spaghetti',
       promo: [],
       currentPage: 1,
       totalRows: null,

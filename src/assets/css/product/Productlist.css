@@ -24,7 +24,7 @@ button.btn__AddProduct {
   border-radius: 20px;
   background: #ee9612;
 }
-.menu_items.active {
+.menu_items .active {
   border-bottom: 4px solid #6a4029;
   box-shadow: 0 10px 6px -6px #6a4029;
   font-weight: 700;

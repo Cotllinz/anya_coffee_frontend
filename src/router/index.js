@@ -6,6 +6,10 @@ import Productdetails from '../views/Productdetails.vue'
 import Payment from '../views/Payment.vue'
 import Addproduct from '../views/addProduct.vue'
 import addPromo from '../views/addPromo.vue'
+import Login from '../views/Auth/Login.vue'
+import signUp from '../views/Auth/signUp.vue'
+import Forgot from '../views/Auth/forgotPass.vue'
+import Dashboard from '../views/dashboard.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -38,6 +42,26 @@ const routes = [
     path: '/Addpromo',
     name: 'Addpromo',
     component: addPromo
+  },
+  {
+    path: '/Login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/signup',
+    name: 'signup',
+    component: signUp
+  },
+  {
+    path: '/forget',
+    name: 'forget',
+    component: Forgot
+  },
+  {
+    path: '/dashboard',
+    name: 'dashboard',
+    component: Dashboard
   }
 ]
 
