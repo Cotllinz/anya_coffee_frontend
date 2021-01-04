@@ -68,7 +68,7 @@ div.image__fit {
   width: 170px;
   margin: 0 auto;
   height: 170px;
-  overflow: hidden;
+  /*   overflow: hidden; */
   border-radius: 50%;
 }
 

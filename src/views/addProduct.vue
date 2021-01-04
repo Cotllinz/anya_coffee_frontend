@@ -29,6 +29,7 @@ export default {
   data() {
     return {
       role: 1,
+      id: 0,
       MassageValue: 30,
       form: {
         timestart: null,
@@ -50,6 +51,9 @@ export default {
         takeaway: ''
       }
     }
+  },
+  created() {
+    this.id = this.$route.params.Id
   }
 }
 </script>

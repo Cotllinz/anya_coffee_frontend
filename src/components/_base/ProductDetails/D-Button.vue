@@ -7,8 +7,11 @@
     >
       Add to Cart
     </button>
-    <button type="button" class="btn__toCartnStaf">
+    <button type="button" v-if="roles === 0" class="btn__toCartnStaf">
       Ask to Staff
+    </button>
+    <button type="button" v-else class="btn__toCartnStaf">
+      Edit Product
     </button>
   </b-col>
 </template>
@@ -36,6 +39,12 @@ export default {
       }
     }
   }
+  /*  editBtn(data1) {
+    this.$router.push({
+      name: 'AddProduct',
+      params: { Id: data1.id_product }
+    })
+  } */
 }
 </script>
 

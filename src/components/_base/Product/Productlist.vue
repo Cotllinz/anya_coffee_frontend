@@ -61,7 +61,7 @@
                   tag="a"
                   :to="{
                     name: 'ProductDetails',
-                    params: { id: item.id_product }
+                    params: { idDtls: item.id_product }
                   }"
                 >
                   <div class="">

@@ -3,7 +3,7 @@
     <Navbar :roles="role" :msg="MassageValue" />
     <hr class="mt-lg-3 d-none d-lg-block" />
     <DProduct
-      v-bind="{ Details: DetailsData, qty: details }"
+      v-bind="{ Details: DetailsData, qty: details, roles: role }"
       v-on="{
         Changeqty: changeqty,
         DeliveryType: DeliveryType,
@@ -45,7 +45,7 @@ export default {
     }
   },
   created() {
-    this.id = this.$route.params.id
+    this.id = this.$route.params.idDtls
     this.GetDetailsProduct()
   },
   methods: {

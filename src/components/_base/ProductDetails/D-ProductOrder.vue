@@ -9,12 +9,15 @@
           > {{ R_Details.name_product }}</router-link
         >
       </div>
-      <div class="">
+      <div class="images_rounded position-relative">
         <img
           class="product__pictureDetail mt-4 mb-xl-3 mt-lg-5"
           src="../../../assets/image/mainImage/DetailProduct.svg"
           alt="ImagePicture"
         />
+        <div v-if="roles === 1" class="icons_admin position-absolute">
+          <b-icon class="icons_trash" variant="white" icon="trash"></b-icon>
+        </div>
       </div>
     </div>
     <section class="d-none d-lg-block delivery__content p-lg-4 mt-lg-4">
@@ -29,7 +32,7 @@
 <script>
 import DCardOrder from './D-CardOrder'
 export default {
-  props: ['R_Details'],
+  props: ['R_Details', 'roles'],
   name: 'DProductOrder',
   components: {
     DCardOrder

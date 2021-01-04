@@ -4,6 +4,7 @@
       <b-row>
         <DProductOrder
           :R_Details="Details"
+          :roles="roles"
           v-on="{
             DeliveryType: DeliveryType,
             DeliveryNow: DeliveryNow
@@ -39,7 +40,7 @@ import DButtonSize from './D-ButtonSize'
 import DCheckout from './D-Checkout'
 import DButton from './D-Button'
 export default {
-  props: ['Details', 'qty'],
+  props: ['Details', 'qty', 'roles'],
   name: 'DetailsProductTargetALLComponent',
   components: {
     DProductOrder,
