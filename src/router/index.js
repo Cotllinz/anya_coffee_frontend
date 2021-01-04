@@ -11,6 +11,7 @@ import signUp from '../views/Auth/signUp.vue'
 import Forgot from '../views/Auth/forgotPass.vue'
 import Dashboard from '../views/dashboard.vue'
 import Account from '../views/account.vue'
+import History from '../views/history.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -68,6 +69,11 @@ const routes = [
     path: '/account',
     name: 'account',
     component: Account
+  },
+  {
+    path: '/history',
+    name: 'history',
+    component: History
   }
 ]
 
