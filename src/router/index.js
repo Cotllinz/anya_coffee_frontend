@@ -10,6 +10,7 @@ import Login from '../views/Auth/Login.vue'
 import signUp from '../views/Auth/signUp.vue'
 import Forgot from '../views/Auth/forgotPass.vue'
 import Dashboard from '../views/dashboard.vue'
+import Account from '../views/account.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -62,6 +63,11 @@ const routes = [
     path: '/dashboard',
     name: 'dashboard',
     component: Dashboard
+  },
+  {
+    path: '/account',
+    name: 'account',
+    component: Account
   }
 ]
 
