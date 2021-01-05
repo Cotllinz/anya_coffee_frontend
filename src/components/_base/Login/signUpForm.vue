@@ -14,7 +14,7 @@
       </header>
       <main>
         <h2 class="title__signUp mt-lg-5 text-center mb-4 mb-xl-5">Sign Up</h2>
-        <b-form class="px-lg-5">
+        <b-form @submit.prevent="onSubmit" class="px-lg-5">
           <b-form-group
             id="username_input"
             label="Username :"
@@ -23,6 +23,7 @@
             <b-form-input
               id="username_input"
               type="text"
+              v-model="form.userName"
               placeholder="Enter your username"
               required
             ></b-form-input>
@@ -35,6 +36,7 @@
             <b-form-input
               id="email_input"
               type="email"
+              v-model="form.userEmail"
               placeholder="Enter your email adress"
               required
             ></b-form-input>
@@ -47,6 +49,7 @@
             <b-form-input
               id="password_input"
               type="password"
+              v-model="form.userPassword"
               placeholder="Enter your password"
               required
             ></b-form-input>
@@ -59,6 +62,7 @@
             <b-form-input
               id="phonenumb_input"
               type="number"
+              v-model="form.phoneNumber"
               placeholder="Enter your phone number"
               required
             ></b-form-input>
@@ -68,11 +72,17 @@
             label="Who are you ?"
             label-for="input-1"
           >
-            <b-form-select :options="roles" required></b-form-select>
+            <b-form-select
+              :options="roles"
+              v-model="form.roles"
+              required
+            ></b-form-select>
           </b-form-group>
           <div class="btn_signUp mt-lg-5 mt-5">
             <b-col style="padding: 0 !important">
-              <button class="btn_login w-100 py-3 py-xl-3">Sign Up</button>
+              <button class="btn_login w-100 py-3 py-xl-3">
+                Sign Up
+              </button>
             </b-col>
           </div>
         </b-form>
@@ -91,20 +101,39 @@
   </b-container>
 </template>
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'loginForm',
   data() {
     return {
       roles: [
         { value: null, text: 'Please select your status' },
-        { value: '1', text: 'Seller' },
-        { value: '0', text: 'Costumer' }
-      ]
+        { value: 1, text: 'Seller' },
+        { value: 0, text: 'Costumer' }
+      ],
+      form: {
+        userName: '',
+        userEmail: '',
+        userPassword: '',
+        phoneNumber: '',
+        roles: null
+      }
     }
   },
   methods: {
     Login() {
       this.$router.push('/Login')
+    },
+    ...mapActions(['registerUser']),
+    onSubmit() {
+      this.registerUser(this.form)
+        .then(result => {
+          alert(result.data.massage)
+          this.$router.push('/Login')
+        })
+        .catch(err => {
+          alert(err.data.massage)
+        })
     }
   }
 }

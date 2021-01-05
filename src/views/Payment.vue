@@ -3,14 +3,12 @@
     <Navbar :roles="role" :msg="MassageValue" />
     <main class="bg__payment">
       <hr class="mt-lg-3 d-none d-lg-block" />
-      <h1>{{ this.uyy }}</h1>
       <b-container>
         <b-row>
           <ListPayment :PaymentList="cart" :Totals="Totals" @Remove="Remove" />
           <Checkout
             v-bind="{ PaymentList: cart, Totals: Totals }"
             @RemoveALL="RemoveALL"
-            @GETDATA="Getdata"
           />
         </b-row>
       </b-container>
@@ -65,7 +63,6 @@ export default {
       this.cart.splice(e, 1)
       localStorage.setItem('cart', JSON.stringify(this.cart))
       this.GetSubTotal()
-      this.sendData()
     },
     RemoveALL(e) {
       this.cart = localStorage.removeItem(e)

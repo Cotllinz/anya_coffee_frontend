@@ -8,7 +8,7 @@
             <a
               class="menu__links"
               @click="selectCatagory(3)"
-              :class="category === 3 ? 'active' : ''"
+              :class="category === 3 && !search ? 'active' : ''"
             >
               Favorite Product
             </a>
@@ -17,7 +17,7 @@
             <a
               class="menu__links"
               @click="selectCatagory(1)"
-              :class="category === 1 ? 'active' : ''"
+              :class="category === 1 && !search ? 'active' : ''"
             >
               Coffee
             </a>
@@ -26,7 +26,7 @@
             <a
               class="menu__links"
               @click="selectCatagory(2)"
-              :class="category === 2 ? 'active' : ''"
+              :class="category === 2 && !search ? 'active' : ''"
             >
               Non Coffee
             </a>
@@ -35,7 +35,7 @@
             <a
               class="menu__links"
               @click="selectCatagory(4)"
-              :class="category === 4 ? 'active' : ''"
+              :class="category === 4 && !search ? 'active' : ''"
             >
               Foods
             </a>
@@ -44,15 +44,28 @@
             <a
               class="menu__links"
               @click="selectCatagory(5)"
-              :class="category === 5 ? 'active' : ''"
+              :class="category === 5 && !search ? 'active' : ''"
               >Add-on</a
             >
           </div>
+          <b-dropdown
+            id="dropdown-offset"
+            offset="25"
+            text="Offset Dropdown"
+            class="m-2"
+          >
+            <b-dropdown-item @click="selectSort('order by price_product DESC')"
+              >Product DESC</b-dropdown-item
+            >
+            <b-dropdown-item @click="selectSort('order by price_product ASC')"
+              >Producy ASC</b-dropdown-item
+            >
+          </b-dropdown>
         </div>
         <div class="product__item">
           <b-row cols-lg="3" cols-xl="4" cols="2" class="mt-5 mt-lg-5 ml-xl-2">
             <b-col
-              v-for="(item, index) in product.productList"
+              v-for="(item, index) in products"
               :key="index"
               class="product__list mb-4"
             >
@@ -64,9 +77,9 @@
                     params: { idDtls: item.id_product }
                   }"
                 >
-                  <div class="">
+                  <div class="image_fitProduct">
                     <img
-                      src="../../../assets/image/mainImage/Product1.svg"
+                      :src="'http://localhost:3000/' + item.image_product"
                       class="card__imageProduct position-absolute"
                       alt="ListImage"
                     />
@@ -83,17 +96,17 @@
           </b-row>
           <div class="mt-3 ml-lg-5">
             <b-pagination
-              v-model="product.currentPage"
+              v-model="currentPage"
               pills
-              :total-rows="rows"
-              :per-page="product.limit"
+              :total-rows="totalRows"
+              :per-page="limit"
               align="fill"
               @change="handlePageChange"
             ></b-pagination>
           </div>
           <router-link
             tag="button"
-            v-if="roles === 1 || roles === 2"
+            v-if="roles === 1"
             class="btn__AddProduct  p-lg-4 p-3 mt-lg-3 mb-lg-3 mb-3"
             to="/addProduct"
             >Add new Product</router-link
@@ -104,49 +117,79 @@
   </b-col>
 </template>
 <script>
-import axios from 'axios'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
-  props: ['product', 'roles'],
   name: 'Productlist',
   computed: {
-    rows() {
-      return this.product.totalRows
-    }
+    ...mapGetters({
+      products: 'getDataProduct',
+      page: 'getPageProduct',
+      limit: 'getLimitProduct',
+      totalRows: 'getTotalRowsProduct',
+      roles: 'getRoles',
+      search: 'getSearch',
+      currpage: 'currentPage'
+    })
   },
   data() {
     return {
       category: '',
-      VUE_APP_SERVICE_URL: process.env.VUE_APP_SERVICE_URL
+      currentPage: 1 || this.currpage
     }
   },
   created() {
-    this.getProductby()
+    this.getProducts()
+    window.addEventListener('resize', this.handleResize())
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.handleResize())
   },
   methods: {
-    getProduct() {
-      this.product.productList
-    },
-    getProductby() {
-      axios
-        .get(`${this.VUE_APP_SERVICE_URL}category/${this.category}`)
-        .then(res => {
-          this.product.productList = res.data.data
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    },
+    ...mapActions(['getProducts', 'handleResize', 'getCategory']),
+    ...mapMutations([
+      'changePage',
+      'changePageCategory',
+      'delSearch',
+      'changeSort'
+    ]),
     handlePageChange(numberPage) {
-      const newPage = numberPage
-      this.$emit('page', newPage)
+      /*    console.log(numberPage) */
+
+      console.log(this.category)
+      if (this.search) {
+        this.category = ''
+        this.changePage(numberPage)
+        this.getProducts(this.search)
+      } else if (this.category) {
+        this.changePage(numberPage)
+        this.getCategory(this.category)
+      } else {
+        this.category = ''
+        this.changePage(numberPage)
+        this.getProducts()
+      }
     },
     formatPrice(value) {
       const val = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
       return val
     },
     selectCatagory(value) {
+      this.currentPage = 1
+      this.delSearch('')
+      this.changePage(1)
       this.category = value
-      this.getProductby()
+      this.getCategory(this.category)
+    },
+    selectSort(value) {
+      /*  console.log(value) */
+      if (this.search) {
+        this.category = ''
+        this.changeSort(value)
+        this.getProducts(this.search)
+      } else {
+        this.changeSort(value)
+        this.getCategory(this.category)
+      }
     }
   }
 }

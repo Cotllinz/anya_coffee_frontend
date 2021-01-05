@@ -12,6 +12,7 @@ import Forgot from '../views/Auth/forgotPass.vue'
 import Dashboard from '../views/dashboard.vue'
 import Account from '../views/account.vue'
 import History from '../views/history.vue'
+import store from '../store'
 Vue.use(VueRouter)
 
 const routes = [
@@ -33,47 +34,56 @@ const routes = [
   {
     path: '/payment',
     name: 'Payment',
-    component: Payment
+    component: Payment,
+    meta: { requiresAuth: true }
   },
   {
     path: '/addProduct',
     name: 'AddProduct',
-    component: Addproduct
+    component: Addproduct,
+    meta: { requiresAuth: true }
   },
   {
     path: '/Addpromo',
     name: 'Addpromo',
-    component: addPromo
+    component: addPromo,
+    meta: { requiresAuth: true }
   },
   {
     path: '/Login',
     name: 'Login',
-    component: Login
+    component: Login,
+    meta: { requiresVisitor: true }
   },
   {
     path: '/signup',
     name: 'signup',
-    component: signUp
+    component: signUp,
+    meta: { requiresVisitor: true }
   },
   {
     path: '/forget',
     name: 'forget',
-    component: Forgot
+    component: Forgot,
+    meta: { requiresVisitor: true }
   },
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: Dashboard
+    component: Dashboard,
+    meta: { requiresAuth: true }
   },
   {
     path: '/account',
     name: 'account',
-    component: Account
+    component: Account,
+    meta: { requiresAuth: true }
   },
   {
     path: '/history',
     name: 'history',
-    component: History
+    component: History,
+    meta: { requiresAuth: true }
   }
 ]
 
@@ -82,5 +92,25 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!store.getters.isLogin) {
+      next({
+        path: '/Login'
+      })
+    } else {
+      next()
+    }
+  } else if (to.matched.some(record => record.meta.requiresVisitor)) {
+    if (store.getters.isLogin) {
+      next({
+        path: '/'
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
 export default router

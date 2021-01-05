@@ -21,6 +21,7 @@ import Navbar from '../components/_base/Navbar'
 import Footer from '../components/_base/Footer'
 import DProduct from '../components/_base/ProductDetails/D-Product'
 import axios from 'axios'
+
 export default {
   name: 'ProductDetails',
   components: {

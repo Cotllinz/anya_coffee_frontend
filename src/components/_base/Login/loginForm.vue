@@ -19,7 +19,7 @@
         <h2 class="title__login mt-xl-5 mt-4 mt-lg-2 text-center mb-xl-5 mb-3">
           Login
         </h2>
-        <b-form class="px-lg-5">
+        <b-form @submit.prevent="onSubmit" class="px-lg-5">
           <b-form-group
             id="email_input"
             label="Email address:"
@@ -28,6 +28,7 @@
             <b-form-input
               id="email_input"
               type="email"
+              v-model="form.userEmail"
               placeholder="Enter your email adress"
               required
             ></b-form-input>
@@ -41,6 +42,7 @@
             <b-form-input
               id="password_input"
               type="password"
+              v-model="form.userPassword"
               placeholder="Enter your password"
               required
             ></b-form-input>
@@ -50,7 +52,9 @@
           >
           <div class="btn_logIn mt-lg-4 mt-4">
             <b-col style="padding: 0 !important">
-              <button class="btn_login w-100 py-xl-3 py-3">Login</button>
+              <button type="submit" class="btn_login w-100 py-xl-3 py-3">
+                Login
+              </button>
             </b-col>
           </div>
         </b-form>
@@ -67,11 +71,31 @@
   </b-container>
 </template>
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'loginForm',
+  data() {
+    return {
+      form: {
+        userEmail: '',
+        userPassword: ''
+      }
+    }
+  },
   methods: {
     signUp() {
       this.$router.push('/signup')
+    },
+    ...mapActions(['login']),
+    onSubmit() {
+      this.login(this.form)
+        .then(result => {
+          alert(result.data.massage)
+          this.$router.push('/product')
+        })
+        .catch(err => {
+          alert(err.data.massage)
+        })
     }
   }
 }

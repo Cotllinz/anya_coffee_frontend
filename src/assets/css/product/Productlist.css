@@ -32,9 +32,16 @@ button.btn__AddProduct {
 }
 
 .card__imageProduct {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
+  object-position: 45%;
   left: 15px;
   z-index: 1;
 }
+
 .card__product {
   height: 270px;
 }

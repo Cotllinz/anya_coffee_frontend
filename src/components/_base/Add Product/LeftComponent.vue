@@ -9,11 +9,7 @@
       >
     </div>
     <div class="image__fit mt-lg-5 mt-4">
-      <img
-        class="style__image"
-        src="https://images.unsplash.com/photo-1608327070138-f325a945c8cb?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-        alt="image"
-      />
+      <img class="style__image" v-if="url" :src="url" alt="image" />
     </div>
     <b-col lg="12">
       <button class="take_picture mt-lg-4 mb-lg-3 mt-4 mb-3">
@@ -21,7 +17,10 @@
       </button>
     </b-col>
     <b-col lg="12">
-      <button class="choose_from_gallery mb-lg-5">Choose from gallery</button>
+      <input id="fileUpload" type="file" @change="onFileChange" hidden />
+      <button @click="chooseFiles" class="choose_from_gallery mb-lg-5">
+        Choose from gallery
+      </button>
     </b-col>
     <div class="ml-lg-3 ml-3 pr-3 pr-lg-0">
       <h2 class="mt-lg-5 title_text mb-lg-4 mb-3 mt-5">Delivery Hour :</h2>
@@ -80,6 +79,7 @@ export default {
   props: ['form'],
   data() {
     return {
+      url: null,
       timestart: [
         { text: 'Select start hour', value: null },
         '1 am',
@@ -124,6 +124,17 @@ export default {
         { text: 'Foods', value: 4 },
         { text: 'Add-on', value: 5 }
       ]
+    }
+  },
+  methods: {
+    chooseFiles() {
+      document.getElementById('fileUpload').click()
+    },
+    onFileChange(e) {
+      const file = e.target.files[0]
+      this.$emit('Files', file)
+      /*   this.url = URL.createObjectURL(file)
+      console.log(this.url) */
     }
   }
 }

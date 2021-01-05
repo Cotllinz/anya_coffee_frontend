@@ -1,7 +1,7 @@
 <template>
   <b-col lg="6">
     <div class="mt-lg-5 pt-5">
-      <b-form v-on:submit.prevent="onSubmit">
+      <b-form v-on:submit.prevent="sendData">
         <b-form-group
           id="fieldset-1"
           label="Name :"
@@ -115,10 +115,7 @@
           /></a>
         </div>
         <b-col lg="12">
-          <button
-            @click="sendData()"
-            class="save_btn mt-lg-5 mt-3 mb-3 mb-lg-3 w-100 "
-          >
+          <button class="save_btn mt-lg-5 mt-3 mb-3 mb-lg-3 w-100 ">
             Save Product
           </button>
         </b-col>
@@ -152,17 +149,11 @@ export default {
   },
   data() {
     return {
-      /* sizeR: '', */
       storeR: '',
-      /*  sizeL: '', */
       storeL: '',
-      /*  sizeXL: '', */
       storeXL: '',
-      /*  size250: '', */
       store200: '',
-      /*  size300: '', */
       store350: '',
-      /*   size500: '', */
       store400: '',
       storeHomedev: '',
       storeDine: '',
@@ -172,15 +163,63 @@ export default {
   },
   methods: {
     sendData() {
+      const {
+        timestart,
+        timeend,
+        qtyProduct,
+        categoryId,
+        nameProduct,
+        priceProduct,
+        descProduct,
+        imageProduct,
+        sizeR,
+        sizeL,
+        sizeXL,
+        size200,
+        size350,
+        size400,
+        homeDeliv,
+        dineIn,
+        takeaway
+      } = this.Data
+      const dataSendProduct = new FormData()
+      dataSendProduct.append('name_product', nameProduct)
+      dataSendProduct.append('image_product', imageProduct)
+      dataSendProduct.append('price_product', priceProduct)
+      dataSendProduct.append('desc_product', descProduct)
+      dataSendProduct.append('qty_product', qtyProduct)
+      dataSendProduct.append('category_id', categoryId)
+      dataSendProduct.append('homeDeliv', homeDeliv)
+      dataSendProduct.append('dineIn', dineIn)
+      dataSendProduct.append('takeaway', takeaway)
+      dataSendProduct.append('time_start', timestart)
+      dataSendProduct.append('time_end', timeend)
+      dataSendProduct.append('size_R', sizeR)
+      dataSendProduct.append('size_L', sizeL)
+      dataSendProduct.append('size_XL', sizeXL)
+      dataSendProduct.append('size_200', size200)
+      dataSendProduct.append('size_350', size350)
+      dataSendProduct.append('size_400', size400)
       axios
-        .post(`${this.VUE_APP_SERVICE_URL}product`, this.Data)
+        .post(`${this.VUE_APP_SERVICE_URL}product`, dataSendProduct, {})
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => {
+          console.log(err.response)
+        })
+
+      /*  axios
+        .post(`${this.VUE_APP_SERVICE_URL}product`, dataSendProduct)
         .then(response => {
+          alert(response.message)
           console.log(response)
         })
         .catch(error => {
+          alert(error.response.message)
           console.log(error.response)
-        })
-      console.log(this.Data)
+        }) */
+      /*  /* console.log(this.Data) */
     },
     SizeR(value) {
       if (!this.storeR) {

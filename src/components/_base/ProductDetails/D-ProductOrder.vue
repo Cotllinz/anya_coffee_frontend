@@ -16,7 +16,12 @@
           alt="ImagePicture"
         />
         <div v-if="roles === 1" class="icons_admin position-absolute">
-          <b-icon class="icons_trash" variant="white" icon="trash"></b-icon>
+          <b-icon
+            class="icons_trash"
+            @click="deleteProductclick"
+            variant="white"
+            icon="trash"
+          ></b-icon>
         </div>
       </div>
     </div>
@@ -31,13 +36,33 @@
 
 <script>
 import DCardOrder from './D-CardOrder'
+import { mapActions } from 'vuex'
 export default {
   props: ['R_Details', 'roles'],
   name: 'DProductOrder',
   components: {
     DCardOrder
   },
+  data() {
+    return {
+      id: 0
+    }
+  },
+  created() {
+    this.id = this.$route.params.idDtls
+  },
   methods: {
+    ...mapActions(['deleteProduct']),
+    deleteProductclick() {
+      this.deleteProduct(this.id)
+        .then(result => {
+          alert(result.data.massage)
+          this.$router.push('/product')
+        })
+        .catch(err => {
+          alert(err.data.massage)
+        })
+    },
     DeliveryType(e) {
       this.$emit('DeliveryType', e)
     },

@@ -28,27 +28,27 @@
             >
             <router-link
               tag="a"
-              v-if="roles === 0"
+              v-if="role === 0 || role === undefined"
               class="pr-lg-4 nav-link"
               to="/payment"
               >Your Cart</router-link
             >
             <router-link
-              v-if="roles === 0"
+              v-if="role === 0 || role === undefined"
               tag="a"
               class="nav-link"
               to="/history"
               >History</router-link
             >
             <router-link
-              v-if="roles === 1"
+              v-if="role === 1"
               tag="a"
               class="pr-lg-4 nav-link"
               to="/payment"
               >Orders</router-link
             >
             <router-link
-              v-if="roles === 1"
+              v-if="role === 1"
               tag="a"
               class="nav-link"
               to="/dashboard"
@@ -58,6 +58,11 @@
           <div
             class="d-flex justify-content-around mt-2 align-self-lg-center pt-lg-1"
           >
+            <input
+              type="text"
+              v-model="searchData"
+              v-on:keyup.enter="search()"
+            />
             <button variant="none" class="button__logoSearching mr-lg-4">
               <img
                 class="searching_logo"
@@ -65,8 +70,9 @@
                 alt="searchLogo"
               />
             </button>
+
             <router-link
-              v-if="roles === 0 || roles === 1"
+              v-if="role === 0 || role === 1"
               tag="a"
               class="position-relative mr-lg-4"
               to="/chat"
@@ -74,7 +80,7 @@
               ><img src="../../assets/image/icons/chatIcons.svg" alt="chatLogo"
             /></router-link>
             <router-link
-              v-if="roles === 0 || roles === 1"
+              v-if="role === 0 || role === 1"
               tag="a"
               class="position-relative"
               to="/account"
@@ -90,10 +96,18 @@
                 @click="loginClick()"
                 class="mr-lg-2"
                 size="md"
-                >Login</b-button
+                >Log in</b-button
               >
-              <b-button variant="danger" size="md">Sign Up</b-button>
             </div>
+
+            <b-button
+              variant="primary"
+              v-if="Token"
+              @click="handleLogout"
+              class="mr-lg-2"
+              size="md"
+              >Log Out</b-button
+            >
           </div>
         </b-collapse>
       </b-container>
@@ -101,16 +115,32 @@
   </div>
 </template>
 <script>
+import { mapGetters, mapActions, mapState, mapMutations } from 'vuex'
 export default {
-  props: ['roles', 'msg'],
+  props: ['msg'],
   data() {
     return {
-      mssg: 30
+      mssg: 30,
+      searchData: ''
     }
+  },
+  computed: {
+    ...mapGetters({ role: 'getRoles', currpage: 'currentPage' }),
+    ...mapState({ Token: state => state.Auth.token })
   },
   methods: {
     loginClick() {
       this.$router.push('/Login')
+    },
+    ...mapActions(['logout', 'getProducts']),
+    ...mapMutations(['changePage', 'triggerurage']),
+    handleLogout() {
+      this.logout()
+    },
+    search() {
+      this.currpage
+      this.changePage(1)
+      this.getProducts(this.searchData)
     }
   }
 }

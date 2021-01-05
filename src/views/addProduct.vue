@@ -4,7 +4,7 @@
     <hr class="mt-lg-3 d-none d-lg-block" />
     <b-container>
       <b-row>
-        <addLeftProduct :form="form" />
+        <addLeftProduct :form="form" @Files="Files" />
         <rightComponent :Data="form" />
       </b-row>
     </b-container>
@@ -52,8 +52,10 @@ export default {
       }
     }
   },
-  created() {
-    this.id = this.$route.params.Id
+  methods: {
+    Files(e) {
+      this.form.imageProduct = e
+    }
   }
 }
 </script>
