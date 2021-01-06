@@ -21,11 +21,18 @@ div.card-promo {
   width: 284px;
   z-index: 1;
 }
+.image_promofit{
+padding-top: 45px;
+padding-bottom: 18px;
+}
 img.card__promoStyled {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
+  object-position: 45%;
   display: block;
-  padding-top: 45px;
-  padding-bottom: 18px;
-  width: 150px;
   margin-left: auto;
   margin-right: auto;
 }

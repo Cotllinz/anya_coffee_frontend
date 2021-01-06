@@ -13,9 +13,9 @@
               :key="index"
               class="card-promo"
             >
-              <div class="">
+              <div class="image_promofit">
                 <img
-                  src="../../../assets/image/mainImage/CouponImage.svg"
+                  :src="'http://localhost:3000/' + items.image_product"
                   class="card__promoStyled"
                   alt="Coupon"
                 />
@@ -43,7 +43,7 @@
           <div class="mt-2">
             <b-pagination
               v-model="currentPage"
-              :total-rows="rows"
+              :total-rows="totalRows"
               pills
               :per-page="limit"
               @change="handlePageChange"
@@ -57,7 +57,7 @@
           <router-link
             tag="button"
             class="btn__AddPromo  p-lg-4 p-3 mt-lg-3"
-            v-if="roles === 1 || roles === 2"
+            v-if="roles === 1"
             to="/Addpromo"
             >Add new Promo</router-link
           >
@@ -75,7 +75,7 @@
             </ol>
           </div>
         </b-col>
-        <Productlist :product="prod" :roles="roles" @page="NewPage" />
+        <Productlist />
       </b-row>
     </main>
   </b-container>
@@ -83,13 +83,16 @@
 
 <script>
 import Productlist from './Productlist'
-import axios from 'axios'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
-  props: ['prod', 'roles'],
   computed: {
-    rows() {
-      return this.totalRows
-    }
+    ...mapGetters({
+      roles: 'getRoles',
+      page: 'getPagePromo',
+      limit: 'getLimitPromo',
+      promo: 'getDataPromo',
+      totalRows: 'getTotalRowsPromo'
+    })
   },
   components: {
     Productlist
@@ -97,38 +100,18 @@ export default {
   name: 'CouponProduct',
   data() {
     return {
-      promo: [],
-      currentPage: 1,
-      totalRows: null,
-      limit: 1,
-      page: 1,
-      VUE_APP_SERVICE_URL: process.env.VUE_APP_SERVICE_URL
+      currentPage: 1
     }
   },
   created() {
     this.getPromo()
   },
   methods: {
-    getPromo() {
-      axios
-        .get(
-          `${this.VUE_APP_SERVICE_URL}promo/limit?page=${this.page}&limit=${this.limit}`
-        )
-        .then(res => {
-          this.promo = res.data.data
-          this.totalRows = res.data.pagination.totalProduct
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    },
+    ...mapActions(['getPromo']),
+    ...mapMutations(['changepagePromo']),
     handlePageChange(numberPage) {
-      this.page = numberPage
+      this.changepagePromo(numberPage)
       this.getPromo()
-    },
-    NewPage(e) {
-      const newPage = e
-      this.$emit('Newpage', newPage)
     }
   }
 }
