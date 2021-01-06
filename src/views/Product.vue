@@ -21,7 +21,8 @@ export default {
   },
   data() {
     return {
-      MassageValue: 30
+      MassageValue: 30,
+      pageSE: 1
     }
   },
   methods: {}

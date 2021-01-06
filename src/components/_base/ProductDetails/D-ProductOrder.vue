@@ -36,9 +36,9 @@
 
 <script>
 import DCardOrder from './D-CardOrder'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
-  props: ['R_Details', 'roles'],
+  props: ['R_Details'],
   name: 'DProductOrder',
   components: {
     DCardOrder
@@ -50,6 +50,9 @@ export default {
   },
   created() {
     this.id = this.$route.params.idDtls
+  },
+  computed: {
+    ...mapGetters({ roles: 'getRoles' })
   },
   methods: {
     ...mapActions(['deleteProduct']),

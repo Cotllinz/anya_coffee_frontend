@@ -1,9 +1,10 @@
 import axios from 'axios'
 export default {
   state: {
-    limit: 2,
+    limit: 12,
     page: 1,
     productList: [],
+    editProduct: [],
     totalRows: null,
     VUE_APP_SERVICE_URL: process.env.VUE_APP_SERVICE_URL,
     width: 0,
@@ -86,18 +87,56 @@ export default {
       })
     },
     deleteProduct(context, payload) {
-      /* console.log('Payload' + payload) */
       return new Promise((resolve, reject) => {
         axios
           .patch(
             `${context.state.VUE_APP_SERVICE_URL}product/delete/${payload}`
           )
           .then(res => {
-            /*     console.log(res) */
             resolve(res)
           })
           .catch(err => {
-            /*   console.log(err) */
+            reject(err.response)
+          })
+      })
+    },
+    addProduct(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post(`${context.state.VUE_APP_SERVICE_URL}product`, payload)
+          .then(result => {
+            resolve(result)
+          })
+          .catch(err => {
+            reject(err.response)
+          })
+      })
+    },
+    getProductId(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`${context.state.VUE_APP_SERVICE_URL}product/${payload}`)
+          .then(result => {
+            resolve(result)
+          })
+          .catch(err => {
+            reject(err.response)
+          })
+      })
+    },
+    updateProduct(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .patch(
+            `${context.state.VUE_APP_SERVICE_URL}product/${payload.id}`,
+            payload.DataSend
+          )
+          .then(result => {
+            console.log(result)
+            resolve(result)
+          })
+          .catch(err => {
+            console.log(err.response)
             reject(err.response)
           })
       })

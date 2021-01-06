@@ -9,11 +9,26 @@
       >
     </div>
     <div class="image__fit mt-lg-5 mt-4">
+      <img
+        class="style__image"
+        v-if="form.imageBase && url === null"
+        :src="'http://localhost:3000/' + form.imageBase"
+        alt="image_edit"
+      />
       <img class="style__image" v-if="url" :src="url" alt="image" />
+      <img
+        v-if="url === null"
+        class="style__image"
+        src="../../../assets/image/mainImage/defaultImageAddProduct.svg"
+        alt="imageDefault"
+      />
     </div>
     <b-col lg="12">
-      <button class="take_picture mt-lg-4 mb-lg-3 mt-4 mb-3">
-        Take a picture
+      <button
+        @click="removePhoto"
+        class="take_picture mt-lg-4 mb-lg-3 mt-4 mb-3"
+      >
+        {{ form.imageBase && url ? 'Recovery Previous Photo' : 'Remove Photo' }}
       </button>
     </b-col>
     <b-col lg="12">
@@ -135,6 +150,9 @@ export default {
       this.$emit('Files', file)
       this.url = URL.createObjectURL(file)
       /*   console.log(this.url) */
+    },
+    removePhoto() {
+      this.url = null
     }
   }
 }
@@ -175,6 +193,7 @@ button.take_picture {
   font-weight: 700;
   font-size: 17px;
   color: #ffffff;
+  outline: none;
   border-radius: 10px;
   border: none;
   background-color: #0b132a;
@@ -183,6 +202,7 @@ button.take_picture {
 button.choose_from_gallery {
   padding: 15px 0;
   width: 60%;
+  outline: none;
   font-weight: 700;
   font-size: 17px;
   color: #6a4029;

@@ -12,6 +12,7 @@ import Forgot from '../views/Auth/forgotPass.vue'
 import Dashboard from '../views/dashboard.vue'
 import Account from '../views/account.vue'
 import History from '../views/history.vue'
+import EditProduct from '../views/editProduct.vue'
 import store from '../store'
 Vue.use(VueRouter)
 
@@ -27,7 +28,7 @@ const routes = [
     component: Product
   },
   {
-    path: '/productDetails_:idDtls',
+    path: '/productDetails/:idDtls',
     name: 'ProductDetails',
     component: Productdetails
   },
@@ -83,6 +84,12 @@ const routes = [
     path: '/history',
     name: 'history',
     component: History,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/editProduct/:idedit',
+    name: 'editProduct',
+    component: EditProduct,
     meta: { requiresAuth: true }
   }
 ]

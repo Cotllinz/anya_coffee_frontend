@@ -10,16 +10,25 @@
     <button type="button" v-if="roles === 0" class="btn__toCartnStaf">
       Ask to Staff
     </button>
-    <button type="button" v-else class="btn__toCartnStaf">
+    <button
+      type="button"
+      @click="editBtn(DButton)"
+      v-else
+      class="btn__toCartnStaf"
+    >
       Edit Product
     </button>
   </b-col>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   props: ['DButton', 'Details'],
   name: 'DButton',
+  computed: {
+    ...mapGetters({ roles: 'getRoles' })
+  },
   methods: {
     addToCart(data1, data2) {
       if (data2.Size) {
@@ -37,14 +46,14 @@ export default {
       } else {
         console.log('Input sIZE DULU')
       }
+    },
+    editBtn(dataEdit) {
+      this.$router.push({
+        name: 'editProduct',
+        params: { idedit: dataEdit.id_product }
+      })
     }
   }
-  /*  editBtn(data1) {
-    this.$router.push({
-      name: 'AddProduct',
-      params: { Id: data1.id_product }
-    })
-  } */
 }
 </script>
 

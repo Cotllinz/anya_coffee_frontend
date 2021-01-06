@@ -1,6 +1,6 @@
 <template>
   <div class="AddProduct">
-    <Navbar :roles="role" :msg="MassageValue" />
+    <Navbar :msg="MassageValue" />
     <hr class="mt-lg-3 d-none d-lg-block" />
     <b-container>
       <b-row>
@@ -28,8 +28,6 @@ export default {
   },
   data() {
     return {
-      role: 1,
-      id: 0,
       MassageValue: 30,
       form: {
         timestart: null,

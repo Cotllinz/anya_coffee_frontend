@@ -134,7 +134,7 @@ export default {
   data() {
     return {
       category: '',
-      currentPage: 1 || this.currpage
+      currentPage: this.currpage || 1
     }
   },
   created() {
@@ -153,9 +153,6 @@ export default {
       'changeSort'
     ]),
     handlePageChange(numberPage) {
-      /*    console.log(numberPage) */
-
-      console.log(this.category)
       if (this.search) {
         this.category = ''
         this.changePage(numberPage)
@@ -181,14 +178,16 @@ export default {
       this.getCategory(this.category)
     },
     selectSort(value) {
-      /*  console.log(value) */
       if (this.search) {
         this.category = ''
         this.changeSort(value)
         this.getProducts(this.search)
-      } else {
+      } else if (this.category) {
         this.changeSort(value)
         this.getCategory(this.category)
+      } else {
+        this.changeSort(value)
+        this.getProducts()
       }
     }
   }

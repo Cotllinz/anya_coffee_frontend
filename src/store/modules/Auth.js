@@ -4,7 +4,8 @@ import router from '../../router'
 export default {
   state: {
     user: {},
-    token: localStorage.getItem('token') || null
+    token: localStorage.getItem('token') || null,
+    VUE_APP_SERVICE_URL: process.env.VUE_APP_SERVICE_URL
   },
   mutations: {
     setUser(state, payload) {
@@ -20,13 +21,14 @@ export default {
     login(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .post('http://localhost:3000/user/login', payload)
+          .post(`${context.state.VUE_APP_SERVICE_URL}user/login`, payload)
           .then(result => {
             context.commit('setUser', result.data.data)
             localStorage.setItem('token', result.data.data.token)
             resolve(result)
           })
           .catch(err => {
+            console.clear()
             reject(err.response)
           })
       })

@@ -132,7 +132,7 @@
   </b-col>
 </template>
 <script>
-import axios from 'axios'
+import { mapActions } from 'vuex'
 export default {
   name: 'ProductRight',
   props: ['Data'],
@@ -147,8 +147,10 @@ export default {
       return 'Please enter name your product.'
     }
   },
+
   data() {
     return {
+      id: 0,
       storeR: '',
       storeL: '',
       storeXL: '',
@@ -161,7 +163,11 @@ export default {
       VUE_APP_SERVICE_URL: process.env.VUE_APP_SERVICE_URL
     }
   },
+  created() {
+    this.id = this.$route.params.idedit
+  },
   methods: {
+    ...mapActions(['addProduct', 'updateProduct']),
     sendData() {
       const {
         timestart,
@@ -200,29 +206,33 @@ export default {
       dataSendProduct.append('size200', size200)
       dataSendProduct.append('size350', size350)
       dataSendProduct.append('size400', size400)
-      /* for (var pair of dataSendProduct.entries()) {
+      /* 
+      For Test Data Log append
+      for (var pair of dataSendProduct.entries()) {
         console.log(pair[0] + ', ' + pair[1])
-      } */
-      /* axios
-        .post(`${this.VUE_APP_SERVICE_URL}product`, dataSendProduct)
-        .then(res => {
-          console.log(res)
-        })
-        .catch(err => {
-          console.log(err.response)
-        }) */
-
-      axios
-        .post(`${this.VUE_APP_SERVICE_URL}product`, dataSendProduct)
-        .then(response => {
-          /* alert(response.message) */
-          console.log(response)
-        })
-        .catch(error => {
-          /* alert(error.response.message) */
-          console.log(error.response)
-        })
-      /*  /* console.log(this.Data)*/
+      }*/
+      let setUpdate = {
+        DataSend: dataSendProduct,
+        id: this.id
+      }
+      if (this.id) {
+        this.updateProduct(setUpdate)
+          .then(result => {
+            alert(result.data.massage)
+            this.$router.push('/product')
+          })
+          .catch(err => {
+            alert(err.data.massage)
+          })
+      } else {
+        this.addProduct(dataSendProduct)
+          .then(result => {
+            alert(result.data.massage)
+          })
+          .catch(err => {
+            alert(err.data.massage)
+          })
+      }
     },
     SizeR(value) {
       if (!this.storeR) {
@@ -355,25 +365,6 @@ export default {
 </script>
 
 <style scoped>
-/* .round-button {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  color: #000000;
-  cursor: pointer;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  background: #ffba33;
-  font-size: 20px;
-  font-weight: bold;
-}
-p.rotation {
-  position: absolute;
-  top: 20px;
-  left: 5px;
-} */
-
 .form-control {
   border: none !important;
   background: none !important;
