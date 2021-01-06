@@ -183,46 +183,46 @@ export default {
         takeaway
       } = this.Data
       const dataSendProduct = new FormData()
-      dataSendProduct.append('name_product', nameProduct)
-      dataSendProduct.append('image_product', imageProduct)
-      dataSendProduct.append('price_product', priceProduct)
-      dataSendProduct.append('desc_product', descProduct)
-      dataSendProduct.append('qty_product', qtyProduct)
-      dataSendProduct.append('category_id', categoryId)
+      dataSendProduct.append('nameProduct', nameProduct)
+      dataSendProduct.append('imageProduct', imageProduct)
+      dataSendProduct.append('priceProduct', priceProduct)
+      dataSendProduct.append('descProduct', descProduct)
+      dataSendProduct.append('qtyProduct', qtyProduct)
+      dataSendProduct.append('categoryId', categoryId)
       dataSendProduct.append('homeDeliv', homeDeliv)
       dataSendProduct.append('dineIn', dineIn)
       dataSendProduct.append('takeaway', takeaway)
-      dataSendProduct.append('time_start', timestart)
-      dataSendProduct.append('time_end', timeend)
-      dataSendProduct.append('size_R', sizeR)
-      dataSendProduct.append('size_L', sizeL)
-      dataSendProduct.append('size_XL', sizeXL)
-      dataSendProduct.append('size_200', size200)
-      dataSendProduct.append('size_350', size350)
-      dataSendProduct.append('size_400', size400)
-      for (var pair of dataSendProduct.entries()) {
+      dataSendProduct.append('timestart', timestart)
+      dataSendProduct.append('timeend', timeend)
+      dataSendProduct.append('sizeR', sizeR)
+      dataSendProduct.append('sizeL', sizeL)
+      dataSendProduct.append('sizeXL', sizeXL)
+      dataSendProduct.append('size200', size200)
+      dataSendProduct.append('size350', size350)
+      dataSendProduct.append('size400', size400)
+      /* for (var pair of dataSendProduct.entries()) {
         console.log(pair[0] + ', ' + pair[1])
-      }
-      axios
-        .post(`${this.VUE_APP_SERVICE_URL}product`, dataSendProduct, {})
+      } */
+      /* axios
+        .post(`${this.VUE_APP_SERVICE_URL}product`, dataSendProduct)
         .then(res => {
           console.log(res)
         })
         .catch(err => {
           console.log(err.response)
-        })
+        }) */
 
-      /*  axios
+      axios
         .post(`${this.VUE_APP_SERVICE_URL}product`, dataSendProduct)
         .then(response => {
-          alert(response.message)
+          /* alert(response.message) */
           console.log(response)
         })
         .catch(error => {
-          alert(error.response.message)
+          /* alert(error.response.message) */
           console.log(error.response)
-        }) */
-      /*  /* console.log(this.Data) */
+        })
+      /*  /* console.log(this.Data)*/
     },
     SizeR(value) {
       if (!this.storeR) {

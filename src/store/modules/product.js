@@ -1,7 +1,7 @@
 import axios from 'axios'
 export default {
   state: {
-    limit: 1,
+    limit: 2,
     page: 1,
     productList: [],
     totalRows: null,
