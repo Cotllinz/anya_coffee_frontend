@@ -1,7 +1,7 @@
 import axios from 'axios'
 export default {
   state: {
-    limit: 2,
+    limit: 1,
     page: 1,
     productList: [],
     totalRows: null,
@@ -16,10 +16,10 @@ export default {
       state.productList = payload.data
       state.totalRows = payload.pagination.totalProduct
     },
-    /*  triggerurage(state, payload) {
-      state.currentPage = payload
+    triggerurage(state) {
+      state.currentPage = 1
       console.log(state.currentPage)
-    }, */
+    },
     changeSort(state, payload) {
       state.sort = payload
     },

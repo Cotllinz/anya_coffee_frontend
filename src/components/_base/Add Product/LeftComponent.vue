@@ -133,8 +133,8 @@ export default {
     onFileChange(e) {
       const file = e.target.files[0]
       this.$emit('Files', file)
-      /*   this.url = URL.createObjectURL(file)
-      console.log(this.url) */
+      this.url = URL.createObjectURL(file)
+      /*   console.log(this.url) */
     }
   }
 }

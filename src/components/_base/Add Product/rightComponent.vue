@@ -200,6 +200,9 @@ export default {
       dataSendProduct.append('size_200', size200)
       dataSendProduct.append('size_350', size350)
       dataSendProduct.append('size_400', size400)
+      for (var pair of dataSendProduct.entries()) {
+        console.log(pair[0] + ', ' + pair[1])
+      }
       axios
         .post(`${this.VUE_APP_SERVICE_URL}product`, dataSendProduct, {})
         .then(res => {

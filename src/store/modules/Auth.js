@@ -67,6 +67,7 @@ export default {
             context.dispatch('logout')
             alert('Sorry Your token is not valid !')
           }
+
           return Promise.reject(error)
         }
       )
