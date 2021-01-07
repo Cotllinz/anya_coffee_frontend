@@ -138,7 +138,6 @@ export default {
       this.logout()
     },
     search() {
-      /*   this.triggerurage() */
       this.changePage(1)
       this.getProducts(this.searchData)
     }

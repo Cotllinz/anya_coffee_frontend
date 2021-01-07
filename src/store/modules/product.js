@@ -9,17 +9,12 @@ export default {
     VUE_APP_SERVICE_URL: process.env.VUE_APP_SERVICE_URL,
     width: 0,
     search: '',
-    currentPage: 1,
     sort: ''
   },
   mutations: {
     setProduct(state, payload) {
       state.productList = payload.data
       state.totalRows = payload.pagination.totalProduct
-    },
-    triggerurage(state) {
-      state.currentPage = 1
-      console.log(state.currentPage)
     },
     changeSort(state, payload) {
       state.sort = payload

@@ -127,14 +127,20 @@ export default {
       limit: 'getLimitProduct',
       totalRows: 'getTotalRowsProduct',
       roles: 'getRoles',
-      search: 'getSearch',
-      currpage: 'currentPage'
-    })
+      search: 'getSearch'
+    }),
+    currentPage: {
+      get() {
+        return this.page
+      },
+      set(newPage) {
+        return newPage
+      }
+    }
   },
   data() {
     return {
-      category: '',
-      currentPage: this.currpage || 1
+      category: ''
     }
   },
   created() {
@@ -171,7 +177,6 @@ export default {
       return val
     },
     selectCatagory(value) {
-      this.currentPage = 1
       this.delSearch('')
       this.changePage(1)
       this.category = value

@@ -1,121 +1,128 @@
 <template>
   <b-col lg="6">
     <div class="mt-lg-5 pt-5">
-      <b-form-group id="nameProduct" label-for="nameProduct">
-        <label for="">Name Product</label>
-        <b-form-select
+      <b-form v-on:submit.prevent="sendData">
+        <b-form-group
           id="nameProduct"
-          v-model="Data.productId"
-          :options="product"
-          @change="handleValue"
-          required
-        ></b-form-select>
-      </b-form-group>
-      <b-form-group id="Qty" label-for="Qty">
-        <label for="">Minimun Purchase</label>
-        <b-form-select
-          id="Qty"
-          v-model="Data.minPurchase"
-          :options="minpurchase"
-          required
-        ></b-form-select>
-      </b-form-group>
-      <h2 class="title_rigth mt-lg-5 mb-lg-3">Input product size :</h2>
-      <p class="desc_title mb-lg-4">
-        Click size you want to use for this product
-      </p>
-      <div class="d-xl-flex mb-lg-4 ml-lg-4 size__product">
-        <a class="pr-lg-2 pr-2" @click="SizeR('ON')"
-          ><img
-            :class="Data.sizeR === 'ON' ? 'active' : ''"
-            src="../../../assets/image/icons/R_Size.svg"
-            alt="R_size"
-        /></a>
-        <a class="pr-lg-2 pr-2" @click="SizeL('ON')"
-          ><img
-            :class="Data.sizeL === 'ON' ? 'active' : ''"
-            src="../../../assets/image/icons/L_Size.svg"
-            alt="L_size"
-        /></a>
-        <a class="pr-lg-2 pr-2" @click="SizeXL('ON')"
-          ><img
-            :class="Data.sizeXL === 'ON' ? 'active' : ''"
-            src="../../../assets/image/icons/XL_Size.svg"
-            alt="XL_size"
-        /></a>
-        <a class="pr-lg-2 pr-2 " @click="Size250('ON')"
-          ><img
-            :class="Data.size200 === 'ON' ? 'active' : ''"
-            src="../../../assets/image/icons/Size_250.svg"
-            alt="250_size"
-        /></a>
-        <div class="mt-2 mt-xl-0">
-          <a class="pr-lg-2 pr-2" @click="Size300('ON')"
+          class="mt-lg-3 pt-lg-1"
+          label-for="nameProduct"
+        >
+          <label for="">Name Product</label>
+          <b-form-select
+            id="nameProduct"
+            v-model="Data.productId"
+            :options="DataProduct"
+            @change="handleValue"
+            required
+          ></b-form-select>
+        </b-form-group>
+        <b-form-group id="Qty" label-for="Qty">
+          <label for="">Minimun Purchase</label>
+          <b-form-select
+            id="Qty"
+            v-model="Data.minPurchase"
+            :options="minpurchase"
+            required
+          ></b-form-select>
+        </b-form-group>
+        <h2 class="title_rigth mt-lg-5 mb-lg-3">Input product size :</h2>
+        <p class="desc_title mb-lg-4">
+          Click size you want to use for this product
+        </p>
+        <div class="d-xl-flex mb-lg-4 ml-lg-4 size__product">
+          <a class="pr-lg-2 pr-2" @click="SizeR('ON')"
             ><img
-              style="cursor: pointer;"
-              :class="Data.size350 === 'ON' ? 'active' : ''"
-              src="../../../assets/image/icons/Size_300.svg"
-              alt="300_size"
+              :class="Data.sizeR === 'ON' ? 'active' : ''"
+              src="../../../assets/image/icons/R_Size.svg"
+              alt="R_size"
           /></a>
-          <a style="cursor: pointer;" @click="Size500('ON')"
+          <a class="pr-lg-2 pr-2" @click="SizeL('ON')"
             ><img
-              :class="Data.size400 === 'ON' ? 'active' : ''"
-              src="../../../assets/image/icons/Size_500.svg"
-              alt="500_size"
+              :class="Data.sizeL === 'ON' ? 'active' : ''"
+              src="../../../assets/image/icons/L_Size.svg"
+              alt="L_size"
+          /></a>
+          <a class="pr-lg-2 pr-2" @click="SizeXL('ON')"
+            ><img
+              :class="Data.sizeXL === 'ON' ? 'active' : ''"
+              src="../../../assets/image/icons/XL_Size.svg"
+              alt="XL_size"
+          /></a>
+          <a class="pr-lg-2 pr-2 " @click="Size250('ON')"
+            ><img
+              :class="Data.size200 === 'ON' ? 'active' : ''"
+              src="../../../assets/image/icons/Size_250.svg"
+              alt="250_size"
+          /></a>
+          <div class="mt-2 mt-xl-0">
+            <a class="pr-lg-2 pr-2" @click="Size300('ON')"
+              ><img
+                style="cursor: pointer;"
+                :class="Data.size350 === 'ON' ? 'active' : ''"
+                src="../../../assets/image/icons/Size_300.svg"
+                alt="300_size"
+            /></a>
+            <a style="cursor: pointer;" @click="Size500('ON')"
+              ><img
+                :class="Data.size400 === 'ON' ? 'active' : ''"
+                src="../../../assets/image/icons/Size_500.svg"
+                alt="500_size"
+            /></a>
+          </div>
+        </div>
+        <h2 class="title_rigth">Input delivery methods :</h2>
+        <p class="desc_title mb-lg-4">
+          Click methods you want to use for this product
+        </p>
+        <div class="d-xl-flex align-items-center mb-lg-3 ml-lg-4 delivery">
+          <a style="cursor: pointer;" class="pr-lg-3" @click="homeDev('ON')"
+            ><img
+              :class="Data.homeDeliv === 'ON' ? 'active' : ''"
+              class="honedeliv"
+              src="../../../assets/image/icons/DineIn.svg"
+              alt="HomeDelivery"
+          /></a>
+          <a style="cursor: pointer;" class="pr-lg-3" @click="Dinein('ON')"
+            ><img
+              :class="Data.dineIn === 'ON' ? 'active' : ''"
+              class="dineIn"
+              src="../../../assets/image/icons/HomeDelivery.svg"
+              alt="Dinein"
+          /></a>
+          <a style="cursor: pointer;" @click="Takeaway('ON')"
+            ><img
+              class="takeaway"
+              :class="Data.takeaway === 'ON' ? 'active' : ''"
+              src="../../../assets/image/icons/TakeAway.svg"
+              alt="Takeaway"
           /></a>
         </div>
-      </div>
-      <h2 class="title_rigth">Input delivery methods :</h2>
-      <p class="desc_title mb-lg-4">
-        Click methods you want to use for this product
-      </p>
-      <div class="d-xl-flex align-items-center mb-lg-3 ml-lg-4 delivery">
-        <a style="cursor: pointer;" class="pr-lg-3" @click="homeDev('ON')"
-          ><img
-            :class="Data.homeDeliv === 'ON' ? 'active' : ''"
-            class="honedeliv"
-            src="../../../assets/image/icons/DineIn.svg"
-            alt="HomeDelivery"
-        /></a>
-        <a style="cursor: pointer;" class="pr-lg-3" @click="Dinein('ON')"
-          ><img
-            :class="Data.dineIn === 'ON' ? 'active' : ''"
-            class="dineIn"
-            src="../../../assets/image/icons/HomeDelivery.svg"
-            alt="Dinein"
-        /></a>
-        <a style="cursor: pointer;" @click="Takeaway('ON')"
-          ><img
-            class="takeaway"
-            :class="Data.takeaway === 'ON' ? 'active' : ''"
-            src="../../../assets/image/icons/TakeAway.svg"
-            alt="Takeaway"
-        /></a>
-      </div>
-      <b-col lg="12">
-        <button
-          @click="sendData()"
-          class="save_btn mt-lg-5 mt-3 mb-3 mb-lg-3 w-100 "
-        >
-          Save Product
-        </button>
-      </b-col>
-      <b-col lg="12">
-        <router-link
-          tag="button"
-          to="/product"
-          class="cancel_btn mb-5 mb-lg-0 w-100"
-          >Cancel</router-link
-        >
-      </b-col>
+        <b-col lg="12">
+          <button
+            type="submit"
+            class="save_btn mt-lg-5 mt-3 mb-3 mb-lg-3 w-100 "
+          >
+            Save Product
+          </button>
+        </b-col>
+        <b-col lg="12">
+          <router-link
+            tag="button"
+            to="/product"
+            class="cancel_btn mb-5 mb-lg-0 w-100"
+            >Cancel</router-link
+          >
+        </b-col>
+      </b-form>
     </div>
   </b-col>
 </template>
 <script>
 import axios from 'axios'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'PromoRight',
-  props: ['Data', 'product'],
+  props: ['Data'],
   data() {
     return {
       storeR: '',
@@ -143,7 +150,15 @@ export default {
       VUE_APP_SERVICE_URL: process.env.VUE_APP_SERVICE_URL
     }
   },
+  computed: {
+    ...mapGetters({ DataProduct: 'getProductforPromo' })
+  },
+  created() {
+    this.getProductforPromo()
+  },
   methods: {
+    ...mapActions(['getProductforPromo']),
+    ...mapMutations(['getPrice', 'getDiscountCP']),
     sendData() {
       axios
         .post(`${this.VUE_APP_SERVICE_URL}promo`, this.Data)
@@ -155,7 +170,8 @@ export default {
         })
     },
     handleValue(value) {
-      this.$emit('sendvalue', value)
+      this.getPrice(value)
+      this.getDiscountCP()
     },
     SizeR(value) {
       if (!this.storeR) {

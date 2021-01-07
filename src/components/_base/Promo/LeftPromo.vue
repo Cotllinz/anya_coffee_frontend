@@ -10,52 +10,52 @@
     </div>
     <div class="image__fit mt-lg-5 mt-4">
       <img
+        v-if="images"
         class="style__image"
-        src="https://images.unsplash.com/photo-1608327070138-f325a945c8cb?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+        :src="'http://localhost:3000/' + images"
+        alt="image"
+      />
+      <img
+        v-if="form.productId === null"
+        class="style__image"
+        src="../../../assets/image/mainImage/defaultImageAddProduct.svg"
         alt="image"
       />
     </div>
     <b-col lg="12">
       <button class="take_picture mt-lg-4 mb-lg-3 mt-4 mb-3">
-        Take a picture
+        Reset
       </button>
-    </b-col>
-    <b-col lg="12">
-      <button class="choose_from_gallery mb-lg-5">Choose from gallery</button>
     </b-col>
     <div class="ml-lg-3 ml-3 pr-3 pr-lg-0 mt-lg-5 pt-lg-4">
       <div>
-        <b-form>
-          <b-form-group id="timestart" label-for="timestart">
-            <b-form-select
-              id="timestart"
-              v-model="form.discountPromo"
-              :options="Optionset"
-              required
-            ></b-form-select>
-          </b-form-group>
-        </b-form>
+        <b-form-group id="timestart" label-for="timestart">
+          <b-form-select
+            id="timestart"
+            v-model="form.discountPromo"
+            :options="Option"
+            required
+          ></b-form-select>
+        </b-form-group>
       </div>
       <h2 class="mt-lg-5 title_text mb-lg-4 mb-3 mt-5">
         Expire date :
       </h2>
       <div>
-        <b-form>
+        <b-form-datepicker
+          id="start_exp"
+          v-model="form.startExp"
+          placeholder="Select start date"
+          class="mb-lg-3 date_picker  py-lg-1"
+        ></b-form-datepicker>
+        <b-form-group id="end_exo" label-for="category">
           <b-form-datepicker
-            id="start_exp"
-            v-model="form.startExp"
-            placeholder="Select start date"
-            class="mb-lg-3 date_picker  py-lg-1"
+            id="end_exp"
+            v-model="form.endExp"
+            placeholder="Select end date"
+            class="mb-2 date_picker py-lg-1"
           ></b-form-datepicker>
-          <b-form-group id="end_exo" label-for="category">
-            <b-form-datepicker
-              id="end_exp"
-              v-model="form.endExp"
-              placeholder="Select end date"
-              class="mb-2 date_picker py-lg-1"
-            ></b-form-datepicker>
-          </b-form-group>
-        </b-form>
+        </b-form-group>
       </div>
       <h2 class="mt-lg-4 title_text mb-lg-4 mb-3 mt-5">
         Input coupon code :
@@ -68,23 +68,22 @@
         required
         trim
       ></b-form-input>
-      <h1>{{ priceing }}</h1>
     </div>
   </b-col>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'PromoLeft',
-  props: ['form', 'product', 'Optionset'],
+  props: ['form'],
   data() {
     return {
       data: []
     }
   },
-  created() {
-    /* this.disc() */
-  },
-  methods: {}
+  computed: {
+    ...mapGetters({ Option: 'getOptionDiscount', images: 'getImage' })
+  }
 }
 </script>
 <style scoped>
@@ -130,22 +129,12 @@ button.take_picture {
   padding: 15px 0;
   width: 60%;
   font-weight: 700;
+  outline: none;
   font-size: 17px;
   color: #ffffff;
   border-radius: 10px;
   border: none;
   background-color: #0b132a;
-  font-family: 'Rubik', sans-serif;
-}
-button.choose_from_gallery {
-  padding: 15px 0;
-  width: 60%;
-  font-weight: 700;
-  font-size: 17px;
-  color: #6a4029;
-  border-radius: 10px;
-  border: none;
-  background-color: #ffba33;
   font-family: 'Rubik', sans-serif;
 }
 
@@ -171,9 +160,7 @@ select.custom-select {
   button.take_picture {
     width: 100%;
   }
-  button.choose_from_gallery {
-    width: 100%;
-  }
+
   div.image__fit {
     margin: 0 auto;
   }
