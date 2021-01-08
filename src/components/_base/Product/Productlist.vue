@@ -144,6 +144,7 @@ export default {
     }
   },
   created() {
+    this.changePage(1)
     this.getProducts()
     window.addEventListener('resize', this.handleResize())
   },

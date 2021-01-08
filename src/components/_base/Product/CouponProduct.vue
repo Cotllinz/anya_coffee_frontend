@@ -13,7 +13,20 @@
               :key="index"
               class="card-promo"
             >
-              <div class="image_promofit">
+              <div
+                class="edit_promobtn"
+                @click="editPromo(items.id_coupon)"
+                v-if="roles === 1"
+              >
+                <img
+                  class="imgPromo_styledicon mr-lg-2 pt-lg-2"
+                  src="../../../assets/image/icons/edit_accountIcons.svg"
+                  alt="icon_edit"
+                />
+              </div>
+              <div
+                :class="roles === 1 ? 'image_promofit_roles' : 'image_promofit'"
+              >
                 <img
                   :src="'http://localhost:3000/' + items.image_product"
                   class="card__promoStyled"
@@ -54,13 +67,6 @@
           <button class="mt-lg-1 p-lg-4 p-3 mt-2 btn__apply__coupon">
             Apply Coupon
           </button>
-          <router-link
-            tag="button"
-            class="btn__AddPromo  p-lg-4 p-3 mt-lg-3"
-            v-if="roles === 1"
-            to="/Addpromo"
-            >Add new Promo</router-link
-          >
           <div class="terms__conditions mt-3 ml-2 ml-lg-1 mt-lg-5 mb-lg-5">
             <ol>
               <ul>
@@ -74,6 +80,13 @@
               <li>Should make member card to apply coupon</li>
             </ol>
           </div>
+          <router-link
+            tag="button"
+            class="btn__AddPromo  p-lg-4 p-3 mt-lg-3"
+            v-if="roles === 1"
+            to="/Addpromo"
+            >Add new Promo</router-link
+          >
         </b-col>
         <Productlist />
       </b-row>
@@ -107,6 +120,7 @@ export default {
   },
   name: 'CouponProduct',
   created() {
+    this.changepagePromo(1)
     this.getPromo()
   },
   methods: {
@@ -115,6 +129,12 @@ export default {
     handlePageChange(numberPage) {
       this.changepagePromo(numberPage)
       this.getPromo()
+    },
+    editPromo(idPromo) {
+      this.$router.push({
+        name: 'editPromo',
+        params: { idpromo: idPromo }
+      })
     }
   }
 }

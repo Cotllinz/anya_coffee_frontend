@@ -14,6 +14,7 @@ import Account from '../views/account.vue'
 import History from '../views/history.vue'
 import EditProduct from '../views/editProduct.vue'
 import store from '../store'
+import editPromo from '../views/editPromo.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -90,6 +91,12 @@ const routes = [
     path: '/editProduct/:idedit',
     name: 'editProduct',
     component: EditProduct,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/editPromo/:idpromo',
+    name: 'editPromo',
+    component: editPromo,
     meta: { requiresAuth: true }
   }
 ]

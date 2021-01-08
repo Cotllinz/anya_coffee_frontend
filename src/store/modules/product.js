@@ -126,11 +126,9 @@ export default {
             payload.DataSend
           )
           .then(result => {
-            console.log(result)
             resolve(result)
           })
           .catch(err => {
-            console.log(err.response)
             reject(err.response)
           })
       })

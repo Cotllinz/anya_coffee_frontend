@@ -16,6 +16,12 @@
         alt="image"
       />
       <img
+        v-if="form.images"
+        class="style__image"
+        :src="'http://localhost:3000/' + form.images"
+        alt="image"
+      />
+      <img
         v-if="form.productId === null"
         class="style__image"
         src="../../../assets/image/mainImage/defaultImageAddProduct.svg"
@@ -23,7 +29,11 @@
       />
     </div>
     <b-col lg="12">
-      <button class="take_picture mt-lg-4 mb-lg-3 mt-4 mb-3">
+      <button
+        @click="reset"
+        v-if="!this.id"
+        class="take_picture mt-lg-4 mb-lg-3 mt-4 mb-3"
+      >
         Reset
       </button>
     </b-col>
@@ -76,17 +86,41 @@
   </b-col>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'PromoLeft',
   props: ['form'],
   data() {
     return {
-      data: []
+      id: 0
     }
+  },
+  created() {
+    this.id = this.$route.params.idpromo
   },
   computed: {
     ...mapGetters({ Option: 'getOptionDiscount', images: 'getImage' })
+  },
+  methods: {
+    ...mapMutations(['removeImage']),
+    reset() {
+      ;(this.form.discountPromo = null),
+        (this.form.startExp = ''),
+        (this.form.endExp = ''),
+        (this.form.codeCoupon = ''),
+        (this.form.productId = null),
+        (this.form.minPurchase = null),
+        (this.form.sizeR = ''),
+        (this.form.sizeL = ''),
+        (this.form.sizeXL = ''),
+        (this.form.size200 = ''),
+        (this.form.size350 = ''),
+        (this.form.size400 = ''),
+        (this.form.homeDeliv = ''),
+        (this.form.dineIn = ''),
+        (this.form.takeaway = ''),
+        this.removeImage()
+    }
   }
 }
 </script>

@@ -21,9 +21,21 @@ div.card-promo {
   width: 284px;
   z-index: 1;
 }
-.image_promofit{
-padding-top: 45px;
-padding-bottom: 18px;
+.edit_promobtn {
+  padding-top: 5px;
+}
+.image_promofit {
+  padding-top: 40px;
+  padding-bottom: 18px;
+}
+.image_promofit_roles {
+  padding-bottom: 18px;
+}
+.imgPromo_styledicon {
+  width: 35px;
+  display: block;
+  margin-left: auto;
+  cursor: pointer;
 }
 img.card__promoStyled {
   width: 170px;

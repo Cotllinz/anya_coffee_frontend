@@ -2,11 +2,7 @@
   <b-col lg="6">
     <div class="mt-lg-5 pt-5">
       <b-form v-on:submit.prevent="sendData">
-        <b-form-group
-          id="nameProduct"
-          class="mt-lg-3 pt-lg-1"
-          label-for="nameProduct"
-        >
+        <b-form-group v-if="!id" id="nameProduct" label-for="nameProduct">
           <label for="">Name Product</label>
           <b-form-select
             id="nameProduct"
@@ -15,6 +11,25 @@
             @change="handleValue"
             required
           ></b-form-select>
+        </b-form-group>
+        <b-form-group v-if="id" id="nameProductEdit" label-for="nameProduct">
+          <label for="">Name Product</label>
+          <b-form-input
+            class="normal-input"
+            id="nameProductEdit"
+            v-model="Data.nameProduct"
+            disabled
+          ></b-form-input>
+        </b-form-group>
+        <b-form-group id="normalPrice" label-for="normalPrice">
+          <label for="">Normal Price</label>
+          <b-form-input
+            class="normal-input"
+            id="normalPrice"
+            placeholder="Product Not Selected"
+            v-model="Nprice"
+            disabled
+          ></b-form-input>
         </b-form-group>
         <b-form-group id="Qty" label-for="Qty">
           <label for="">Minimun Purchase</label>
@@ -109,7 +124,7 @@
           <router-link
             tag="button"
             to="/product"
-            class="cancel_btn mb-5 mb-lg-0 w-100"
+            class="cancel_btn mb-5 mb-lg-4 w-100"
             >Cancel</router-link
           >
         </b-col>
@@ -146,31 +161,49 @@ export default {
         { text: 'Nine Order', value: 9 },
         { text: 'Ten Order', value: 10 }
       ],
-      VUE_APP_SERVICE_URL: process.env.VUE_APP_SERVICE_URL
+      id: 0
     }
   },
   computed: {
-    ...mapGetters({ DataProduct: 'getProductforPromo' })
+    ...mapGetters({ DataProduct: 'getProductforPromo', Nprice: 'getPrice' })
   },
   created() {
-    this.getProductforPromo()
+    this.id = this.$route.params.idpromo
+    if (!this.id) {
+      this.getProductforPromo()
+    }
   },
   methods: {
-    ...mapActions(['getProductforPromo', 'addPromo']),
+    ...mapActions(['getProductforPromo', 'addPromo', 'updatePromo']),
     ...mapMutations(['getPrice', 'getDiscountCP']),
     sendData() {
-      this.addPromo(this.Data)
-        .then(result => {
-          alert(result.data.massage)
-          this.$router.push('/product')
-        })
-        .catch(err => {
-          alert(err.data.massage)
-        })
+      const SetData = {
+        DataSend: this.Data,
+        id: this.id
+      }
+      if (this.id) {
+        this.updatePromo(SetData)
+          .then(result => {
+            alert(result.data.massage)
+            this.$router.push('/product')
+          })
+          .catch(err => {
+            alert(err.data.massage)
+          })
+      } else {
+        this.addPromo(this.Data)
+          .then(result => {
+            alert(result.data.massage)
+            this.$router.push('/product')
+          })
+          .catch(err => {
+            alert(err.data.massage)
+          })
+      }
     },
     handleValue(value) {
       this.getPrice(value)
-      this.getDiscountCP()
+      this.getDiscountCP(this.id)
     },
     SizeR(value) {
       if (!this.storeR) {
@@ -303,6 +336,11 @@ export default {
 </script>
 
 <style scoped>
+input.normal-input {
+  border: 1px solid #ced4da !important;
+  border-radius: 10px !important;
+  font-size: 15px;
+}
 .form-control {
   border: none !important;
   background: none !important;

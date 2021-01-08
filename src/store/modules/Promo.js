@@ -15,11 +15,16 @@ export default {
       { text: '85 %', value: 85 }
     ],
     image: '',
-    OptionDiscount: [],
+    OptionDiscount: [
+      {
+        text: 'Input Discount',
+        value: null
+      }
+    ],
     totalRows: null,
     limit: 1,
     page: 1,
-    price: 0,
+    price: '',
     VUE_APP_SERVICE_URL: process.env.VUE_APP_SERVICE_URL
   },
   mutations: {
@@ -27,8 +32,15 @@ export default {
       state.promo = payload.data
       state.totalRows = payload.pagination.totalProduct
     },
+    removeImage(state) {
+      state.image = ''
+      state.price = ''
+    },
     changepagePromo(state, payload) {
       state.page = payload
+    },
+    changePrice(state, payload) {
+      state.price = payload
     },
     setProductforpromo(state, payload) {
       /*   if (!res.data.data[i].code_discount) */
@@ -54,6 +66,7 @@ export default {
         }
       ]
       state.image = ''
+      state.price = ''
     },
     getPrice(state, payload) {
       for (let i = 0; i < state.product.length; i++) {
@@ -63,7 +76,32 @@ export default {
         }
       }
     },
-    getDiscountCP(state) {
+    getDiscountCP(state, payload) {
+      if (!payload) {
+        state.OptionDiscount = [
+          {
+            text: 'Input Discount',
+            value: null
+          }
+        ]
+
+        for (let i = 0; i < state.discount.length; i++) {
+          let hitung = state.price * (state.discount[i].value / 100)
+          let hasil = state.price - Math.round(hitung)
+          const result = {
+            text: state.discount[i].text + ' => ' + hasil,
+            value: state.discount[i].value
+          }
+          if (state.price === null || state.price === undefined) {
+            state.OptionDiscount.value = null
+          } else {
+            state.OptionDiscount = [...state.OptionDiscount, result]
+          }
+        }
+      }
+    },
+    getpriceId(state, payload) {
+      state.image = ''
       state.OptionDiscount = [
         {
           text: 'Input Discount',
@@ -71,20 +109,21 @@ export default {
         }
       ]
       for (let i = 0; i < state.discount.length; i++) {
-        let hitung = state.price * (state.discount[i].value / 100)
-        let hasil = state.price - Math.round(hitung)
+        let hitung = payload * (state.discount[i].value / 100)
+        let hasil = payload - Math.round(hitung)
         const result = {
           text: state.discount[i].text + ' => ' + hasil,
           value: state.discount[i].value
         }
-        if (state.price === undefined) {
-          state.OptionDiscount = [...state.OptionDiscount]
+        if (state.price === null || state.price === undefined) {
+          state.OptionDiscount.value = null
         } else {
           state.OptionDiscount = [...state.OptionDiscount, result]
         }
       }
     }
   },
+
   actions: {
     getPromo(context) {
       return new Promise((resolve, reject) => {
@@ -94,6 +133,20 @@ export default {
           )
           .then(result => {
             context.commit('setPromo', result.data)
+            resolve(result)
+          })
+          .catch(err => {
+            console.clear()
+            reject(err.response)
+          })
+      })
+    },
+    getPromobyid(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`${context.state.VUE_APP_SERVICE_URL}promo/${payload}`)
+          .then(result => {
+            context.commit('getpriceId', result.data.data[0].price_product)
             resolve(result)
           })
           .catch(err => {
@@ -127,6 +180,21 @@ export default {
             reject(err.response)
           })
       })
+    },
+    updatePromo(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .patch(
+            `${context.state.VUE_APP_SERVICE_URL}promo/${payload.id}`,
+            payload.DataSend
+          )
+          .then(result => {
+            resolve(result)
+          })
+          .catch(err => {
+            reject(err.response)
+          })
+      })
     }
   },
   getters: {
@@ -150,6 +218,9 @@ export default {
     },
     getImage(state) {
       return state.image
+    },
+    getPrice(state) {
+      return state.price
     }
   }
 }
