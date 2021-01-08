@@ -118,7 +118,6 @@
   </b-col>
 </template>
 <script>
-import axios from 'axios'
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'PromoRight',
@@ -157,16 +156,16 @@ export default {
     this.getProductforPromo()
   },
   methods: {
-    ...mapActions(['getProductforPromo']),
+    ...mapActions(['getProductforPromo', 'addPromo']),
     ...mapMutations(['getPrice', 'getDiscountCP']),
     sendData() {
-      axios
-        .post(`${this.VUE_APP_SERVICE_URL}promo`, this.Data)
-        .then(response => {
-          console.log(response)
+      this.addPromo(this.Data)
+        .then(result => {
+          alert(result.data.massage)
+          this.$router.push('/product')
         })
-        .catch(error => {
-          console.log(error.response)
+        .catch(err => {
+          alert(err.data.massage)
         })
     },
     handleValue(value) {

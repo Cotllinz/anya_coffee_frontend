@@ -2,12 +2,7 @@ import axios from 'axios'
 export default {
   state: {
     promo: [],
-    product: [
-      {
-        text: 'Search Product Discount',
-        value: null
-      }
-    ],
+    product: [],
     discount: [
       { text: '10 %', value: 10 },
       { text: '20 %', value: 20 },
@@ -69,6 +64,12 @@ export default {
       }
     },
     getDiscountCP(state) {
+      state.OptionDiscount = [
+        {
+          text: 'Input Discount',
+          value: null
+        }
+      ]
       for (let i = 0; i < state.discount.length; i++) {
         let hitung = state.price * (state.discount[i].value / 100)
         let hasil = state.price - Math.round(hitung)
@@ -111,6 +112,18 @@ export default {
           })
           .catch(err => {
             console.clear()
+            reject(err.response)
+          })
+      })
+    },
+    addPromo(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post(`${context.state.VUE_APP_SERVICE_URL}promo`, payload)
+          .then(result => {
+            resolve(result)
+          })
+          .catch(err => {
             reject(err.response)
           })
       })

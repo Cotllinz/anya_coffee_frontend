@@ -29,33 +29,37 @@
     </b-col>
     <div class="ml-lg-3 ml-3 pr-3 pr-lg-0 mt-lg-5 pt-lg-4">
       <div>
-        <b-form-group id="timestart" label-for="timestart">
-          <b-form-select
-            id="timestart"
-            v-model="form.discountPromo"
-            :options="Option"
-            required
-          ></b-form-select>
-        </b-form-group>
+        <b-form>
+          <b-form-group id="timestart" label-for="timestart">
+            <b-form-select
+              id="timestart"
+              v-model="form.discountPromo"
+              :options="Option"
+              required
+            ></b-form-select>
+          </b-form-group>
+        </b-form>
       </div>
       <h2 class="mt-lg-5 title_text mb-lg-4 mb-3 mt-5">
         Expire date :
       </h2>
       <div>
-        <b-form-datepicker
-          id="start_exp"
-          v-model="form.startExp"
-          placeholder="Select start date"
-          class="mb-lg-3 date_picker  py-lg-1"
-        ></b-form-datepicker>
-        <b-form-group id="end_exo" label-for="category">
+        <b-form>
           <b-form-datepicker
-            id="end_exp"
-            v-model="form.endExp"
-            placeholder="Select end date"
-            class="mb-2 date_picker py-lg-1"
+            id="start_exp"
+            v-model="form.startExp"
+            placeholder="Select start date"
+            class="mb-lg-3 date_picker py-2 mb-3  py-lg-1"
           ></b-form-datepicker>
-        </b-form-group>
+          <b-form-group id="end_exo" label-for="category">
+            <b-form-datepicker
+              id="end_exp"
+              v-model="form.endExp"
+              placeholder="Select end date"
+              class="mb-2 date_picker py-2 py-lg-1"
+            ></b-form-datepicker>
+          </b-form-group>
+        </b-form>
       </div>
       <h2 class="mt-lg-4 title_text mb-lg-4 mb-3 mt-5">
         Input coupon code :
@@ -154,6 +158,12 @@ select.custom-select {
 }
 
 @media (max-width: 576px) {
+  .date_picker {
+    width: 100%;
+  }
+  .Cuopon {
+    width: 100%;
+  }
   select.custom-select {
     width: 100% !important;
   }

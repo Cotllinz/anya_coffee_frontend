@@ -92,17 +92,20 @@ export default {
       limit: 'getLimitPromo',
       promo: 'getDataPromo',
       totalRows: 'getTotalRowsPromo'
-    })
+    }),
+    currentPage: {
+      get() {
+        return this.page
+      },
+      set(newPage) {
+        return newPage
+      }
+    }
   },
   components: {
     Productlist
   },
   name: 'CouponProduct',
-  data() {
-    return {
-      currentPage: 1
-    }
-  },
   created() {
     this.getPromo()
   },
