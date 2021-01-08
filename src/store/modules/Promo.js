@@ -195,6 +195,18 @@ export default {
             reject(err.response)
           })
       })
+    },
+    deletePromoProduct(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .patch(`${context.state.VUE_APP_SERVICE_URL}promo/delete/${payload}`)
+          .then(result => {
+            resolve(result)
+          })
+          .catch(err => {
+            reject(err.response)
+          })
+      })
     }
   },
   getters: {

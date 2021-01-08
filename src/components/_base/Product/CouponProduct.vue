@@ -13,13 +13,16 @@
               :key="index"
               class="card-promo"
             >
-              <div
-                class="edit_promobtn"
-                @click="editPromo(items.id_coupon)"
-                v-if="roles === 1"
-              >
+              <div class="edit_promobtn d-flex" v-if="roles === 1">
                 <img
-                  class="imgPromo_styledicon mr-lg-2 pt-lg-2"
+                  @click="deletePromo(items.id_coupon)"
+                  class="imgPromodelete_styledicon ml-lg-2 ml-3 pt-2 pt-lg-2"
+                  src="../../../assets/image/icons/Delete_icons.png"
+                  alt="icon_delete"
+                />
+                <img
+                  @click="editPromo(items.id_coupon)"
+                  class="imgPromo_styledicon mr-lg-2 mr-3 pt-2 pt-lg-2"
                   src="../../../assets/image/icons/edit_accountIcons.svg"
                   alt="icon_edit"
                 />
@@ -124,7 +127,7 @@ export default {
     this.getPromo()
   },
   methods: {
-    ...mapActions(['getPromo']),
+    ...mapActions(['getPromo', 'deletePromoProduct']),
     ...mapMutations(['changepagePromo']),
     handlePageChange(numberPage) {
       this.changepagePromo(numberPage)
@@ -135,6 +138,16 @@ export default {
         name: 'editPromo',
         params: { idpromo: idPromo }
       })
+    },
+    deletePromo(id) {
+      this.deletePromoProduct(id)
+        .then(result => {
+          alert(result.data.massage)
+          this.getPromo()
+        })
+        .catch(err => {
+          alert(err.data.massage)
+        })
     }
   }
 }
