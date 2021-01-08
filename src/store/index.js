@@ -5,17 +5,18 @@ import RegisUser from './modules/RegisUser'
 import createPersistedState from 'vuex-persistedstate'
 import product from './modules/product'
 import promo from './modules/Promo'
+import Dashboard from './modules/Dashboard'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  modules: { Auth, RegisUser, product, promo },
+  modules: { Auth, RegisUser, product, promo, Dashboard },
   state: {},
   mutations: {},
   actions: {},
   getters: {},
   plugins: [
     createPersistedState({
-      paths: ['Auth.user.role']
+      paths: ['Auth.user.role', 'Auth.user.userName']
     })
   ]
 })

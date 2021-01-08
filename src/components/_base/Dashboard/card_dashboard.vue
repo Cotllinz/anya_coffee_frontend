@@ -2,11 +2,11 @@
   <b-row class="mt-xl-4 mt-4">
     <b-col
       ><div>
-        <b-card tag="DayIncome" class="todays_income mb-3 mb-lg-4">
+        <b-card class="todays_income mb-3 mb-lg-4">
           <b-card-body class="p-xl-2 p-2">
             <div class="data_income mt-3">
               <h5>Today's Income</h5>
-              <h2>Rp. 1.000.000</h2>
+              <h2>Rp. {{ formatPrice(Days) }}</h2>
               <p>+2% Yesterday</p>
             </div>
           </b-card-body>
@@ -15,11 +15,11 @@
     >
     <b-col
       ><div>
-        <b-card tag="DayIncome" class="orders_income mb-3 mb-lg-0">
+        <b-card class="orders_income mb-3 mb-lg-0">
           <b-card-body class="p-xl-2 p-2">
             <div class="data_income mt-3">
               <h5>Orders</h5>
-              <h2>3.270</h2>
+              <h2>{{ formatPrice(TotalOrder) }}</h2>
               <p>+5% Last Week</p>
             </div>
           </b-card-body>
@@ -28,11 +28,11 @@
     >
     <b-col
       ><div>
-        <b-card tag="DayIncome" class="year_income mb-3 mb-lg-0">
+        <b-card class="year_income mb-3 mb-lg-0">
           <b-card-body class="p-xl-2 p-2">
             <div class="data_income mt-3">
               <h5>This Year's Income</h5>
-              <h2>Rp. 100.000.000.000</h2>
+              <h2>Rp. {{ formatPrice(Years) }}</h2>
               <p>+10% Last Year</p>
             </div>
           </b-card-body>
@@ -42,8 +42,28 @@
   </b-row>
 </template>
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
-  name: 'Card Income'
+  name: 'CardIncome',
+  computed: {
+    ...mapGetters({
+      Days: 'getSubtotalDays',
+      TotalOrder: 'getTotalOrder',
+      Years: 'getSubTotalYears'
+    })
+  },
+  created() {
+    this.subTotaldays()
+    this.TotalOrdermonth()
+    this.subTotalYears()
+  },
+  methods: {
+    ...mapActions(['subTotaldays', 'TotalOrdermonth', 'subTotalYears']),
+    formatPrice(value) {
+      const val = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+      return val
+    }
+  }
 }
 </script>
 <style scoped>
