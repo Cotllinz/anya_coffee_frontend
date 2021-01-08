@@ -43,13 +43,13 @@ const routes = [
     path: '/addProduct',
     name: 'AddProduct',
     component: Addproduct,
-    meta: { requiresAuth: true }
+    meta: { requiresRoles: true }
   },
   {
     path: '/Addpromo',
     name: 'Addpromo',
     component: addPromo,
-    meta: { requiresAuth: true }
+    meta: { requiresRoles: true }
   },
   {
     path: '/Login',
@@ -73,7 +73,7 @@ const routes = [
     path: '/dashboard',
     name: 'dashboard',
     component: Dashboard,
-    meta: { requiresAuth: true }
+    meta: { requiresRoles: true }
   },
   {
     path: '/account',
@@ -91,13 +91,13 @@ const routes = [
     path: '/editProduct/:idedit',
     name: 'editProduct',
     component: EditProduct,
-    meta: { requiresAuth: true }
+    meta: { requiresRoles: true }
   },
   {
     path: '/editPromo/:idpromo',
     name: 'editPromo',
     component: editPromo,
-    meta: { requiresAuth: true }
+    meta: { requiresRoles: true }
   }
 ]
 
@@ -122,6 +122,14 @@ router.beforeEach((to, from, next) => {
       })
     } else {
       next()
+    }
+  } else if (to.matched.some(record => record.meta.requiresRoles)) {
+    if (store.getters.getRoles === 1) {
+      next()
+    } else {
+      next({
+        path: '/'
+      })
     }
   } else {
     next()
