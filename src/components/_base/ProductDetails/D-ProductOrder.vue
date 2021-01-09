@@ -12,7 +12,7 @@
       <div class="images_rounded position-relative">
         <img
           class="product__pictureDetail mt-4 mb-xl-3 mt-lg-5"
-          src="../../../assets/image/mainImage/DetailProduct.svg"
+          :src="'http://localhost:3000/' + images"
           alt="ImagePicture"
         />
         <div v-if="roles === 1" class="icons_admin position-absolute">
@@ -45,17 +45,21 @@ export default {
   },
   data() {
     return {
-      id: 0
+      id: 0,
+      images: ''
     }
   },
   created() {
     this.id = this.$route.params.idDtls
+    this.getProductId(this.id).then(result => {
+      this.images = result.data.data[0].image_product
+    })
   },
   computed: {
     ...mapGetters({ roles: 'getRoles' })
   },
   methods: {
-    ...mapActions(['deleteProduct']),
+    ...mapActions(['deleteProduct', 'getProductId']),
     deleteProductclick() {
       this.deleteProduct(this.id)
         .then(result => {

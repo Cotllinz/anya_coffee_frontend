@@ -102,13 +102,6 @@ export default {
     }
   },
   methods: {
-    formatPrice(value) {
-      const val = value
-        .toFixed(0)
-        .toString()
-        .replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-      return val
-    },
     increment() {
       if (this.quantity > 0 && this.quantity <= 9) {
         this.quantity += 1
@@ -120,6 +113,9 @@ export default {
         this.quantity -= 1
       }
       this.$emit('newqty', this.quantity)
+    },
+    formatPrice(value) {
+      return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
     },
     SendCheckout(e) {
       this.$emit('SendCheckout', e)

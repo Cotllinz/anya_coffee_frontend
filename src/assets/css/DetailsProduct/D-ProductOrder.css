@@ -1,12 +1,10 @@
 img.product__pictureDetail {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-div.images_rounded {
   width: 270px;
+  height: 270px;
   margin-left: 75px;
   border-radius: 50%;
+  object-fit: cover;
+  object-position: 45%;
 }
 .icons_admin {
   background: #6a4029;
@@ -14,7 +12,7 @@ div.images_rounded {
   height: 35px;
   top: auto;
   bottom: 30px;
-  left: 200px;
+  left: 275px;
   cursor: pointer;
   border-radius: 50%;
   object-fit: contain;
@@ -73,8 +71,8 @@ button.option__deliv.active:hover {
   .icons_admin {
     width: 35px;
     height: 35px;
-    bottom: 30px;
-    left: 215px;
+    bottom: 25px;
+    left: 295px;
   }
   .icons_trash {
     display: block;
@@ -83,13 +81,20 @@ button.option__deliv.active:hover {
   }
 }
 @media (max-width: 576px) {
-  div.images_rounded {
-    width: 270px;
+  .icons_admin {
+    left: 255px;
+  }
+  img.product__pictureDetail {
     display: block;
     margin-left: auto;
     margin-right: auto;
   }
   button.option__delivCatagory {
     margin-top: 10px;
+  }
+}
+@media (max-width: 375px) {
+  .icons_admin {
+    left: 245px;
   }
 }

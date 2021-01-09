@@ -4,7 +4,6 @@ export default {
     limit: 12,
     page: 1,
     productList: [],
-    editProduct: [],
     totalRows: null,
     VUE_APP_SERVICE_URL: process.env.VUE_APP_SERVICE_URL,
     width: 0,

@@ -67,7 +67,10 @@
               size="md"
             ></b-pagination>
           </div>
-          <button class="mt-lg-1 p-lg-4 p-3 mt-2 btn__apply__coupon">
+          <button
+            @click="ApplyCoupon(promo[0].id_coupon)"
+            class="mt-lg-1 p-lg-4 p-3 mt-2 btn__apply__coupon"
+          >
             Apply Coupon
           </button>
           <div class="terms__conditions mt-3 ml-2 ml-lg-1 mt-lg-5 mb-lg-5">
@@ -148,6 +151,9 @@ export default {
         .catch(err => {
           alert(err.data.massage)
         })
+    },
+    ApplyCoupon(id) {
+      console.log(id)
     }
   }
 }
