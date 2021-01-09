@@ -76,7 +76,7 @@ const routes = [
     meta: { requiresRoles: true }
   },
   {
-    path: '/account',
+    path: '/account/:emailAcc',
     name: 'account',
     component: Account,
     meta: { requiresAuth: true }

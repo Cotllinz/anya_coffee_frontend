@@ -8,13 +8,25 @@ export default {
   },
   mutations: {
     setTotalDays(state, payload) {
-      state.totalDay = payload.data[0].totalPrice
+      if (payload.data.length > 0) {
+        state.totalDay = payload.data[0].totalPrice
+      } else {
+        state.totalDay = 0
+      }
     },
     setTotalOrder(state, payload) {
-      state.totalOrderMonth = payload.data[0].totalOrder
+      if (payload.data.length > 0) {
+        state.totalOrderMonth = payload.data[0].totalOrder
+      } else {
+        state.totalOrderMonth = 0
+      }
     },
     setTotalYears(state, payload) {
-      state.totalYear = payload.data[0].totalPrice
+      if (payload.data.length > 0) {
+        state.totalYear = payload.data[0].totalPrice
+      } else {
+        state.totalYear = 0
+      }
     }
   },
   actions: {

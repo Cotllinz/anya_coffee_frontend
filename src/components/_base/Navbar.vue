@@ -83,11 +83,20 @@
               v-if="role === 0 || role === 1"
               tag="a"
               class="position-relative"
-              to="/account"
+              :to="{
+                name: 'account',
+                params: { emailAcc: email }
+              }"
             >
               <img
+                v-if="!images"
                 class="costumer__Logo"
-                src="../../assets/image/icons/logoCostumerIcons.svg"
+                src="../../assets/image/mainImage/defaultImageAddProduct.svg"
+                alt="costumerLogo"/>
+              <img
+                v-if="images"
+                class="costumer__Logo"
+                :src="'http://localhost:3000/' + images"
                 alt="costumerLogo"
             /></router-link>
             <div v-else>
@@ -99,15 +108,6 @@
                 >Log in</b-button
               >
             </div>
-
-            <b-button
-              variant="primary"
-              v-if="Token"
-              @click="handleLogout"
-              class="mr-lg-2"
-              size="md"
-              >Log Out</b-button
-            >
           </div>
         </b-collapse>
       </b-container>
@@ -125,14 +125,34 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ role: 'getRoles', currpage: 'currentPage' }),
+    ...mapGetters({
+      role: 'getRoles',
+      currpage: 'currentPage',
+      email: 'getEmail',
+      image: 'getImages'
+    }),
+    images: {
+      get() {
+        return this.image
+      },
+      set(newImage) {
+        return newImage
+      }
+    },
     ...mapState({ Token: state => state.Auth.token })
+  },
+  created() {
+    if (this.email) {
+      this.getUserAccount(this.email).then(result => {
+        this.images = result.image_user
+      })
+    }
   },
   methods: {
     loginClick() {
       this.$router.push('/Login')
     },
-    ...mapActions(['logout', 'getProducts']),
+    ...mapActions(['logout', 'getProducts', 'getUserAccount']),
     ...mapMutations(['changePage', 'triggerurage']),
     handleLogout() {
       this.logout()

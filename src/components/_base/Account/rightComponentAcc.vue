@@ -15,8 +15,9 @@
             <label for="Email">Email adress :</label>
             <b-form-input
               type="email"
+              v-model="dataForm.email"
               placeholder="Enter email"
-              required
+              disabled
             ></b-form-input>
           </b-form-group>
         </b-col>
@@ -27,9 +28,10 @@
               type="tel"
               class="mobile_input"
               id="mobile_number"
-              required
-              placeholder="(+62)82034093032"
-              pattern="(+62)[0-9]{1}[0-9]{4}[0-9]{4}[0-9]{2}"
+              v-model="dataForm.phoneNumber"
+              pattern="[0-9]{12}"
+              maxlength="12"
+              placeholder="082034093032"
             ></b-form-input>
           </b-form-group>
         </b-col>
@@ -38,7 +40,8 @@
             <label for="address">Delivery adress :</label>
             <b-form-textarea
               rows="2"
-              required
+              maxlength="100"
+              v-model="dataForm.addressUser"
               cols="30"
               placeholder="Iskandar Street no. 67 Block A Near Bus Stop"
             ></b-form-textarea>
@@ -53,6 +56,8 @@
             <b-form-input
               type="text"
               id="username"
+              maxlength="15"
+              v-model="dataForm.userName"
               required
               placeholder="Username"
             ></b-form-input>
@@ -61,12 +66,16 @@
         <b-col lg="6">
           <b-form-group>
             <label class="mobile_date_form">DD/MM/YY</label>
+
             <b-form-datepicker
               id="date"
               class="mobile_date_input"
+              today-button
+              reset-button
+              close-button
               placeholder="dd-mm-yyyy"
+              v-model="dataForm.dateBirth"
               locale="ID"
-              required
             ></b-form-datepicker>
           </b-form-group>
         </b-col>
@@ -76,7 +85,8 @@
             <b-form-input
               type="text"
               id="first_name"
-              required
+              maxlength="15"
+              v-model="dataForm.firstName"
               class="name_space"
               placeholder="Your first name"
             ></b-form-input>
@@ -88,7 +98,8 @@
             <b-form-input
               type="text"
               id="last_name"
-              required
+              maxlength="15"
+              v-model="dataForm.lastName"
               class="name_space"
               placeholder="Your last name"
             ></b-form-input>
@@ -101,12 +112,15 @@
             <input
               class="form-check-input"
               type="radio"
-              required
               name="inlineRadioOptions"
               id="inlineRadio1"
-              value="Male"
+              value="MALE"
+              v-model="dataForm.Gender"
             />
-            <label class="form-check-label pl-2 pl-lg-3" for="inlineRadio1"
+            <label
+              class="form-check-label pl-2 pl-lg-3"
+              :class="dataForm.Gender === 'MALE' ? 'active' : ''"
+              for="inlineRadio1"
               >Male</label
             >
           </div>
@@ -116,10 +130,12 @@
               type="radio"
               name="inlineRadioOptions"
               id="inlineRadio2"
-              value="Female"
+              value="FEMALE"
+              v-model="dataForm.Gender"
             />
             <label
-              class="form-check-label pl-2 pl-lg-3 active"
+              class="form-check-label pl-2 pl-lg-3"
+              :class="dataForm.Gender === 'FEMALE' ? 'active' : ''"
               for="inlineRadio2"
               >Female</label
             >
@@ -131,23 +147,33 @@
           Do you want to save the change?
         </h2>
         <b-col>
-          <button class="btn_saveChange mb-3">
+          <button type="submit" class="btn_saveChange mb-3">
             Save Change
           </button>
         </b-col>
         <b-col>
-          <button class="btn_cancel mb-5">Cancel</button>
+          <button type="button" class="btn_cancel mb-5">Cancel</button>
         </b-col>
         <b-col>
-          <button class="btn_logout">Log out</button>
+          <button type="button" @click="logoutHandle" class="btn_logout">
+            Log out
+          </button>
         </b-col>
       </div>
     </div>
   </b-col>
 </template>
 <script>
+import { mapActions } from 'vuex'
 export default {
-  name: 'RCA'
+  props: ['dataForm'],
+  name: 'RCA',
+  methods: {
+    ...mapActions(['logout']),
+    logoutHandle() {
+      this.logout()
+    }
+  }
 }
 </script>
 <style scoped>

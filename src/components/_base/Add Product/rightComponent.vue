@@ -13,6 +13,7 @@
         >
           <b-form-input
             id="input-1"
+            maxlength="18"
             v-model="Data.nameProduct"
             placeholder="Type product name"
             :state="names"
@@ -26,6 +27,8 @@
             v-model="Data.priceProduct"
             placeholder="Type the price"
             required
+            min="5000"
+            max="3000000"
             type="number"
           ></b-form-input>
         </b-form-group>

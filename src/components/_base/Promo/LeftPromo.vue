@@ -76,6 +76,7 @@
       </h2>
       <b-form-input
         id="input-3"
+        maxlength="10"
         v-model="form.codeCoupon"
         class="Cuopon mb-lg-5"
         placeholder="Input Coupon"

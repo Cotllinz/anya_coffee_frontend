@@ -1,21 +1,41 @@
 <template>
   <b-col xl="4">
     <div class="image__fit">
+      <img
+        v-if="dataForm.images && this.url === null"
+        :src="'http://localhost:3000/' + dataForm.images"
+        class="style__image"
+        alt="image__account"
+      />
       <img v-if="url" :src="url" class="style__image" alt="image__account" />
+      <img
+        v-if="!dataForm.images && url === null"
+        src="../../../assets/image/mainImage/defaultImageAddProduct.svg"
+        class="style__image"
+        alt="image__account"
+      />
     </div>
     <div class="label__name mt-3 mt-lg-2">
-      <h2>Zulaikha</h2>
-      <p>zulaikha17@gmail.com</p>
+      <h2>{{ dataForm.userName }}</h2>
+      <p>{{ dataForm.email }}</p>
     </div>
     <div class="all_button">
       <b-col>
         <input id="fileUpload" type="file" @change="onFileChange" hidden />
-        <button @click.prevent="chooseFiles()" class="btn_photo mb-lg-3 mb-3">
+        <button
+          type="button"
+          @click="chooseFiles()"
+          class="btn_photo mb-lg-3 mb-3"
+        >
           Choose photo
         </button>
       </b-col>
       <b-col>
-        <button class="btn_removePhoto mb-lg-5 mb-5">
+        <button
+          type="button"
+          @click="removePhoto"
+          class="btn_removePhoto mb-lg-5 mb-5"
+        >
           Remove photo
         </button>
       </b-col>
@@ -29,7 +49,7 @@
           Do you want to save the change?
         </h2>
         <b-col>
-          <button class="btn_saveChange mb-lg-3">
+          <button type="submit" class="btn_saveChange mb-lg-3">
             Save Change
           </button>
         </b-col>
@@ -37,28 +57,39 @@
           <button class="btn_cancel mb-lg-5">Cancel</button>
         </b-col>
         <b-col>
-          <button class="btn_logout">Log out</button>
+          <button type="button" @click="logoutHandle" class="btn_logout">
+            Log out
+          </button>
         </b-col>
       </div>
     </div>
   </b-col>
 </template>
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'LCA',
+  props: ['dataForm'],
   data() {
     return {
       url: null
     }
   },
   methods: {
+    ...mapActions(['logout']),
     chooseFiles() {
       document.getElementById('fileUpload').click()
     },
+    removePhoto() {
+      this.url = null
+    },
     onFileChange(e) {
       const file = e.target.files[0]
+      this.$emit('ImagesSend', file)
       this.url = URL.createObjectURL(file)
-      console.log(this.url)
+    },
+    logoutHandle() {
+      this.logout()
     }
   }
 }

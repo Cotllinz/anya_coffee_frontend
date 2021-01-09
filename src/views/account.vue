@@ -1,15 +1,15 @@
 <template>
   <div class="Account">
-    <Navbar :roles="role" :msg="MassageValue" />
+    <Navbar :msg="MassageValue" />
     <main class="bg__account">
       <hr class="mt-lg-3 d-none d-lg-block" />
       <b-container class="mt-lg-4 pt-lg-2 pt-4 pb-5 pb-lg-5">
         <h2 class="title ml-lg-1 mt-lg-4 mb-3 mb-lg-4">User Profile</h2>
-        <b-form>
+        <b-form @submit.prevent="sendData">
           <div class="card__account p-lg-5 pt-4">
             <b-row>
-              <LCA />
-              <RCA />
+              <LCA :dataForm="form" @ImagesSend="ImagesSend" />
+              <RCA :dataForm="form" />
             </b-row>
           </div>
         </b-form>
@@ -25,6 +25,7 @@ import Navbar from '../components/_base/Navbar'
 import Footer from '../components/_base/Footer'
 import LCA from '../components/_base/Account/LeftComponentAcc'
 import RCA from '../components/_base/Account/rightComponentAcc'
+import { mapActions, mapMutations } from 'vuex'
 export default {
   name: 'Account',
   components: {
@@ -35,8 +36,83 @@ export default {
   },
   data() {
     return {
-      role: 0,
-      MassageValue: 30
+      email: '',
+      MassageValue: 30,
+      form: {
+        userName: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        userImage: '',
+        dateBirth: '',
+        phoneNumber: '',
+        addressUser: '',
+        Gender: '',
+        images: ''
+      }
+    }
+  },
+  created() {
+    this.email = this.$route.params.emailAcc
+    this.getUserAccount(this.email).then(result => {
+      this.form.userName = result.username
+      this.form.firstName = result.first_name
+      this.form.lastName = result.last_name
+      this.form.images = result.image_user
+      this.form.dateBirth = result.date_birth
+      this.form.phoneNumber = result.phone_number
+      this.form.addressUser = result.address_user
+      this.form.Gender = result.gender
+      this.form.email = result.email_user
+    })
+  },
+  methods: {
+    ...mapActions(['getUserAccount', 'updateUserAccount']),
+    ...mapMutations(['setImages']),
+    sendData() {
+      const {
+        userName,
+        firstName,
+        lastName,
+        userImage,
+        dateBirth,
+        phoneNumber,
+        addressUser,
+        Gender
+      } = this.form
+      const dataSendAccount = new FormData()
+      dataSendAccount.append('userName', userName)
+      dataSendAccount.append('firstName', firstName)
+      dataSendAccount.append('lastName', lastName)
+      dataSendAccount.append('userImage', userImage)
+      dataSendAccount.append('dateBirth', dateBirth)
+      dataSendAccount.append('phoneNumber', phoneNumber)
+      dataSendAccount.append('addressUser', addressUser)
+      dataSendAccount.append('Gender', Gender)
+      /*
+      For Test Data Log append
+      for (var pair of dataSendAccount.entries()) {
+        console.log(pair[0] + ', ' + pair[1])
+      }*/
+      const updateAccout = {
+        sendData: dataSendAccount,
+        email: this.email
+      }
+      this.updateUserAccount(updateAccout)
+        .then(result => {
+          alert(result.data.massage)
+          this.form.images = ''
+          this.setImages()
+          this.getUserAccount(this.email).then(result => {
+            this.form.images = result.image_user
+          })
+        })
+        .catch(err => {
+          alert(err.data.massage)
+        })
+    },
+    ImagesSend(e) {
+      this.form.userImage = e
     }
   }
 }

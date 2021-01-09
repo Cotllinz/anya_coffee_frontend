@@ -81,6 +81,9 @@ export default {
     },
     getRoles(state) {
       return state.user.role
+    },
+    getEmail(state) {
+      return state.user.userEmail
     }
   }
 }
