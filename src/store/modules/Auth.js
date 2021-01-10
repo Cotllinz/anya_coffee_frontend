@@ -84,6 +84,9 @@ export default {
     },
     getEmail(state) {
       return state.user.userEmail
+    },
+    getId(state) {
+      return state.user.userId
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="history">
-    <Navbar :roles="role" :msg="MassageValue" />
+    <Navbar :msg="MassageValue" />
     <HMC />
     <Footer />
   </div>
@@ -20,7 +20,6 @@ export default {
   },
   data() {
     return {
-      role: 0,
       MassageValue: 30
     }
   }

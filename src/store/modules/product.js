@@ -45,7 +45,6 @@ export default {
             `${context.state.VUE_APP_SERVICE_URL}category/limit?category=${payload}&limit=${context.state.limit}&page=${context.state.page}&sort=${context.state.sort}`
           )
           .then(res => {
-            /*  console.log(res) */
             context.commit('setCategory', res.data)
             resolve(res)
           })

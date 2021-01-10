@@ -49,7 +49,7 @@
                 <h5 class="title__coupon mt-lg-4">COUPON CODE</h5>
                 <h2 class="coupon__code mt-lg-3">{{ items.code_coupon }}</h2>
                 <p class="expired__codeCoupon">
-                  Valid untill October 10th 2020
+                  Valid untill {{ formatDate(items.end_expired) }}
                 </p>
               </div>
             </div>
@@ -102,6 +102,7 @@
 
 <script>
 import Productlist from './Productlist'
+import moment from 'moment'
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
   computed: {
@@ -154,6 +155,10 @@ export default {
     },
     ApplyCoupon(id) {
       console.log(id)
+    },
+    formatDate(value) {
+      moment.locale('EN')
+      return moment(String(value)).format('LL')
     }
   }
 }
