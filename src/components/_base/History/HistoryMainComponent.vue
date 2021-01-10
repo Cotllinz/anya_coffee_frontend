@@ -114,6 +114,7 @@
                   <p class="name_product">{{ item.name_product }}</p>
                   <p class="name_product">x {{ item.qty }}</p>
                   <p class="name_product">{{ item.size_detail }}</p>
+                  <p class="name_product">{{ item.status_delivery }}</p>
                 </div>
                 <h5 class="priceTagHistory pr-xl-2 pr-2 ml-auto ml-xl-auto">
                   IDR {{ formatPrice(item.total) }}
