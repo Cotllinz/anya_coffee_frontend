@@ -14,7 +14,11 @@ Vue.use(VueSweetalert2)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.config.productionTip = false
-
+Vue.directive('FirstLook', {
+  inserted: function(el) {
+    el.focus()
+  }
+})
 new Vue({
   router,
   store,

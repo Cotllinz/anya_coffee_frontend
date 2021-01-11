@@ -13,6 +13,7 @@
         >
           <b-form-input
             id="input-1"
+            v-FirstLook
             maxlength="18"
             v-model="Data.nameProduct"
             placeholder="Type product name"
