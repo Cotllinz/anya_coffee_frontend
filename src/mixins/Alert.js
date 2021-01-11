@@ -229,8 +229,26 @@ export default {
           showCancelButton: true,
           confirmButtonText: 'Yes Delete it!',
           cancelButtonText: 'No, Keep it!',
-          showCloseButton: true,
-          showLoaderOnConfirm: true
+          showCloseButton: true
+        })
+          .then(result => {
+            resolve(result)
+          })
+          .catch(err => {
+            reject(err)
+          })
+      })
+    },
+    alertSureAddtocart() {
+      return new Promise((resolve, reject) => {
+        this.$swal({
+          title: 'Do You Want Buy this Items?',
+          text: "You can't revert your action",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes!',
+          cancelButtonText: 'No!',
+          showCloseButton: true
         })
           .then(result => {
             resolve(result)

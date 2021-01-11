@@ -23,28 +23,74 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import MixinsAlert from '../../../mixins/Alert'
 export default {
   props: ['DButton', 'Details'],
   name: 'DButton',
+  mixins: [MixinsAlert],
   computed: {
     ...mapGetters({ roles: 'getRoles' })
   },
   methods: {
     addToCart(data1, data2) {
       if (data2.Size) {
-        const SetCart = {
-          id_product: data1.id_product,
-          name_product: data1.name_product,
-          id_historydetails: 1,
-          qty: data2.qty,
-          total: data2.qty * data1.price_product + data2.SizePrice * data2.qty,
-          size_detail: data2.Size,
-          status_delivery: data2.DeliverySet,
-          status_table: data2.Deliverynow
-        }
-        this.$emit('SendCheckout', SetCart)
+        this.alertSureAddtocart().then(res => {
+          if (res.value) {
+            this.$swal({
+              title: 'Success Add to Cart',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 2000,
+              timerProgressBar: true,
+              showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+              },
+              hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+              }
+            })
+            const SetCart = {
+              id_product: data1.id_product,
+              name_product: data1.name_product,
+              id_historydetails: 1,
+              qty: data2.qty,
+              total:
+                data2.qty * data1.price_product + data2.SizePrice * data2.qty,
+              size_detail: data2.Size,
+              status_delivery: data2.DeliverySet,
+              status_table: data2.Deliverynow
+            }
+            this.$emit('SendCheckout', SetCart)
+          } else {
+            this.$swal({
+              title: 'Cancelled',
+              icon: 'info',
+              showConfirmButton: false,
+              timer: 1500,
+              timerProgressBar: true,
+              showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+              },
+              hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+              }
+            })
+          }
+        })
       } else {
-        console.log('Input sIZE DULU')
+        this.$swal({
+          title: 'Choose what size you want to buy first !',
+          icon: 'info',
+          showConfirmButton: false,
+          timer: 1500,
+          timerProgressBar: true,
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          }
+        })
       }
     },
     editBtn(dataEdit) {

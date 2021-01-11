@@ -31,15 +31,16 @@
             <input
               type="radio"
               name="Payment_Method"
+              v-model="form.paymentMethod"
               id="Payment_Method1"
-              value="option1"
+              value="Cash"
             />
             <img
               class="ml-xl-3 ml-3"
               src="../../../assets/image/icons/Icons_cardCredit.svg"
               alt="card__credit"
             />
-            <a class="ml-xl-3 ml-3">Card</a>
+            <a class="ml-xl-3 ml-3">Cash</a>
           </div>
           <hr class="ml-xl-4 ml-4" />
           <div class="d-flex align-items-center card__atm">
@@ -47,7 +48,8 @@
               type="radio"
               name="Payment_Method"
               id="Payment_Method2"
-              value="option2"
+              v-model="form.paymentMethod"
+              value="ATM"
             />
             <img
               class="ml-xl-3 ml-3"
@@ -62,7 +64,8 @@
               type="radio"
               name="Payment_Method"
               id="Payment_Method3"
-              value="option3"
+              v-model="form.paymentMethod"
+              value="COD"
             />
             <img
               class="ml-xl-3 ml-3"
@@ -86,6 +89,7 @@
 <script>
 import random from 'randomstring'
 import axios from 'axios'
+import { mapGetters } from 'vuex'
 export default {
   name: 'Checkout',
   props: {
@@ -93,14 +97,19 @@ export default {
       type: Array
     },
     Totals: {
-      type: Number
+      type: Object
     }
+  },
+  computed: {
+    ...mapGetters({
+      Ids: 'getId'
+    })
   },
   data() {
     return {
       form: {
-        userId: 4,
-        paymentMethod: 'ATM',
+        userId: '',
+        paymentMethod: '',
         invoicePayment: '',
         subTotal: this.Totals.TotalOrder
       },
@@ -114,7 +123,7 @@ export default {
     /*    console.log(this.PaymentList.length) */
   },
   methods: {
-    Drum() {
+    GetDetailsOrder() {
       for (let i = 0; i < this.PaymentList.length; i++) {
         const setData = {
           idProduct: this.PaymentList[i].id_product,
@@ -132,7 +141,8 @@ export default {
       this.form.invoicePayment = random.generate()
     },
     async PostHistory() {
-      await this.Drum()
+      await this.GetDetailsOrder()
+      this.form.userId = this.Ids
       await axios
         .post(`${this.VUE_APP_SERVICE_URL}history`, this.form)
         .then(response => {

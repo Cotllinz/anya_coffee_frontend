@@ -73,7 +73,7 @@ export default {
       type: Object
     }
   },
-  /* ['PaymentList'] */ data() {
+  data() {
     return {}
   },
   methods: {
