@@ -7,7 +7,7 @@
     <a href="https://github.com/Cotllinz/anya_coffee_frontend/">Request Feature</a>
   </p>
 
-![Image Banner](https://raw.githubusercontent.com/arkbootcamp/week7-web6-intermediateFrontend/main/image_banner.jpg)
+![Image Banner](src/assets/BG.PNG)
 
 ## About The Project
 
