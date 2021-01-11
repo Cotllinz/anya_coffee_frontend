@@ -1,10 +1,10 @@
-<h1 align='center'>Vue JS - #nama_projek</h1>
+<h1 align='center'>Vue JS - #Anya Coffee Shop</h1>
   <p align="center">
-    <a href="link_deploy">View Demo</a>
+    <a href="https://anya-coffeeshop.netlify.app/">View Demo</a>
     ·
-    <a href="https://github.com/arkbootcamp/week7-web6-intermediateFrontend">Report Bug</a>
+    <a href="https://github.com/Cotllinz/anya_coffee_frontend/">Report Bug</a>
     ·
-    <a href="https://github.com/arkbootcamp/week7-web6-intermediateFrontend">Request Feature</a>
+    <a href="https://github.com/Cotllinz/anya_coffee_frontend/">Request Feature</a>
   </p>
 
 ![Image Banner](https://raw.githubusercontent.com/arkbootcamp/week7-web6-intermediateFrontend/main/image_banner.jpg)
@@ -22,7 +22,7 @@
 
 1. <a href="https://nodejs.org/en/download/">Node Js</a>
 2. Node_modules `npm install` or `yarn install`
-3. Backend API #nama_projek [`here`](https://github.com/arkbootcamp/week4-web3-express)
+3. Backend API #nama_projek [`Anya Coffee`](https://github.com/Cotllinz/Anya_coffee)
 
 ## Getting Started
 
@@ -44,4 +44,4 @@ VUE_APP_ENDPOINT = [Backend API]
 
 ## License
 
-© [Bagus Tri Harjanto](https://github.com/bagusth15/)
+© [Bagus Tri Harjanto](https://github.com/Cotllinz/)
