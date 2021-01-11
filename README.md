@@ -32,7 +32,7 @@
 4. Add .env file at root folder project
 
 ```sh
-VUE_APP_ENDPOINT = [Backend API]
+VUE_APP_SERVICE_URL = [Backend API]
 ```
 
 5. Type `npm run serve`
@@ -44,4 +44,4 @@ VUE_APP_ENDPOINT = [Backend API]
 
 ## License
 
-© [Bagus Tri Harjanto](https://github.com/Cotllinz/)
+© [Rudy Galih Putra Wijaya](https://github.com/Cotllinz/)
