@@ -134,9 +134,11 @@
 </template>
 <script>
 import { mapActions, mapGetters, mapMutations } from 'vuex'
+import AlertMixins from '../../../mixins/Alert'
 export default {
   name: 'PromoRight',
   props: ['Data'],
+  mixins: [AlertMixins],
   data() {
     return {
       storeR: '',
@@ -183,21 +185,27 @@ export default {
       }
       if (this.id) {
         this.updatePromo(SetData)
-          .then(result => {
-            alert(result.data.massage)
-            this.$router.push('/product')
+          .then(() => {
+            this.AlertUpdatePromo(this.Data.nameProduct).then(res => {
+              if (res) {
+                this.$router.push('/product')
+              }
+            })
           })
           .catch(err => {
-            alert(err.data.massage)
+            this.AlertErrorRegister(err.data.massage)
           })
       } else {
         this.addPromo(this.Data)
           .then(result => {
-            alert(result.data.massage)
-            this.$router.push('/product')
+            this.AlertSuccesAddPromo(result.data.massage).then(res => {
+              if (res) {
+                this.$router.push('/product')
+              }
+            })
           })
           .catch(err => {
-            alert(err.data.massage)
+            this.AlertErrorRegister(err.data.massage)
           })
       }
     },

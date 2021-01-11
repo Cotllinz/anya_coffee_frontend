@@ -104,7 +104,9 @@
 import Productlist from './Productlist'
 import moment from 'moment'
 import { mapGetters, mapActions, mapMutations } from 'vuex'
+import MixinsAlert from '../../../mixins/Alert'
 export default {
+  mixins: [MixinsAlert],
   computed: {
     ...mapGetters({
       roles: 'getRoles',
@@ -144,14 +146,42 @@ export default {
       })
     },
     deletePromo(id) {
-      this.deletePromoProduct(id)
-        .then(result => {
-          alert(result.data.massage)
-          this.getPromo()
-        })
-        .catch(err => {
-          alert(err.data.massage)
-        })
+      this.alertDelete().then(res => {
+        if (res.value) {
+          this.deletePromoProduct(id).then(() => {
+            this.$swal({
+              title: 'Success Deleted Promo',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 2000,
+              timerProgressBar: true,
+              showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+              },
+              hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+              }
+            }).then(() => {
+              this.changepagePromo(1)
+              this.getPromo()
+            })
+          })
+        } else {
+          this.$swal({
+            title: 'Your Promo is still intact',
+            icon: 'info',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            showClass: {
+              popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+              popup: 'animate__animated animate__fadeOutUp'
+            }
+          })
+        }
+      })
     },
     ApplyCoupon(id) {
       console.log(id)

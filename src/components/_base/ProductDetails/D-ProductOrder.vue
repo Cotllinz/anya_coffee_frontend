@@ -15,13 +15,12 @@
           :src="'http://localhost:3000/' + images"
           alt="ImagePicture"
         />
-        <div v-if="roles === 1" class="icons_admin position-absolute">
-          <b-icon
-            class="icons_trash"
-            @click="deleteProductclick"
-            variant="white"
-            icon="trash"
-          ></b-icon>
+        <div
+          v-if="roles === 1"
+          @click="deleteProductclick"
+          class="icons_admin position-absolute"
+        >
+          <b-icon class="icons_trash" variant="white" icon="trash"></b-icon>
         </div>
       </div>
     </div>
@@ -37,9 +36,11 @@
 <script>
 import DCardOrder from './D-CardOrder'
 import { mapActions, mapGetters } from 'vuex'
+import MixinsAlert from '../../../mixins/Alert'
 export default {
   props: ['R_Details'],
   name: 'DProductOrder',
+  mixins: [MixinsAlert],
   components: {
     DCardOrder
   },
@@ -61,14 +62,41 @@ export default {
   methods: {
     ...mapActions(['deleteProduct', 'getProductId']),
     deleteProductclick() {
-      this.deleteProduct(this.id)
-        .then(result => {
-          alert(result.data.massage)
-          this.$router.push('/product')
-        })
-        .catch(err => {
-          alert(err.data.massage)
-        })
+      this.alertDelete().then(res => {
+        if (res.value) {
+          this.deleteProduct(this.id).then(() => {
+            this.$swal({
+              title: 'Success Deleted Promo',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 2000,
+              timerProgressBar: true,
+              showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+              },
+              hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+              }
+            }).then(() => {
+              this.$router.push('/product')
+            })
+          })
+        } else {
+          this.$swal({
+            title: 'Your Product is still intact',
+            icon: 'info',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            showClass: {
+              popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+              popup: 'animate__animated animate__fadeOutUp'
+            }
+          })
+        }
+      })
     },
     DeliveryType(e) {
       this.$emit('DeliveryType', e)

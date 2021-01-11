@@ -67,9 +67,11 @@
 </template>
 <script>
 import { mapActions } from 'vuex'
+import AlertMixins from '../../../mixins/Alert'
 export default {
   name: 'LCA',
   props: ['dataForm'],
+  mixins: [AlertMixins],
   data() {
     return {
       url: null
@@ -89,7 +91,11 @@ export default {
       this.url = URL.createObjectURL(file)
     },
     logoutHandle() {
-      this.logout()
+      this.AlertSuccesLogout(this.dataForm.userName).then(res => {
+        if (res) {
+          this.logout()
+        }
+      })
     }
   }
 }

@@ -157,6 +157,9 @@ button.btn__AddPromo {
   div.card-promo {
     width: 100%;
   }
+  button.btn__AddPromo {
+    width: 100%;
+  }
   .btn__apply__coupon {
     width: 100%;
   }

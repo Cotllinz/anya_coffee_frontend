@@ -165,13 +165,19 @@
 </template>
 <script>
 import { mapActions } from 'vuex'
+import AlertMixins from '../../../mixins/Alert'
 export default {
   props: ['dataForm'],
+  mixins: [AlertMixins],
   name: 'RCA',
   methods: {
     ...mapActions(['logout']),
     logoutHandle() {
-      this.logout()
+      this.AlertSuccesLogout(this.dataForm.userName).then(res => {
+        if (res) {
+          this.logout()
+        }
+      })
     }
   }
 }

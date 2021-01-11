@@ -107,7 +107,7 @@
           <router-link
             tag="button"
             v-if="roles === 1"
-            class="btn__AddProduct  p-lg-4 p-3 mt-lg-3 mb-lg-3 mb-3"
+            class="btn__AddProduct ml-lg-4 p-lg-4 p-3 mt-lg-3 mb-lg-3 mb-3"
             to="/addProduct"
             >Add new Product</router-link
           >

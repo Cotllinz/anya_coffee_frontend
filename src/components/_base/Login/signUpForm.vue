@@ -102,8 +102,10 @@
 </template>
 <script>
 import { mapActions } from 'vuex'
+import AlertMixins from '../../../mixins/Alert'
 export default {
   name: 'loginForm',
+  mixins: [AlertMixins],
   data() {
     return {
       roles: [
@@ -128,11 +130,14 @@ export default {
     onSubmit() {
       this.registerUser(this.form)
         .then(result => {
-          alert(result.data.massage)
-          this.$router.push('/Login')
+          this.AlertSuccesRegister(result.data.data.email_user).then(res => {
+            if (res) {
+              this.$router.push('/Login')
+            }
+          })
         })
         .catch(err => {
-          alert(err.data.massage)
+          this.AlertErrorRegister(err.data.massage)
         })
     }
   }

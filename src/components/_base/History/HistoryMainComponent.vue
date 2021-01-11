@@ -30,7 +30,7 @@
               <div class="image__history">
                 <img
                   class="fit__image"
-                  src="../../../assets/image/logo/cart.png"
+                  :src="'http://localhost:3000/' + item.orders[0].image_product"
                   alt="Image_History"
                 />
               </div>
@@ -39,14 +39,19 @@
                 style="cursor: pointer;"
                 @click="$bvModal.show('modal-Details')"
               >
-                <h2 class="title__product">
-                  History {{ index + 1 }} - {{ item.payment_method }}
+                <h2 class="title__product mt-2">
+                  {{ item.orders[0].name_product }}
                 </h2>
                 <div class="info__history">
-                  <p class="mt-xl-3 mt-3">
-                    IDR {{ formatPrice(item.sub_total) }}
-                  </p>
-                  <p>
+                  <div
+                    class="d-flex info_dataHistory mt-3 mt-xl-3 align-items-center"
+                  >
+                    <p>IDR {{ formatPrice(item.sub_total) }}</p>
+                    <p class="ml-auto mr-lg-2">
+                      {{ formatPrice(item.orders.length) }} Product
+                    </p>
+                  </div>
+                  <p class="mt-2 mt-lg-2">
                     {{
                       item.status_history === 'OFF'
                         ? 'Order Done'
@@ -55,12 +60,12 @@
                   </p>
                 </div>
               </div>
-              <input
+              <!--   <input
                 class="ml-xl-auto ml-auto mt-4 mt-xl-auto mr-xl-3 mb-xl-3"
                 type="checkbox"
                 id="inlineCheckbox1"
                 value="option1"
-              />
+              /> -->
             </div>
           </div>
         </b-col>
@@ -260,11 +265,9 @@ div.info__history {
   color: #895537;
   font-family: 'Poppins', sans-serif;
 }
-div.info__history p:nth-child(1) {
+div.info_dataHistory p {
   line-height: 6px;
-}
-div.info__history p:nth-child(2) {
-  line-height: 10px;
+  margin: 0;
 }
 div.grid__system {
   display: grid;
@@ -390,6 +393,9 @@ a.select_all:hover {
 }
 
 @media (max-width: 576px) {
+  p.name_product {
+    margin: 0;
+  }
   div.titleHistory h1 {
     font-size: 30px;
   }
@@ -418,6 +424,10 @@ a.select_all:hover {
   }
   div.title_payment p {
     line-height: normal;
+  }
+  div.info__history p:nth-child(1),
+  p:nth-child(2) {
+    font-size: 17px;
   }
 }
 </style>

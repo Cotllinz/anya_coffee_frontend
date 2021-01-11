@@ -136,9 +136,11 @@
 </template>
 <script>
 import { mapActions } from 'vuex'
+import MixinsAlert from '../../../mixins/Alert'
 export default {
   name: 'ProductRight',
   props: ['Data'],
+  mixins: [MixinsAlert],
   computed: {
     names() {
       return this.Data.nameProduct.length >= 10
@@ -220,20 +222,23 @@ export default {
       }
       if (this.id) {
         this.updateProduct(setUpdate)
-          .then(result => {
-            alert(result.data.massage)
-            this.$router.push('/product')
+          .then(() => {
+            this.AlertUpdateProduct(this.Data.nameProduct).then(res => {
+              if (res) {
+                this.$router.push('/product')
+              }
+            })
           })
           .catch(err => {
-            alert(err.data.massage)
+            this.AlertErrorRegister(err.data.massage)
           })
       } else {
         this.addProduct(dataSendProduct)
-          .then(result => {
-            alert(result.data.massage)
+          .then(() => {
+            this.AlertSuccesAddProduct(this.Data.nameProduct)
           })
           .catch(err => {
-            alert(err.data.massage)
+            this.AlertErrorRegister(err.data.massage)
           })
       }
     },

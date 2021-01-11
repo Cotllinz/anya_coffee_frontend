@@ -26,8 +26,10 @@ import Footer from '../components/_base/Footer'
 import LCA from '../components/_base/Account/LeftComponentAcc'
 import RCA from '../components/_base/Account/rightComponentAcc'
 import { mapActions, mapMutations } from 'vuex'
+import AlertMixins from '../mixins/Alert'
 export default {
   name: 'Account',
+  mixins: [AlertMixins],
   components: {
     Navbar,
     Footer,
@@ -59,7 +61,8 @@ export default {
       this.form.firstName = result.first_name
       this.form.lastName = result.last_name
       this.form.images = result.image_user
-      this.form.dateBirth = result.date_birth
+      this.form.dateBirth =
+        result.date_birth === '0000-00-00' ? '' : result.date_birth
       this.form.phoneNumber = result.phone_number
       this.form.addressUser = result.address_user
       this.form.Gender = result.gender
@@ -100,11 +103,14 @@ export default {
       }
       this.updateUserAccount(updateAccout)
         .then(result => {
-          alert(result.data.massage)
-          this.form.images = ''
-          this.setImages()
-          this.getUserAccount(this.email).then(result => {
-            this.form.images = result.image_user
+          this.AlertSuccesUpdateAccount(result.data.data.username).then(res => {
+            if (res) {
+              this.form.images = ''
+              this.setImages()
+              this.getUserAccount(this.email).then(result => {
+                this.form.images = result.image_user
+              })
+            }
           })
         })
         .catch(err => {
