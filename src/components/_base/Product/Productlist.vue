@@ -49,16 +49,27 @@
             >
           </div>
           <b-dropdown
-            id="dropdown-offset"
-            offset="25"
-            text="Offset Dropdown"
-            class="m-2"
+            class="dropdown"
+            size="md"
+            style="outline: none !important;"
+            variant="outline-white"
+            toggle-class="text-decoration-none"
           >
-            <b-dropdown-item @click="selectSort('order by price_product DESC')"
-              >Product DESC</b-dropdown-item
+            <template #button-content>
+              <span class="sort__by">Sort by </span>
+            </template>
+            <b-dropdown-item @click="selectSort('order by name_product ASC')"
+              >Urutkan Nama A - Z</b-dropdown-item
             >
+            <b-dropdown-item @click="selectSort('order by name_product DESC')"
+              >Urutkan Nama Z - A</b-dropdown-item
+            >
+            <b-dropdown-item @click="selectSort('order by price_product DESC')"
+              >Harga Termahal</b-dropdown-item
+            >
+
             <b-dropdown-item @click="selectSort('order by price_product ASC')"
-              >Producy ASC</b-dropdown-item
+              >Harga Termurah</b-dropdown-item
             >
           </b-dropdown>
         </div>
@@ -200,5 +211,22 @@ export default {
 }
 </script>
 <style scoped>
+.dropdown {
+  position: absolute;
+  left: 720px;
+  top: 2px;
+  background-color: #fa8749;
+  border-radius: 10px;
+}
+.sort__by {
+  color: #fff;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+}
+@media (max-width: 576px) {
+  .dropdown {
+    position: static;
+  }
+}
 @import '../../../assets/css/product/Productlist.css';
 </style>

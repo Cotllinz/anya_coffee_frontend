@@ -1,6 +1,6 @@
 <template>
   <div class="Payment">
-    <Navbar :roles="role" :msg="MassageValue" />
+    <Navbar :showSearchIcons="search" :msg="MassageValue" />
     <main class="bg__payment">
       <hr class="mt-lg-3 d-none d-lg-block" />
       <b-container>
@@ -33,7 +33,7 @@ export default {
   },
   data() {
     return {
-      role: 1,
+      search: false,
       MassageValue: 30,
       Totals: {
         TotalOrder: 0,

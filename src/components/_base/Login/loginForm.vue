@@ -94,7 +94,7 @@ export default {
         .then(result => {
           this.AlertSuccesLogin(result.data.data.userName).then(res => {
             if (res) {
-              this.$router.push('/product')
+              this.$router.push('/')
             }
           })
         })

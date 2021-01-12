@@ -59,11 +59,18 @@
             class="d-flex justify-content-around mt-2 align-self-lg-center pt-lg-1"
           >
             <input
+              v-if="showSearch === true"
               type="text"
+              class="mr-lg-4 mr-3"
               v-model="searchData"
               v-on:keyup.enter="search()"
             />
-            <button variant="none" class="button__logoSearching mr-lg-4">
+            <button
+              variant="none"
+              @click="handleShowSearch"
+              v-if="showSearch === false && showSearchIcons === true"
+              class="button__logoSearching mr-lg-4"
+            >
               <img
                 class="searching_logo"
                 src="../../assets/image/icons/searchingIcons.svg"
@@ -100,13 +107,12 @@
                 alt="costumerLogo"
             /></router-link>
             <div v-else>
-              <b-button
-                variant="primary"
-                @click="loginClick()"
-                class="mr-lg-2"
-                size="md"
-                >Log in</b-button
-              >
+              <button @click="loginClick()" class="mr-lg-4 btn_login">
+                Login
+              </button>
+              <button @click="signUpClick()" class="mr-lg-2 px-lg-5 py-lg-2 btn_signUp">
+                Sign Up
+              </button>
             </div>
           </div>
         </b-collapse>
@@ -117,11 +123,12 @@
 <script>
 import { mapGetters, mapActions, mapState, mapMutations } from 'vuex'
 export default {
-  props: ['msg'],
+  props: ['msg', 'showSearchIcons'],
   data() {
     return {
       mssg: 30,
-      searchData: ''
+      searchData: '',
+      showSearch: false
     }
   },
   computed: {
@@ -149,8 +156,14 @@ export default {
     }
   },
   methods: {
+    handleShowSearch() {
+      this.showSearch = true
+    },
     loginClick() {
       this.$router.push('/Login')
+    },
+    signUpClick() {
+      this.$router.push('/signup')
     },
     ...mapActions(['logout', 'getProducts', 'getUserAccount']),
     ...mapMutations(['changePage', 'triggerurage']),

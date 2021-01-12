@@ -1,6 +1,6 @@
 <template>
   <div class="history">
-    <Navbar :msg="MassageValue" />
+    <Navbar :showSearchIcons="search" :msg="MassageValue" />
     <HMC />
     <Footer />
   </div>
@@ -20,6 +20,7 @@ export default {
   },
   data() {
     return {
+      search: false,
       MassageValue: 30
     }
   }

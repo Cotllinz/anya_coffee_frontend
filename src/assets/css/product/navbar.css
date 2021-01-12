@@ -56,3 +56,28 @@ span.supply__Product {
   object-fit: cover;
   object-position: 45%;
 }
+.btn_login {
+  border: none;
+  outline: none !important;
+  color: #000000;
+  background: none;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500;
+}
+.btn_login:hover {
+  color: #1b1616;
+}
+.btn_signUp {
+  border: none;
+  outline: none !important;
+  border-radius: 20px;
+  color: #000000;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500;
+  background: #ffba33;
+  filter: drop-shadow(0px 6px 20px rgba(255, 186, 51, 0.4));
+}
+.btn_signUp:hover {
+  background: #fcb11b;
+  filter: drop-shadow(0px 6px 20px rgba(255, 186, 51, 0.4));
+}

@@ -1,6 +1,6 @@
 <template>
   <div class="product">
-    <Navbar msg="40" />
+    <Navbar msg="40" :showSearchIcons="search" />
     <hr class="mt-lg-3 d-none d-lg-block" />
     <CouponProduct />
     <Footer />
@@ -21,7 +21,8 @@ export default {
   },
   data() {
     return {
-      MassageValue: 30
+      MassageValue: 30,
+      search: true
     }
   },
   methods: {}
