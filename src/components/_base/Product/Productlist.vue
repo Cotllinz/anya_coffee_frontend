@@ -59,17 +59,17 @@
               <span class="sort__by">Sort by </span>
             </template>
             <b-dropdown-item @click="selectSort('order by name_product ASC')"
-              >Urutkan Nama A - Z</b-dropdown-item
+              >Sort Name Product A - Z</b-dropdown-item
             >
             <b-dropdown-item @click="selectSort('order by name_product DESC')"
-              >Urutkan Nama Z - A</b-dropdown-item
+              >Sort Name Product Z - A</b-dropdown-item
             >
             <b-dropdown-item @click="selectSort('order by price_product DESC')"
-              >Harga Termahal</b-dropdown-item
+              >Highest Price Product</b-dropdown-item
             >
 
-            <b-dropdown-item @click="selectSort('order by price_product ASC')"
-              >Harga Termurah</b-dropdown-item
+            <b-dropdown-item @click="selectSort('order by price_product ASC')">
+              cheapest price Product</b-dropdown-item
             >
           </b-dropdown>
         </div>
