@@ -31,9 +31,7 @@
                 :class="roles === 1 ? 'image_promofit_roles' : 'image_promofit'"
               >
                 <img
-                  :src="
-                    `${this.VUE_APP_SERVICE_URL_IMAGE}` + items.image_product
-                  "
+                  :src="`${VUE_APP_SERVICE_URL_IMAGE}` + items.image_product"
                   class="card__promoStyled"
                   alt="Coupon"
                 />

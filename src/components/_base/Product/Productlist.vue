@@ -90,9 +90,7 @@
                 >
                   <div class="image_fitProduct">
                     <img
-                      :src="
-                        `${this.VUE_APP_SERVICE_URL_IMAGE}` + item.image_product
-                      "
+                      :src="`${VUE_APP_SERVICE_URL_IMAGE}` + item.image_product"
                       class="card__imageProduct position-absolute"
                       alt="ListImage"
                     />
