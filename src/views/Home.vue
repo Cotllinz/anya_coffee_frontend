@@ -463,7 +463,7 @@ export default {
 }
 </script>
 <style scoped>
-* {
+.Home {
   background: #ffffff;
 }
 .rating_card h5 {
