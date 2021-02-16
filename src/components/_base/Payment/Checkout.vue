@@ -11,13 +11,12 @@
       </div>
       <b-card class="address_card px-2 px-xl-3 pt-2 pt-xl-3">
         <b-card-text>
-          <h5><strong>Delivery</strong> to Iskandar Street</h5>
-          <hr />
           <h5 class="pr-xl-3">
-            Km 5 refinery road oppsite re public road, effurun, Jakarta
+            <strong>Delivery</strong> to {{ userAccount.address_user }}
           </h5>
+
           <hr />
-          <h5>+62 81348287878</h5>
+          <h5>{{ userAccount.phone_number }}</h5>
         </b-card-text>
       </b-card>
       <h2
@@ -89,9 +88,11 @@
 <script>
 import random from 'randomstring'
 import axios from 'axios'
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
+import Alert from '../../../mixins/Alert'
 export default {
   name: 'Checkout',
+  mixins: [Alert],
   props: {
     PaymentList: {
       type: Array
@@ -102,7 +103,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      Ids: 'getId'
+      Ids: 'getId',
+      userEmail: 'getEmail',
+      userAccount: 'UserAccount'
     })
   },
   data() {
@@ -119,10 +122,12 @@ export default {
   },
   created() {
     this.getRandomInvoice()
+    this.UserAccount(this.userEmail)
     /*    console.log(this.data) */
     /*    console.log(this.PaymentList.length) */
   },
   methods: {
+    ...mapActions(['UserAccount']),
     GetDetailsOrder() {
       for (let i = 0; i < this.PaymentList.length; i++) {
         const setData = {
@@ -146,7 +151,6 @@ export default {
       await axios
         .post(`${this.VUE_APP_SERVICE_URL}history`, this.form)
         .then(response => {
-          console.log(response)
           for (let i = 0; i < this.data.length; i++) {
             this.data[i].idHistory = response.data.data.id_history
           }
@@ -156,8 +160,8 @@ export default {
         })
       await axios
         .post(`${this.VUE_APP_SERVICE_URL}history/details`, this.data)
-        .then(response => {
-          console.log(response)
+        .then(() => {
+          this.AlertSucceBuy()
         })
         .catch(error => {
           console.log(error.response)

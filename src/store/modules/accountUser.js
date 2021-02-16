@@ -1,7 +1,7 @@
 import axios from 'axios'
 export default {
   state: {
-    /* userAccount: [], */
+    userAccount: [],
     VUE_APP_SERVICE_URL: process.env.VUE_APP_SERVICE_URL,
     images: ''
   },
@@ -15,10 +15,10 @@ export default {
       } else {
         state.images = payload.data[0].image_user
       }
-    }
-    /*     setUserAccount(state, payload) {
+    },
+    Users(state, payload) {
       state.userAccount = payload.data[0]
-    } */
+    }
   },
   actions: {
     getUserAccount(context, payload) {
@@ -27,6 +27,7 @@ export default {
           .get(`${context.state.VUE_APP_SERVICE_URL}user/email/${payload}`)
           .then(res => {
             context.commit('updateImages', res.data)
+            context.commit('Users', res.data)
             resolve(res.data.data[0])
           })
           .catch(err => {
@@ -51,9 +52,9 @@ export default {
     }
   },
   getters: {
-    /* UserAccount(state) {
+    UserAccount(state) {
       return state.userAccount
-    } */
+    },
     getImages(state) {
       return state.images
     }

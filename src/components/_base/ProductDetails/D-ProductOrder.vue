@@ -66,7 +66,7 @@ export default {
         if (res.value) {
           this.deleteProduct(this.id).then(() => {
             this.$swal({
-              title: 'Success Deleted Promo',
+              title: 'Success Deleted Product',
               icon: 'success',
               showConfirmButton: false,
               timer: 2000,
@@ -83,7 +83,7 @@ export default {
           })
         } else {
           this.$swal({
-            title: 'Your Product is still intact',
+            title: 'Canceled Delete',
             icon: 'info',
             showConfirmButton: false,
             timer: 1500,

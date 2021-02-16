@@ -18,6 +18,24 @@ export default {
           })
       })
     },
+    AlertSucceBuy() {
+      return new Promise((resolve, reject) => {
+        this.$swal({
+          title: 'Thanks For Buying',
+          text: `Please wait 5 minutes for get your order thanks you`,
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 2500,
+          timerProgressBar: true
+        })
+          .then(result => {
+            resolve(result)
+          })
+          .catch(err => {
+            reject(err)
+          })
+      })
+    },
     AlertErrorLogin() {
       return new Promise((resolve, reject) => {
         this.$swal({

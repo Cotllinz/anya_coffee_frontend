@@ -52,6 +52,7 @@ export default {
             const SetCart = {
               id_product: data1.id_product,
               name_product: data1.name_product,
+              image_product: data1.image_product,
               id_historydetails: 1,
               qty: data2.qty,
               total:

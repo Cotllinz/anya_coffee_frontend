@@ -82,10 +82,6 @@ export default {
       this.Totals.TotalOrder =
         this.Totals.subTotal + this.Totals.tax + this.Totals.Shipping
     }
-    /*  Getdata(e) {
-      this.getcart()
-      console.log((this.uyy = e))
-    }, */
   }
 }
 </script>

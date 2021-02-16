@@ -110,7 +110,10 @@
               <button @click="loginClick()" class="mr-lg-4 btn_login">
                 Login
               </button>
-              <button @click="signUpClick()" class="mr-lg-2 px-lg-5 py-lg-2 btn_signUp">
+              <button
+                @click="signUpClick()"
+                class="mr-lg-2 px-lg-5 py-lg-2 btn_signUp"
+              >
                 Sign Up
               </button>
             </div>

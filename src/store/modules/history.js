@@ -41,6 +41,18 @@ export default {
             reject(err)
           })
       })
+    },
+    deleteHistory(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .patch(`${context.state.VUE_APP_SERVICE_URL}history/${payload}}`)
+          .then(res => {
+            resolve(res)
+          })
+          .catch(err => {
+            reject(err)
+          })
+      })
     }
   },
   getters: {

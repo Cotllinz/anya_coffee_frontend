@@ -20,6 +20,7 @@
           title="Submit Your Name"
         ></b-modal>
       </div>
+
       <b-row class="px-xl-5 grid__system">
         <b-col v-for="(item, index) in history" :key="index">
           <div
@@ -33,6 +34,14 @@
                   :src="'http://localhost:3000/' + item.orders[0].image_product"
                   alt="Image_History"
                 />
+              </div>
+              <div @click="deleteTrigger(item.id_history)" class="icons_delete">
+                <b-icon
+                  class="ml-2 mt-2"
+                  style="color: #ffffff;"
+                  icon="trash2-fill"
+                  aria-hidden="true"
+                ></b-icon>
               </div>
               <div
                 class="all__infoHistory  position-relative"
@@ -82,7 +91,7 @@
               <p>Terima kasih sudah berbelanja di Anya Coffee</p>
             </div>
           </template>
-          <b-card class="card_modal">
+          <b-card ref="content" class="card_modal">
             <div class="d-flex flex-column flex-lg-row mb-4 mb-lg-0">
               <div
                 class="title_invoice order-2 order-lg-1 mt-2 mt-lg-0 flex-lg-column"
@@ -146,17 +155,28 @@
             >
               Close
             </button>
+            <button
+              class="mt-lg-3 py-2 btn_download mt-2 ml-lg-auto mr-lg-auto"
+              @click="download(historyDetails)"
+            >
+              Download PDF
+            </button>
           </b-card>
         </b-modal>
       </b-row>
     </b-container>
   </main>
 </template>
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
 <script>
+import jsPDF from 'jspdf'
 import { mapActions, mapGetters } from 'vuex'
+import Alert from '../../../mixins/Alert'
 import moment from 'moment'
+
 export default {
   name: 'HMC',
+  mixins: [Alert],
   computed: {
     ...mapGetters({
       Id: 'getId',
@@ -168,11 +188,105 @@ export default {
     this.getHistorybyId(this.Id)
   },
   methods: {
-    ...mapActions(['getHistorybyId', 'getDetailsHistory']),
+    ...mapActions(['getHistorybyId', 'getDetailsHistory', 'deleteHistory']),
     strippedInvoice(value) {
       if (value.length > 10) {
         return value.slice(0, 10) + ', ...'
       }
+    },
+    download(content) {
+      let headerData = content.length
+      let generateData = function(dataContent) {
+        let result = []
+        for (let i = 0; i < dataContent; i++) {
+          result.push({
+            no: (i + 1).toString(),
+            invoiceNumber: content[i].invoice_payment.toString(),
+            name_Product: content[i].name_product.toString(),
+            qty: content[i].qty.toString(),
+            total: content[i].total.toString(),
+            sub_Total: content[i].sub_total.toString(),
+            delivery_to: content[i].status_delivery.toString(),
+            patment_Method: content[i].payment_method,
+            detail_Size: content[i].size_detail
+          })
+        }
+        return result
+      }
+      function createHeaders(keys) {
+        let result = []
+        for (let i = 0; i < keys.length; i++) {
+          result.push({
+            id: keys[i],
+            name: keys[i],
+            prompt: keys[i],
+            width: 35,
+            align: 'center',
+            padding: 100
+          })
+        }
+        return result
+      }
+      var headers = createHeaders([
+        'no',
+        'invoiceNumber',
+        'name_Product',
+        'qty',
+        'total',
+        'sub_Total',
+        'delivery_to',
+        'patment_Method',
+        'detail_Size'
+      ])
+      var doc = new jsPDF({ putOnlyUsedFonts: true, orientation: 'landscape' })
+      doc.table(1, 1, generateData(headerData), headers, { autoSize: true })
+      doc.save('Document Pesanan.pdf')
+      /* console.log(doc) */
+      /*  doc.save('Data.pdf') */
+      /*  const contentHtml = this.$refs.content.innerHTML
+      doc.html(contentHtml, {
+        callback: function(doc) {
+          doc.save('data.js')
+        }
+      })
+      */
+    },
+    deleteTrigger(value) {
+      this.alertDelete().then(res => {
+        if (res.value) {
+          this.deleteHistory(value).then(() => {
+            this.$swal({
+              title: 'Success Deleted History',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 2000,
+              timerProgressBar: true,
+              showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+              },
+              hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+              }
+            }).then(() => {
+              this.getHistorybyId(this.Id)
+            })
+          })
+        } else {
+          this.$swal({
+            title: 'Your History is still intact',
+            icon: 'info',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            showClass: {
+              popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+              popup: 'animate__animated animate__fadeOutUp'
+            }
+          })
+        }
+      })
     },
     formatPrice(value) {
       const val = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
@@ -198,7 +312,19 @@ main.bg__history {
   background-size: cover;
   background-position: 0% 25%;
 }
-
+.icons_delete {
+  position: absolute;
+  width: 30px;
+  border-radius: 50%;
+  height: 30px;
+  cursor: pointer;
+  top: -15px;
+  right: -10px;
+  background: #895537;
+}
+.icons_delete:hover {
+  background: #c56127;
+}
 div.titleHistory {
   text-align: center;
   font-family: 'Rubik', sans-serif;
@@ -312,7 +438,7 @@ div.title_invoice p {
 
 /deep/ .modal-content {
   border-radius: 20px;
-  height: 500px;
+  height: 570px;
 }
 .image_payment {
   width: 80px;
@@ -333,7 +459,8 @@ div.title_invoice p {
 div.modal-footer {
   border: none;
 }
-button.btn_close {
+button.btn_close,
+button.btn_download {
   font-family: 'Poppins', sans-serif;
   padding: 15px 27px;
   border-radius: 10px;
@@ -343,6 +470,7 @@ button.btn_close {
   font-size: 15px;
   display: block;
 }
+
 button.btn_cancel {
   border: 3px solid #6a4029;
   background: none;
@@ -353,6 +481,11 @@ button.btn_close {
   background: #6a4029;
   color: #ffffff;
 }
+button.btn_download {
+  border: 3px solid #6a4029;
+  background: none;
+  color: #6a4029;
+}
 /* Hover Modal */
 button.btn_cancel:hover {
   border-color: #53301d;
@@ -362,6 +495,11 @@ button.btn_cancel:hover {
 button.btn_close:hover {
   border: 3px solid #915738;
   background: #915738;
+  transition: 0.3s;
+}
+button.btn_download:hover {
+  border: 3px solid #9e4a1d;
+  transition: 0.5s;
 }
 /* Hover History */
 a.select_all:hover {
@@ -400,7 +538,7 @@ a.select_all:hover {
     font-size: 30px;
   }
   /deep/ .modal-content {
-    height: 600px;
+    height: 650px;
   }
   div.titleHistory p {
     font-size: 20px;
@@ -420,7 +558,7 @@ a.select_all:hover {
 }
 @media (max-width: 395px) {
   /deep/ .modal-content {
-    height: 650px;
+    height: 720px;
   }
   div.title_payment p {
     line-height: normal;

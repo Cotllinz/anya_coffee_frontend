@@ -8,6 +8,7 @@ export default {
     VUE_APP_SERVICE_URL: process.env.VUE_APP_SERVICE_URL,
     width: 0,
     search: '',
+    /*  cartData: localStorage.getItem('cart') || null, */
     sort: ''
   },
   mutations: {
@@ -150,6 +151,9 @@ export default {
     },
     currentPage(state) {
       return state.currentPage
-    }
+    } /* ,
+    getCartDisplay(state){
+      return state.cartData
+    } */
   }
 }

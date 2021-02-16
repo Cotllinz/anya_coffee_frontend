@@ -19,7 +19,8 @@
             >
               <div class="">
                 <img
-                  src="../../../assets/image/mainImage/payment1.svg"
+                  class="image_setting"
+                  :src="'http://localhost:3000/' + items.image_product"
                   alt="paymentItems"
                 />
               </div>
@@ -64,6 +65,7 @@
   </b-col>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   props: {
     PaymentList: {
@@ -72,6 +74,9 @@ export default {
     Totals: {
       type: Object
     }
+  },
+  computed: {
+    ...mapGetters({ Cart: 'getCartDisplay' })
   },
   data() {
     return {}
@@ -89,4 +94,11 @@ export default {
 </script>
 <style scoped>
 @import '../../../assets/css/Payment/ListCheckout.css';
+.image_setting {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  object-fit: cover;
+  object-position: 45%;
+}
 </style>

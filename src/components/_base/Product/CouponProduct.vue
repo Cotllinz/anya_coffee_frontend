@@ -88,7 +88,7 @@
           </div>
           <router-link
             tag="button"
-            class="btn__AddPromo  p-lg-4 p-3 mt-lg-3"
+            class="btn__AddPromo  p-lg-4 p-3 mb-lg-5 mt-lg-3"
             v-if="roles === 1"
             to="/Addpromo"
             >Add new Promo</router-link
