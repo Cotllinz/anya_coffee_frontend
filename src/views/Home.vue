@@ -463,6 +463,9 @@ export default {
 }
 </script>
 <style scoped>
+* {
+  background: #fbfbfb;
+}
 .rating_card h5 {
   font-size: 16px;
 }
