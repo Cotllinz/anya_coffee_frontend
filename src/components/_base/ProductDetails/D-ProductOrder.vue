@@ -12,7 +12,7 @@
       <div class="images_rounded position-relative">
         <img
           class="product__pictureDetail mt-4 mb-xl-3 mt-lg-5"
-          :src="`${this.VUE_APP_SERVICE_URL_IMAGE}` + images"
+          :src="`${VUE_APP_SERVICE_URL_IMAGE}` + images"
           alt="ImagePicture"
         />
         <div

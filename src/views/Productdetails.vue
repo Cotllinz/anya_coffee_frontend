@@ -1,5 +1,5 @@
 <template>
-  <div class="Home">
+  <div class="ProductDetails">
     <Navbar :showSearchIcons="search" :msg="MassageValue" />
     <hr class="mt-lg-3 d-none d-lg-block" />
     <DProduct
@@ -76,3 +76,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.ProductDetails {
+  background: #ffffff;
+}
+</style>

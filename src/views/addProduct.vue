@@ -57,3 +57,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.AddProduct {
+  background: #ffffff;
+}
+</style>

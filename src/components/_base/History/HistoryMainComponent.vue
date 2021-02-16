@@ -32,7 +32,7 @@
                 <img
                   class="fit__image"
                   :src="
-                    `${this.VUE_APP_SERVICE_URL_IMAGE}` +
+                    `${VUE_APP_SERVICE_URL_IMAGE}` +
                       item.orders[0].image_product
                   "
                   alt="Image_History"
@@ -123,9 +123,7 @@
                   <img
                     v-if="historyDetails.length > 0"
                     class="image_payment"
-                    :src="
-                      `${this.VUE_APP_SERVICE_URL_IMAGE}` + item.image_product
-                    "
+                    :src="`${VUE_APP_SERVICE_URL_IMAGE}` + item.image_product"
                     alt="paymentItems"
                   />
                 </div>

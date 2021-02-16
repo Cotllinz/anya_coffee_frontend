@@ -87,6 +87,9 @@ export default {
 </script>
 
 <style scoped>
+.Payment {
+  background: #ffffff;
+}
 main.bg__payment {
   background-image: url('../assets/image/mainImage/DetailProduct1.jpg');
   background-size: cover;

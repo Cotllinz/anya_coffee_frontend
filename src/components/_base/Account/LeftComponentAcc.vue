@@ -3,7 +3,7 @@
     <div class="image__fit">
       <img
         v-if="dataForm.images && this.url === null"
-        :src="`${this.VUE_APP_SERVICE_URL_IMAGE}` + dataForm.images"
+        :src="`${VUE_APP_SERVICE_URL_IMAGE}` + dataForm.images"
         class="style__image"
         alt="image__account"
       />

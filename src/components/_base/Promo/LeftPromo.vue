@@ -12,13 +12,13 @@
       <img
         v-if="images"
         class="style__image"
-        :src="`${this.VUE_APP_SERVICE_URL_IMAGE}` + images"
+        :src="`${VUE_APP_SERVICE_URL_IMAGE}` + images"
         alt="image"
       />
       <img
         v-if="form.images"
         class="style__image"
-        :src="`${this.VUE_APP_SERVICE_URL_IMAGE}` + form.images"
+        :src="`${VUE_APP_SERVICE_URL_IMAGE}` + form.images"
         alt="image"
       />
       <img

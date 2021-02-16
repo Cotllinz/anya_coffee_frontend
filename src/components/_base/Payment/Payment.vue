@@ -20,9 +20,7 @@
               <div class="">
                 <img
                   class="image_setting"
-                  :src="
-                    `${this.VUE_APP_SERVICE_URL_IMAGE}` + items.image_product
-                  "
+                  :src="`${VUE_APP_SERVICE_URL_IMAGE}` + items.image_product"
                   alt="paymentItems"
                 />
               </div>

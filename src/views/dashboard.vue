@@ -41,4 +41,7 @@ export default {
   border-radius: 10px;
   box-shadow: 6px 6px 20px rgba(196, 196, 196, 0.67);
 }
+.Dashboard {
+  background: #ffffff;
+}
 </style>

@@ -12,7 +12,7 @@
       <img
         class="style__image"
         v-if="form.imageBase && url === null"
-        :src="`${this.VUE_APP_SERVICE_URL_IMAGE}` + form.imageBase"
+        :src="`${VUE_APP_SERVICE_URL_IMAGE}` + form.imageBase"
         alt="image_edit"
       />
       <img class="style__image" v-if="url" :src="url" alt="image" />

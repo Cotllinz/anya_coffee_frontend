@@ -28,3 +28,8 @@ export default {
   methods: {}
 }
 </script>
+<style scoped>
+.product{
+  background: #ffffff;
+}
+</style>

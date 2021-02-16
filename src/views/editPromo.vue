@@ -79,3 +79,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.Promo {
+  background: #ffffff;
+}
+</style>

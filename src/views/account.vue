@@ -124,6 +124,9 @@ export default {
 }
 </script>
 <style scoped>
+.Account {
+  background: #ffffff;
+}
 main.bg__account {
   background-image: url('../assets/image/mainImage/Bg__AccountPage.jpg');
   background-size: cover;
