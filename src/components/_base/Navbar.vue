@@ -103,7 +103,9 @@
               <img
                 v-if="images"
                 class="costumer__Logo"
-                :src="'http://localhost:3000/' + images"
+                :src="
+                  `${this.VUE_APP_SERVICE_URL_IMAGE}fileuplodanya/` + images
+                "
                 alt="costumerLogo"
             /></router-link>
             <div v-else>
@@ -131,7 +133,8 @@ export default {
     return {
       mssg: 30,
       searchData: '',
-      showSearch: false
+      showSearch: false,
+      VUE_APP_SERVICE_URL_IMAGE: process.env.VUE_APP_SERVICE_URL_IMAGE
     }
   },
   computed: {

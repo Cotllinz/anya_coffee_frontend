@@ -90,7 +90,9 @@
                 >
                   <div class="image_fitProduct">
                     <img
-                      :src="'http://localhost:3000/' + item.image_product"
+                      :src="
+                        `${this.VUE_APP_SERVICE_URL_IMAGE}` + item.image_product
+                      "
                       class="card__imageProduct position-absolute"
                       alt="ListImage"
                     />
@@ -151,7 +153,8 @@ export default {
   },
   data() {
     return {
-      category: ''
+      category: '',
+      VUE_APP_SERVICE_URL_IMAGE: process.env.VUE_APP_SERVICE_URL_IMAGE
     }
   },
   created() {

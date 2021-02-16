@@ -31,7 +31,10 @@
               <div class="image__history">
                 <img
                   class="fit__image"
-                  :src="'http://localhost:3000/' + item.orders[0].image_product"
+                  :src="
+                    `${this.VUE_APP_SERVICE_URL_IMAGE}` +
+                      item.orders[0].image_product
+                  "
                   alt="Image_History"
                 />
               </div>
@@ -120,7 +123,9 @@
                   <img
                     v-if="historyDetails.length > 0"
                     class="image_payment"
-                    :src="'http://localhost:3000/' + item.image_product"
+                    :src="
+                      `${this.VUE_APP_SERVICE_URL_IMAGE}` + item.image_product
+                    "
                     alt="paymentItems"
                   />
                 </div>
@@ -176,6 +181,11 @@ import moment from 'moment'
 
 export default {
   name: 'HMC',
+  data() {
+    return {
+      VUE_APP_SERVICE_URL_IMAGE: process.env.VUE_APP_SERVICE_URL_IMAGE
+    }
+  },
   mixins: [Alert],
   computed: {
     ...mapGetters({

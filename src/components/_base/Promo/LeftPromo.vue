@@ -12,13 +12,13 @@
       <img
         v-if="images"
         class="style__image"
-        :src="'http://localhost:3000/' + images"
+        :src="`${this.VUE_APP_SERVICE_URL_IMAGE}` + images"
         alt="image"
       />
       <img
         v-if="form.images"
         class="style__image"
-        :src="'http://localhost:3000/' + form.images"
+        :src="`${this.VUE_APP_SERVICE_URL_IMAGE}` + form.images"
         alt="image"
       />
       <img
@@ -93,7 +93,8 @@ export default {
   props: ['form'],
   data() {
     return {
-      id: 0
+      id: 0,
+      VUE_APP_SERVICE_URL_IMAGE: process.env.VUE_APP_SERVICE_URL_IMAGE
     }
   },
   created() {

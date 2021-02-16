@@ -12,7 +12,7 @@
       <img
         class="style__image"
         v-if="form.imageBase && url === null"
-        :src="'http://localhost:3000/' + form.imageBase"
+        :src="`${this.VUE_APP_SERVICE_URL_IMAGE}` + form.imageBase"
         alt="image_edit"
       />
       <img class="style__image" v-if="url" :src="url" alt="image" />
@@ -95,6 +95,7 @@ export default {
   data() {
     return {
       url: null,
+      VUE_APP_SERVICE_URL_IMAGE: process.env.VUE_APP_SERVICE_URL_IMAGE,
       timestart: [
         { text: 'Select start hour', value: null },
         '1 am',

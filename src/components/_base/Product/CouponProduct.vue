@@ -31,7 +31,9 @@
                 :class="roles === 1 ? 'image_promofit_roles' : 'image_promofit'"
               >
                 <img
-                  :src="'http://localhost:3000/' + items.image_product"
+                  :src="
+                    `${this.VUE_APP_SERVICE_URL_IMAGE}` + items.image_product
+                  "
                   class="card__promoStyled"
                   alt="Coupon"
                 />
@@ -107,6 +109,11 @@ import { mapGetters, mapActions, mapMutations } from 'vuex'
 import MixinsAlert from '../../../mixins/Alert'
 export default {
   mixins: [MixinsAlert],
+  data() {
+    return {
+      VUE_APP_SERVICE_URL_IMAGE: process.env.VUE_APP_SERVICE_URL_IMAGE
+    }
+  },
   computed: {
     ...mapGetters({
       roles: 'getRoles',

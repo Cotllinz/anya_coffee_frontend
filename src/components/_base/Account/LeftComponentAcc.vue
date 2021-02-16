@@ -3,7 +3,7 @@
     <div class="image__fit">
       <img
         v-if="dataForm.images && this.url === null"
-        :src="'http://localhost:3000/' + dataForm.images"
+        :src="`${this.VUE_APP_SERVICE_URL_IMAGE}` + dataForm.images"
         class="style__image"
         alt="image__account"
       />
@@ -74,7 +74,8 @@ export default {
   mixins: [AlertMixins],
   data() {
     return {
-      url: null
+      url: null,
+      VUE_APP_SERVICE_URL_IMAGE: process.env.VUE_APP_SERVICE_URL_IMAGE
     }
   },
   methods: {

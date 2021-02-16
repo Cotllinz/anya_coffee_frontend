@@ -12,7 +12,7 @@
       <div class="images_rounded position-relative">
         <img
           class="product__pictureDetail mt-4 mb-xl-3 mt-lg-5"
-          :src="'http://localhost:3000/' + images"
+          :src="`${this.VUE_APP_SERVICE_URL_IMAGE}` + images"
           alt="ImagePicture"
         />
         <div
@@ -47,7 +47,8 @@ export default {
   data() {
     return {
       id: 0,
-      images: ''
+      images: '',
+      VUE_APP_SERVICE_URL_IMAGE: process.env.VUE_APP_SERVICE_URL_IMAGE
     }
   },
   created() {

@@ -20,7 +20,9 @@
               <div class="">
                 <img
                   class="image_setting"
-                  :src="'http://localhost:3000/' + items.image_product"
+                  :src="
+                    `${this.VUE_APP_SERVICE_URL_IMAGE}` + items.image_product
+                  "
                   alt="paymentItems"
                 />
               </div>
@@ -79,7 +81,9 @@ export default {
     ...mapGetters({ Cart: 'getCartDisplay' })
   },
   data() {
-    return {}
+    return {
+      VUE_APP_SERVICE_URL_IMAGE: process.env.VUE_APP_SERVICE_URL_IMAGE
+    }
   },
   methods: {
     removeCart(x) {
