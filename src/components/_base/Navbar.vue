@@ -103,9 +103,7 @@
               <img
                 v-if="images"
                 class="costumer__Logo"
-                :src="
-                  `${this.VUE_APP_SERVICE_URL_IMAGE}fileuplodanya/` + images
-                "
+                :src="`${this.VUE_APP_SERVICE_URL_IMAGE}` + images"
                 alt="costumerLogo"
             /></router-link>
             <div v-else>
