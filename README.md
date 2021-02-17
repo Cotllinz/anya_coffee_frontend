@@ -1,17 +1,18 @@
-<h1 align='center'>Vue JS - #Anya Coffee Shop</h1>
+<h1 align='center'>Vue JS - Anya Coffee Shop</h1>
   <p align="center">
     <a href="https://anya-coffeeshop.netlify.app/">View Demo</a>
     ·
-    <a href="https://github.com/Cotllinz/anya_coffee_frontend/">Report Bug</a>
+    <a href="https://github.com/Cotllinz/anya_coffee_frontend/issues">Report Bug</a>
     ·
-    <a href="https://github.com/Cotllinz/anya_coffee_frontend/">Request Feature</a>
+    <a href="https://github.com/Cotllinz/anya_coffee_frontend/pulls">Request Feature</a>
   </p>
 
-![Image Banner](src/assets/BG.PNG)
+![Image Banner](https://raw.githubusercontent.com/Cotllinz/anya_coffee_frontend/master/public/smartmockups_kl9686ip.jpg)
 
 ## About The Project
 
-#background_projek.
+Anya Coffee is a website that made for the purchase of various products such as coffee and other foods intended for fans of anya geraldine
+this website build with tools etc. Vue, Express,js Mysql, Node.js.
 
 ## Built With
 
@@ -22,17 +23,18 @@
 
 1. <a href="https://nodejs.org/en/download/">Node Js</a>
 2. Node_modules `npm install` or `yarn install`
-3. Backend API #nama_projek [`Anya Coffee`](https://github.com/Cotllinz/Anya_coffee)
+3. Backend API Anya Coffee [`Anya Coffee`](https://github.com/Cotllinz/Anya_coffee)
 
 ## Getting Started
 
-1. Download this Project or you can type `git clone #link_git`
+1. Download this Project or you can type `https://github.com/Cotllinz/anya_coffee_frontend.git`
 2. Open app's directory in CMD or Terminal
 3. Type `npm install` or `yarn install`
 4. Add .env file at root folder project
 
 ```sh
 VUE_APP_SERVICE_URL = [Backend API]
+VUE_APP_SERVICE_URL_IMAGE = [Backend Image]
 ```
 
 5. Type `npm run serve`
