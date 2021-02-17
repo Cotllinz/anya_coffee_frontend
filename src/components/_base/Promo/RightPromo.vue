@@ -179,11 +179,12 @@ export default {
     ...mapActions(['getProductforPromo', 'addPromo', 'updatePromo']),
     ...mapMutations(['getPrice', 'getDiscountCP']),
     sendData() {
-      const SetData = {
+      let SetData = {
         DataSend: this.Data,
         id: this.id
       }
       if (this.id) {
+        SetData.DataSend.startExp = SetData.DataSend.startExp.slice(0, 10)
         this.updatePromo(SetData)
           .then(() => {
             this.AlertUpdatePromo(this.Data.nameProduct).then(res => {
