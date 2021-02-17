@@ -3,6 +3,7 @@ export default {
   state: {
     totalDay: 0,
     totalYear: 0,
+    showChart: false,
     totalOrderMonth: 0,
     chartData: {
       January: 0,
@@ -44,42 +45,43 @@ export default {
     },
     setChart(state, payload) {
       /* Tanyakkan Mas Bagus */
+      state.showChart = true
       for (let i = 0; i < payload.data.length; i++) {
         if (payload.data[i].Month == 1) {
-          state.chartData.January = payload.data[0].Price
+          state.chartData.January = payload.data[i].Price
         }
         if (payload.data[i].Month == 2) {
-          state.chartData.February = payload.data[1].Price
+          state.chartData.February = payload.data[i].Price
         }
         if (payload.data[i].Month == 3) {
-          state.chartData.March = payload.data[2].Price
+          state.chartData.March = payload.data[i].Price
         }
         if (payload.data[i].Month == 4) {
-          state.chartData.April = payload.data[3].Price
+          state.chartData.April = payload.data[i].Price
         }
         if (payload.data[i].Month == 5) {
-          state.chartData.May = payload.data[4].Price
+          state.chartData.May = payload.data[i].Price
         }
         if (payload.data[i].Month == 6) {
-          state.chartData.June = payload.data[5].Price
+          state.chartData.June = payload.data[i].Price
         }
         if (payload.data[i].Month == 7) {
-          state.chartData.July = payload.data[6].Price
+          state.chartData.July = payload.data[i].Price
         }
         if (payload.data[i].Month == 8) {
-          state.chartData.August = payload.data[7].Price
+          state.chartData.August = payload.data[i].Price
         }
         if (payload.data[i].Month == 9) {
-          state.chartData.September = payload.data[8].Price
+          state.chartData.September = payload.data[i].Price
         }
         if (payload.data[i].Month == 10) {
-          state.chartData.October = payload.data[9].Price
+          state.chartData.October = payload.data[i].Price
         }
         if (payload.data[i].Month == 11) {
-          state.chartData.November = payload.data[10].Price
+          state.chartData.November = payload.data[i].Price
         }
         if (payload.data[i].Month == 12) {
-          state.chartData.December = payload.data[11].Price
+          state.chartData.December = payload.data[i].Price
         }
       }
       console.log(state.chartData)
@@ -131,7 +133,6 @@ export default {
           .get(`${context.state.VUE_APP_SERVICE_URL}dashboard/chartMount`)
           .then(res => {
             context.commit('setChart', res.data)
-            /*    console.log(res) */
             resolve(res)
           })
           .catch(err => {
@@ -152,6 +153,9 @@ export default {
     },
     sendChart(state) {
       return state.chartData
+    },
+    turnOnchart(state) {
+      return state.showChart
     }
   }
 }

@@ -1,12 +1,12 @@
 <template>
   <div class="Dashboard">
-    <Navbar :roles="role" :msg="MassageValue" />
+    <Navbar :msg="MassageValue" />
     <hr class="mt-lg-3 d-none d-lg-block" />
     <b-container>
       <card />
       <div class="mt-xl-4 mt-3 mb-xl-4 mb-4">
         <b-card class="chart_card">
-          <Bar />
+          <Bar v-if="onChart" />
         </b-card>
       </div>
     </b-container>
@@ -20,6 +20,7 @@ import Navbar from '../components/_base/Navbar'
 import Footer from '../components/_base/Footer'
 import card from '../components/_base/Dashboard/card_dashboard'
 import Bar from '../components/_base/Dashboard/chartjs'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'Dashboard',
   components: {
@@ -30,9 +31,17 @@ export default {
   },
   data() {
     return {
-      role: 1,
       MassageValue: 30
     }
+  },
+  computed: {
+    ...mapGetters({ onChart: 'turnOnchart' })
+  },
+  mounted() {
+    this.getChart()
+  },
+  methods: {
+    ...mapActions(['getChart'])
   }
 }
 </script>
