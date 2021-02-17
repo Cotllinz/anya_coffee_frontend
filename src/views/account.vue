@@ -83,6 +83,7 @@ export default {
         addressUser,
         Gender
       } = this.form
+      this.form.dateBirth = this.form.dateBirth.slice(0, 10)
       const dataSendAccount = new FormData()
       dataSendAccount.append('userName', userName)
       dataSendAccount.append('firstName', firstName)

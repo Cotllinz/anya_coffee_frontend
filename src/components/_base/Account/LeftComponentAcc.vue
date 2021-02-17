@@ -40,7 +40,7 @@
         </button>
       </b-col>
       <b-col>
-        <button class="btn_editPassword mb-lg-5 mb-4">
+        <button type="button" class="btn_editPassword mb-lg-5 mb-4">
           Edit Password
         </button>
       </b-col>
@@ -54,7 +54,7 @@
           </button>
         </b-col>
         <b-col>
-          <button class="btn_cancel mb-lg-5">Cancel</button>
+          <button type="button" class="btn_cancel mb-lg-5">Cancel</button>
         </b-col>
         <b-col>
           <button type="button" @click="logoutHandle" class="btn_logout">
