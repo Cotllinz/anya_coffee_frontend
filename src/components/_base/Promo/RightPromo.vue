@@ -185,6 +185,7 @@ export default {
       }
       if (this.id) {
         SetData.DataSend.startExp = SetData.DataSend.startExp.slice(0, 10)
+        SetData.DataSend.endExp = SetData.DataSend.endExp.slice(0, 10)
         this.updatePromo(SetData)
           .then(() => {
             this.AlertUpdatePromo(this.Data.nameProduct).then(res => {
