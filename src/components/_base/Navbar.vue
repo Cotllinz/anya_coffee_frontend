@@ -106,13 +106,13 @@
                 :src="`${this.VUE_APP_SERVICE_URL_IMAGE}` + images"
                 alt="costumerLogo"
             /></router-link>
-            <div v-else>
-              <button @click="loginClick()" class="mr-lg-4 btn_login">
+            <div class="mb-3 mb-lg-0" v-else>
+              <button @click="loginClick()" class="mr-lg-4 mr-3 btn_login">
                 Login
               </button>
               <button
                 @click="signUpClick()"
-                class="mr-lg-2 px-lg-5 py-lg-2 btn_signUp"
+                class="mr-lg-2 px-lg-5 px-4 py-2 py-lg-2 btn_signUp"
               >
                 Sign Up
               </button>

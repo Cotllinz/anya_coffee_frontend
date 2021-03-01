@@ -6,17 +6,19 @@
         <hr class="mt-lg-3 d-none d-lg-block" />
         <b-container>
           <b-row>
-            <b-col lg="7" class="mt-lg-5 pt-lg-5">
+            <b-col lg="7" class="mt-lg-5 mt-5 pt-5 pt-lg-5">
               <div class="title_homePage">
                 <h1>
                   Start Your Day with Coffee and Good Meals
                 </h1>
-                <p class="pr-lg-5 mt-lg-4">
+                <p class="pr-lg-5 mt-3 mt-lg-4">
                   We provide high quality beans, good taste, and healthy meals
                   made by love just for you. Start your day with us for a bigger
                   smile!
                 </p>
-                <button class="btn_getStarted mb-lg-5 mt-lg-4 py-lg-3">
+                <button
+                  class="btn_getStarted mb-lg-5 mt-lg-4 mt-3 py-lg-3 py-3"
+                >
                   Get Started
                 </button>
               </div>
@@ -29,7 +31,7 @@
           <b-row>
             <b-col lg="12">
               <div class="card_status px-lg-5 px-3 mb-lg-5">
-                <b-row class="pt-lg-5 pt-5">
+                <b-row class="pt-lg-5 pt-3">
                   <b-col>
                     <div class="d-flex self-items-center">
                       <section class="rounded_icons">
@@ -81,74 +83,78 @@
                 </b-row>
               </div>
             </b-col>
-            <div class="d-flex align-items-center">
-              <b-col lg="6">
-                <div class="logo_image">
-                  <img
-                    src="../assets/image/mainImage/ImageTeamWork.png"
-                    alt="image_logoTeammWork"
-                  />
-                </div>
-              </b-col>
-              <b-col lg="6">
-                <div class="text_headerTeamwork pl-lg-5 ml-lg-4">
-                  <h2>We Provide Good Coffee and Healthy Meals</h2>
-                  <p class="mt-2 mt-lg-3 mb-lg-4 mb-3">
-                    You can explore the menu that we provide with fun and have
-                    their own taste and make your day better.
-                  </p>
-                  <section>
-                    <div
-                      class="icons_desc mb-lg-3 mb-2 d-flex align-items-center"
-                    >
-                      <img
-                        src="../assets/image/icons/bx_bxs-check-circle.jpg"
-                        alt="bx_icons"
-                      />
-                      <p class="ml-2">High quality beans</p>
-                    </div>
-                    <div
-                      class="icons_desc mb-lg-3 mb-2 d-flex align-items-center"
-                    >
-                      <img
-                        src="../assets/image/icons/bx_bxs-check-circle.jpg"
-                        alt="bx_icons"
-                      />
-                      <p class="ml-2">
-                        Healthy meals, you can request the ingredients
-                      </p>
-                    </div>
-                    <div
-                      class="icons_desc mb-lg-3 mb-2 d-flex align-items-center"
-                    >
-                      <img
-                        src="../assets/image/icons/bx_bxs-check-circle.jpg"
-                        alt="bx_icons"
-                      />
-                      <p class="ml-2">
-                        Chat with our staff to get better experience for
-                        ordering
-                      </p>
-                    </div>
-                    <div
-                      class="icons_desc mb-lg-3 mb-2 d-flex align-items-center"
-                    >
-                      <img
-                        src="../assets/image/icons/bx_bxs-check-circle.jpg"
-                        alt="bx_icons"
-                      />
-                      <p class="ml-2">
-                        Free member card with a minimum purchase of IDR 200.000.
-                      </p>
-                    </div>
-                  </section>
-                </div>
-              </b-col>
-            </div>
+            <b-col>
+              <b-row class="align-items-center">
+                <b-col cols="12" lg="6">
+                  <div class="logo_image">
+                    <img
+                      class="w-100"
+                      src="../assets/image/mainImage/ImageTeamWork.png"
+                      alt="image_logoTeammWork"
+                    />
+                  </div>
+                </b-col>
+                <b-col cols="12" lg="6">
+                  <div class="text_headerTeamwork pl-lg-5 mt-4 mt-lg-0 ml-lg-4">
+                    <h2>We Provide Good Coffee and Healthy Meals</h2>
+                    <p class="mt-3 mt-lg-3 mb-lg-4 mb-3">
+                      You can explore the menu that we provide with fun and have
+                      their own taste and make your day better.
+                    </p>
+                    <section>
+                      <div
+                        class="icons_desc mb-lg-3 mb-2 d-flex align-items-center"
+                      >
+                        <img
+                          src="../assets/image/icons/bx_bxs-check-circle.jpg"
+                          alt="bx_icons"
+                        />
+                        <p class="ml-2">High quality beans</p>
+                      </div>
+                      <div
+                        class="icons_desc mb-lg-3 mb-2 d-flex align-items-center"
+                      >
+                        <img
+                          src="../assets/image/icons/bx_bxs-check-circle.jpg"
+                          alt="bx_icons"
+                        />
+                        <p class="ml-2">
+                          Healthy meals, you can request the ingredients
+                        </p>
+                      </div>
+                      <div
+                        class="icons_desc mb-lg-3 mb-2 d-flex align-items-start align-items-lg-center"
+                      >
+                        <img
+                          src="../assets/image/icons/bx_bxs-check-circle.jpg"
+                          alt="bx_icons"
+                        />
+                        <p class="ml-2">
+                          Chat with our staff to get better experience for
+                          ordering
+                        </p>
+                      </div>
+                      <div
+                        class="icons_desc mb-lg-3 mb-2 d-flex align-items-start align-items-lg-center"
+                      >
+                        <img
+                          src="../assets/image/icons/bx_bxs-check-circle.jpg"
+                          alt="bx_icons"
+                        />
+                        <p class="ml-2">
+                          Free member card with a minimum purchase of IDR
+                          200.000.
+                        </p>
+                      </div>
+                    </section>
+                  </div>
+                </b-col>
+              </b-row>
+            </b-col>
           </b-row>
         </b-container>
       </main>
-      <main class="mt-lg-5">
+      <main class="mt-lg-5 mt-3">
         <b-container fluid>
           <b-row class="main_card">
             <b-col class="pb-lg" style="padding:0;" lg="12">
@@ -162,7 +168,7 @@
                 </div>
               </section>
             </b-col>
-            <b-col lg="12" class="pt-lg-5 mt-lg-5">
+            <b-col lg="12" class="pt-lg-5 mt-5 pt-5 mt-lg-5">
               <b-container class="pb-lg-5">
                 <b-row cols="1" cols-lg="3">
                   <b-col v-for="(items, index) in display" :key="index">
@@ -176,9 +182,9 @@
                           alt="image_example"
                         />
                       </div>
-                      <section class="text_titleFood pt-lg-5 text-center">
-                        <h4 class="pt-lg-2">Chicken Wings</h4>
-                        <div class="items_food mt-lg-4 pl-5 d-flex flex-column">
+                      <section class="text_titleFood pt-lg-5 pt-5 text-center">
+                        <h4 class="pt-lg-2 pt-2">Chicken Wings</h4>
+                        <div class="items_food mt-lg-4 d-flex flex-column">
                           <div
                             class="items_list mb-3 d-flex align-items-center"
                           >
@@ -276,7 +282,7 @@
           </b-row>
         </b-container>
       </main>
-      <main class="partner_coffee mt-lg-5 pt-lg-5">
+      <main class="partner_coffee mt-lg-5 mt-5 pt-lg-5">
         <b-container>
           <b-row>
             <b-col>
@@ -311,11 +317,15 @@
               <!-- -->
               <section>
                 <VueSlickCarousel
-                  class="slick_corouselSet"
+                  class="slick_corouselSet "
                   ref="carousel"
                   v-bind="settings"
                 >
-                  <div v-for="(items, index) in displayComment" :key="index">
+                  <div
+                    class="px-1 px-xl-0"
+                    v-for="(items, index) in displayComment"
+                    :key="index"
+                  >
                     <b-card class="card__comment">
                       <section class="d-flex align-items-center">
                         <img
@@ -332,7 +342,7 @@
                         >
                           <h5>4.5</h5>
                           <img
-                            class="mb-lg-2 ml-2"
+                            class="mb-lg-2 mb-2 ml-2"
                             src="../assets/image/icons/Group 1161.jpg"
                             alt="star"
                           />
@@ -353,10 +363,13 @@
           </b-row>
         </b-container>
       </main>
-      <section class="mt-lg-4 ml-3 mb-lg-1">
+      <section class="mt-lg-4 ml-lg-3 mt-3 mb-lg-1">
         <b-container>
           <div class="btn_cardComment">
-            <button class="btn_arrowPrev py-1 px-2 mr-3" @click="showPrev">
+            <button
+              class="btn_arrowPrev py-1 px-2 mr-lg-3 mr-2"
+              @click="showPrev"
+            >
               <b-icon
                 scale="1"
                 style="color:#6A4029;"
@@ -376,7 +389,7 @@
       <section>
         <b-container>
           <div class="card_promo">
-            <b-card class="mt-4 card_promosection mt-lg-0">
+            <b-card class="mt-lg-4 mt-2 mb-5 card_promosection mt-lg-0">
               <b-card-text
                 class="d-flex flex-column flex-lg-row align-items-center py-xl-4 py-4 px-4 px-lg-5"
               >
@@ -430,6 +443,12 @@ export default {
         pauseOnHover: true,
         responsive: [
           {
+            breakpoint: 1026,
+            settings: {
+              slidesToShow: 3
+            }
+          },
+          {
             breakpoint: 750,
             settings: {
               slidesToShow: 1
@@ -438,14 +457,7 @@ export default {
           {
             breakpoint: 576,
             settings: {
-              centerPadding: '0px',
               slidesToShow: 1
-            }
-          },
-          {
-            breakpoint: 1000,
-            settings: {
-              slidesToShow: 2
             }
           }
         ]
@@ -693,6 +705,9 @@ button.btn_getStarted {
   font-weight: 700;
   background: #ffba33;
 }
+.items_food {
+  padding-left: 48px;
+}
 .card_status {
   height: 150px;
   position: relative;
@@ -700,5 +715,76 @@ button.btn_getStarted {
   border-radius: 10px;
   box-shadow: 0px 70px 50px rgba(57, 57, 57, 0.1);
   background: #ffffff;
+}
+@media (max-width: 1024px) {
+  .select_btn {
+    width: 70%;
+  }
+  .slick_corouselSet {
+    width: 135%;
+  }
+  .items_food {
+    padding-left: 23px;
+  }
+}
+@media (max-width: 576px) {
+  .items_food {
+    padding-left: 48px;
+  }
+  .select_btn {
+    width: 60%;
+  }
+  .card__comment {
+    width: 100%;
+  }
+  .slick_corouselSet {
+    width: 100%;
+  }
+  .text_titlePartner h2 {
+    font-size: 20px;
+  }
+  .text_maps h3 {
+    font-size: 25px;
+  }
+  .title_homePage h1 {
+    font-size: 40px;
+    text-align: center;
+  }
+  .title_homePage p {
+    font-size: 16px;
+  }
+  button.btn_getStarted {
+    width: 50%;
+  }
+  .bg_imageHome {
+    background-position: 50%;
+    height: 650px;
+  }
+  .card_status {
+    box-shadow: 0px 40px 30px rgba(57, 57, 57, 0.1);
+  }
+  .text_headerTeamwork h2 {
+    font-weight: 500;
+    font-size: 35px;
+  }
+  .title__card h1 {
+    font-size: 35px;
+  }
+  .card_food {
+    margin-bottom: 80px;
+  }
+  .costumer_title h3 {
+    font-size: 25px;
+  }
+  @media (max-width: 393px) {
+    .items_food {
+      padding-left: 33px;
+    }
+  }
+  @media (max-width: 375px) {
+    .items_food {
+      padding-left: 24px;
+    }
+  }
 }
 </style>
